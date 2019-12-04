@@ -26,10 +26,9 @@ Logger logger =  LogManager.getLogger(MemberRestController.class.getName()); // 
 private BoardService boardService;
 
 @RequestMapping(value="/board.json", produces={MediaType.APPLICATION_JSON_VALUE})
-public List<BoardVO>  selectBoardList( ModelMap model ) {
+public List<?>  selectBoardList( ModelMap model ) {
 	System.out.println("레스트컨트롤러");
-	List<BoardVO> boardList = boardService.selectBoardList();
-	return boardList;
+	return boardService.selectBoardList();
 }
 
 }

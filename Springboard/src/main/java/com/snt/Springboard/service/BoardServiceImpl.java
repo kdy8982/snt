@@ -19,7 +19,7 @@ public class BoardServiceImpl implements BoardService {
 	
 
 	@Override
-	public List<BoardVO> selectBoardList() {
+	public List<?> selectBoardList() {
 		try {
 			boardDao.selectBoardList();
 		} catch (Exception e) {

@@ -10,8 +10,8 @@ import egovframework.rte.psl.dataaccess.EgovAbstractDAO;
 
 @Repository("boardDao")
 public class BoardDao extends EgovAbstractDAO {
-	public List<BoardVO> selectBoardList() {
+	public List<?> selectBoardList() {
 		// TODO Auto-generated method stub
-		return (List<BoardVO>) select("boardDao.selectBoardList");
+		return list("boardDao.selectBoardList");
 	}
 }

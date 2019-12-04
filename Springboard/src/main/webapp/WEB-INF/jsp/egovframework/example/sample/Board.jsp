@@ -24,7 +24,7 @@
 
 <body>
 
-	<header> </header>
+	<header>${member.name} </header>
 	<div id="boardinfo-wrap" class="wrap">
 		<span>테스트 게시판</span><span>13</span>
 	</div>
