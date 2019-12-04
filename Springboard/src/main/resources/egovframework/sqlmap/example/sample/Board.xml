@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+ 
+<sqlMap namespace="Board">
+   	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+    <typeAlias alias="BoardVO" type="com.snt.Springboard.domain.BoardVO" />
+    
+    <resultMap id="board" class="com.snt.Springboard.domain.BoardVO">
+        <result property="board_id" column="board_id"/>
+        <result property="title" column="title"/>
+        <result property="writer" column="writer"/>
+        <result property="board_name" column="board_name"/>
+    </resultMap>
+    
+    <select id ="boardDao.selectBoardList" resultClass="java.util.List">
+        select * from board
+    </select>
+</sqlMap>
