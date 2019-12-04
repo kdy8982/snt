@@ -11,7 +11,7 @@
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"
 	integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
 	crossorigin="anonymous"></script>
-<script type="text/javascript" src="Board.js"></script>
+<script type="text/javascript" src="<c:url value='/js/Board.js'/>"></script>
 <script
 	src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 
@@ -53,16 +53,6 @@
 				<th>게시판명</th>
 			</tr>
 		</thead>
-		<tbody>
-			<tr>
-				<td>Row 1 Data 1</td>
-				<td>Row 1 Data 2</td>
-			</tr>
-			<tr>
-				<td>Row 2 Data 1</td>
-				<td>Row 2 Data 2</td>
-			</tr>
-		</tbody>
 	</table>
 
 </body>

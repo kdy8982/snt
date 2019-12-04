@@ -58,6 +58,5 @@
 </head>
 
 <body style="text-align:center; margin:0 auto; display:inline; padding-top:100px;">
-	<div><c:out value="${member.name}" escapeXml="false"/><c:out value="${member.id}" escapeXml="false"/></</div>
 </body>
 </html>

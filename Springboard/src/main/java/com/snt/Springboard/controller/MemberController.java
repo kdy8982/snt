@@ -22,7 +22,7 @@ public class MemberController {
 	public String  selectMebmerList( ModelMap model ) {
 		MemberVO member = memberService.selectMember();
 		model.addAttribute("member", member);
-		return "sample/SampleMember";
+		return "sample/Board";
 	}
 	
 	
