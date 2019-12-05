@@ -1,7 +1,83 @@
-.normal-btn {
-	
-	
+#boardinfo-wrap{
+	width: 60%;
+	height : 50px;
+	margin : 50px 150px 5px 150px;
+	padding : 50px 25px;
+	background-color : #f2f2f2;	
+	border : 1px solid #e2e2e2;
 }
+
+
+#search-wrap{
+	width : 57.3%;
+	height : 130px;
+	padding : 10px 0px 10px 100px;
+	margin : 0px 100px 20px 150px;
+	background-color : #f2f2f2;
+	border : 1px solid #e2e2e2;
+}
+.input_title, .input_writer, .input_department{
+	margin : 10px;
+}
+#datepicker1, #datepicker2{
+	margin-left : 10px;
+}
+
+#department2{
+	margin-left : 70px;
+}
+
+.search_button{
+	float : right;
+	margin-right : 30px;
+}
+
+.search_button > *{
+	background-color : gray;
+	font-size : 16px;
+	border-radius : 5px;
+}
+
+#button-wrap {
+	width : 62.7%;
+	margin : 5px 150px 5px 150px;
+	border : 1px solid black;
+	padding : 5px;
+}
+.printer {
+	float : right;
+	margin-right : 25px;
+	border: 1px solid #FFB2F5; 
+	background-color: #FFB2F5; 
+	color: whilte;
+	border-radius : 3px;
+}
+.printer:hover {
+	background-color : blue;
+	color : white;
+}
+
+.insert, .modify, .delete {
+	border: 1px solid #FFB2F5; 
+	background-color: #FFB2F5; 
+	color: whilte;
+	border-radius : 3px;
+}
+
+.organization_chart {
+	background-color : #f2f2f2;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
