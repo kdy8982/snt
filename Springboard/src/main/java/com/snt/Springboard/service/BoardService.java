@@ -6,4 +6,6 @@ import com.snt.Springboard.domain.BoardVO;
 
 public interface BoardService {
 	List<?> selectBoardList();
+
+	int selectBoardListTotCnt();
 }

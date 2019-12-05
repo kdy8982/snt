@@ -29,4 +29,10 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 
+	@Override
+	public int selectBoardListTotCnt() {
+		return boardDao.selectBoardListTotCnt();
+	}
+
+
 }

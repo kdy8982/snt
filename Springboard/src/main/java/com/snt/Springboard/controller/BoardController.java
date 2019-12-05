@@ -20,7 +20,10 @@ public class BoardController {
 	private BoardService boardService;
 	
 	@RequestMapping(value="/boardList.do")
-	public String  selectMebmerList( ModelMap model ) {
+	public String  selectBoardList( ModelMap model ) {
+		System.out.println( boardService.selectBoardListTotCnt());
+		model.addAttribute("boardCount", boardService.selectBoardListTotCnt());
+		
 		return "sample/Board";
 	}
 	

@@ -14,4 +14,9 @@ public class BoardDao extends EgovAbstractDAO {
 		// TODO Auto-generated method stub
 		return list("boardDao.selectBoardList");
 	}
+
+	public int selectBoardListTotCnt() {
+		return (int) select("boardDao.selectBoardListTotCnt");
+		
+	}
 }

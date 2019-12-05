@@ -20,4 +20,9 @@
 		from board A, department B, employee C
 		where A.department_id = B.department_id and A.employee_id = C.employee_id
     </select>
+    
+    <select id ="boardDao.selectBoardListTotCnt" resultClass="int">
+		select count(*) from board
+    </select>
+    
 </sqlMap>
