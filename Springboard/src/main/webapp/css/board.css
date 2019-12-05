@@ -1,87 +1,44 @@
-#boardinfo-wrap{
-	width: 60%;
-	height : 50px;
-	margin : 50px 150px 5px 150px;
-	padding : 50px 25px;
-	background-color : #f2f2f2;	
-	border : 1px solid #e2e2e2;
+/* Board 상단 스타일Start */
+#boardinfo-wrap {
+	border: 1px solid #CCC;
+    background-color: #EFEFEF;
+    padding: 35px;
 }
-
-
-#search-wrap{
-	width : 57.3%;
-	height : 130px;
-	padding : 10px 0px 10px 100px;
-	margin : 0px 100px 20px 150px;
-	background-color : #f2f2f2;
-	border : 1px solid #e2e2e2;
+#search-wrap {
+    margin-top: 7px;
+	border: 1px solid #CCC;
+    padding: 35px;
+    background-color: #EFEFEF;
 }
-.input_title, .input_writer, .input_department{
-	margin : 10px;
+#search_button {
+    text-align: right;
+    margin-top: 10px;
 }
-#datepicker1, #datepicker2{
-	margin-left : 10px;
-}
-
-#department2{
-	margin-left : 70px;
-}
-
-.search_button{
-	float : right;
-	margin-right : 30px;
-}
-
-.search_button > *{
-	background-color : gray;
-	font-size : 16px;
-	border-radius : 5px;
-}
-
 #button-wrap {
-	width : 62.7%;
-	margin : 5px 150px 5px 150px;
-	border : 1px solid black;
-	padding : 5px;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
-.printer {
-	float : right;
-	margin-right : 25px;
-	border: 1px solid #FFB2F5; 
-	background-color: #FFB2F5; 
-	color: whilte;
-	border-radius : 3px;
-}
-.printer:hover {
-	background-color : blue;
-	color : white;
+#search-wrap .form-group > label {
+	width: 100%;
+	display: inline;
 }
 
-.insert, .modify, .delete {
-	border: 1px solid #FFB2F5; 
-	background-color: #FFB2F5; 
-	color: whilte;
-	border-radius : 3px;
+#datepicker1 {
+	margin-left: 5px;
 }
 
-.organization_chart {
-	background-color : #f2f2f2;
+#boardcnt {
+	margin-left: 10px;
+    color: #00B0F0;
 }
 
+#writer {
+	margin-left: 5px;
+}
+/* Board 상단 스타일 End */
 
 
-
-
-
-
-
-
-
-
-
-
-
-/* board 등록 css */
+/* Board 등록 css Start*/
 #board-register-wrap {
 	display: none;
 	position: fixed;
@@ -94,6 +51,7 @@
     padding: 40px;
     box-sizing: border-box;
     border-radius: 10px;
+    border: 1px solid black;
 }
 
 #board-register {
@@ -131,4 +89,4 @@
     height: 100px;
     margin-top: 10px;
 }
-
+/* Board 등록 css End*/
