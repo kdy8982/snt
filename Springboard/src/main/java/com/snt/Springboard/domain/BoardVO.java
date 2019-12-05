@@ -7,6 +7,7 @@ public class BoardVO {
 	String create_date;
 	String board_name;
 	String employee_name;
+	
 	public String getTitle() {
 		return title;
 	}

@@ -20,8 +20,6 @@ public class MemberController {
 	
 	@RequestMapping(value="/member.do")
 	public String  selectMebmerList( ModelMap model ) {
-		MemberVO member = memberService.selectMember();
-		model.addAttribute("member", member);
 		return "sample/Board";
 	}
 	

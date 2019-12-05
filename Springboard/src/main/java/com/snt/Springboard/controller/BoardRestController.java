@@ -1,7 +1,6 @@
 package com.snt.Springboard.controller;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -14,10 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.snt.Springboard.domain.BoardVO;
-import com.snt.Springboard.domain.MemberVO;
 import com.snt.Springboard.service.BoardService;
-import com.snt.Springboard.service.MemberService;
 
 @RestController
 @ResponseBody
@@ -29,7 +25,7 @@ public class BoardRestController {
 
 	@RequestMapping(value = "/board.json", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public Object selectBoardList(ModelMap model) {
-		System.out.println("레스트컨트롤러");
+		System.out.println("board JSON CALL!! ");
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("data", boardService.selectBoardList());
 		Object result = map;
