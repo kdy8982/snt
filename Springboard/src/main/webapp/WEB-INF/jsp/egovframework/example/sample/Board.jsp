@@ -37,12 +37,14 @@
 		</div>	
 		<div class="form-group">
 			<label for="writer">작성자</label><input
-			type="text" id="writer" class="input_writer"></input>
+			type="text" id="writer" class="input_writer" disabled="disabled"></input>
 			<button class="organization_chart">조직도</button>
+			<div class="tree"></div>
 			
 			<label id="department2" for="department">부서</label>
-			<input type="text" id="department" class="input_department"></input>
+			<input type="text" id="department" class="input_department" disabled="disabled"></input>
 			<button class="organization_chart">조직도</button>
+			<div class="tree"></div>
 		</div>
 		<div class="form-group">
 			<label id="writedate" for="department">작성일</label><input type="text" name="board_date" id="datepicker1" class="input_date_created1" disabled />~<input type="text" name="board_date" id="datepicker2" class="input_date_created2" disabled/>

@@ -25,6 +25,70 @@ $(document).ready(function() {
 	}) //DataTable()
 	/* jQueryDataTable 끝 */
 	
+	
+	
+	    var resData = [ 
+		{ 
+			"parent": "#", 
+			"text": "샘플데이터1" ,
+			"data" : { "url" : "/context/url1" } 
+		}, 
+		{ 
+			"parent": "#", 
+			"text": "샘플데이터2" ,
+			"data" : { "url" : "/context/url2" } 
+		}, 
+		{ 
+			"parent": "#", 
+			"text": "샘플데이터3" ,
+			"data" : { "url" : "/context/url3" } 
+		} 
+	]
+    
+    
+    /*jsTree 시작*/
+    var treeArray = new Array();
+    
+    $('.organization_chart').on('click',function(){
+    	/*$.ajax({
+        	type: 'post',
+        	dataType: 'json',
+        	async: false,
+        	url: '/Springboard/boardList.do',
+        	success: function(data, textStatus){
+        		var treeJson = {
+        				'id':'',
+        				'parent':'',
+        				'text':'',
+        				'data':{
+        					'rownum':''
+        				}
+        		};
+        		for(var i in data){
+        			treeJson['id'] = data[i].id;
+        			treeJson['parent'] = data[i].parent;
+        			treeJson['text'] = data[i].text;
+        			treeJson['data'] = data[i].data;
+        			treeJson.data['rownum'] = data[i].rownum;
+        			treeArray.push(treeJson);
+        		}
+        	},
+        	error: function(data,textstatus){
+        		alert('에러');
+        	}
+        });*/
+    	
+    	$('.tree').jstree({
+        	"plugins" : ['wholerow',"json_data","changed","contextmenu","sort","crrm" ], 
+        	"core" : { "data" : resData }
+        }).on('select_node.jstree',function(event, data){
+        	$('#writer').val($tree.jstree('get_selected'));
+        	/* $('#tree').hide(); */
+        });
+    });
+    /*jsTree 끝*/
+	
+    
 	/* jQueryUI;datepcker 시작 */
 	$("#datepicker1").datepicker({
     	dateFormat:'yy-mm-dd',
