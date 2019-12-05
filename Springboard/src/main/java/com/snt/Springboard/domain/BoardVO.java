@@ -7,6 +7,9 @@ public class BoardVO {
 	String board_create_date;
 	String board_name;
 	String employee_name;
+	String board_id;
+	String department_id;
+	String employee_id;
 	
 	public String getBoard_title() {
 		return board_title;
@@ -38,7 +41,24 @@ public class BoardVO {
 	public void setEmployee_name(String employee_name) {
 		this.employee_name = employee_name;
 	}
-	
+	public String getBoard_id() {
+		return board_id;
+	}
+	public void setBoard_id(String board_id) {
+		this.board_id = board_id;
+	}
+	public String getDepartment_id() {
+		return department_id;
+	}
+	public void setDepartment_id(String department_id) {
+		this.department_id = department_id;
+	}
+	public String getEmployee_id() {
+		return employee_id;
+	}
+	public void setEmployee_id(String employee_id) {
+		this.employee_id = employee_id;
+	}
 	
 	
 }
