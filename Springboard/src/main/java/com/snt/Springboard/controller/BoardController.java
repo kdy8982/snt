@@ -4,10 +4,16 @@ import javax.annotation.Resource;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.snt.Springboard.domain.BoardVO;
 import com.snt.Springboard.domain.MemberVO;
 import com.snt.Springboard.service.BoardService;
 import com.snt.Springboard.service.MemberService;
@@ -18,16 +24,11 @@ public class BoardController {
 	
 	@Resource(name="boardService")
 	private BoardService boardService;
-	
 	@RequestMapping(value="/boardList.do")
 	public String  selectBoardList( ModelMap model ) {
-		System.out.println( boardService.selectBoardListTotCnt());
 		model.addAttribute("boardCount", boardService.selectBoardListTotCnt());
-		
 		return "sample/Board";
 	}
-	
-	
 	
 	
 }

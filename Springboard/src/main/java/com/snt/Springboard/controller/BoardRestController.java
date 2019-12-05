@@ -9,10 +9,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.http.MediaType;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.snt.Springboard.domain.BoardVO;
 import com.snt.Springboard.service.BoardService;
 
 @RestController
@@ -31,4 +34,13 @@ public class BoardRestController {
 		return result;
 	}
 
+	@RequestMapping(value="/boardService/insert.do", method=RequestMethod.POST, consumes = "application/json", produces= {MediaType.TEXT_PLAIN_VALUE, "text/plain;charset=UTF-8"})
+	@ResponseBody
+	public void insertBoard(@RequestBody BoardVO board) {
+		logger.info("댓글 입력 call !!");
+		logger.info(board);
+		boardService.insertBoard(board);
+	}
+	
+	
 }

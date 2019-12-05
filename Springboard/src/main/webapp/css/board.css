@@ -40,7 +40,7 @@
 
 /* Board 등록 css Start*/
 #board-register-wrap {
-	display: none;
+	/* display: none; */
 	position: fixed;
     width: 50%;
     top: 50%;

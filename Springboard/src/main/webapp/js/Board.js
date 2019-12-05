@@ -73,4 +73,26 @@ $(document).ready(function() {
 		$("#board-register-wrap").css("display", "none");	
 	})
 	
+	$("#board-register-submitBtn").on("click" , function() {
+		var modalInputTitle = $("input[name='title']").val();
+		var modalInputWriter = $("input[name='writer']").val();
+		var modalInputContent = $("textarea[name='content']").val();
+		var modalInputDeptCode = $("input[name='deptCode']").val();
+		var modalInputWriterCode = $("input[name='empCode']").val();
+		
+		var board = {
+				title : modalInputTitle,
+				writer : modalInputWriter,
+				content : modalInputContent,
+				deptCode : modalInputDeptCode,
+				writerCode : modalInputWriterCode
+		};
+		
+		boardService.insert(board, function(result) {
+			alert(result);
+		}) 
+	})
+	
+	
+	
 })

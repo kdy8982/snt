@@ -1,28 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
- 
+
 <sqlMap namespace="Board">
-    
-   	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
-    <typeAlias alias="BoardVO" type="com.snt.Springboard.domain.BoardVO" />
-    
-    <resultMap id="board" class="com.snt.Springboard.domain.BoardVO">
-        <result property="board_title" column="title"/>
-        <result property="department_name" column="department_name"/>
-        <result property="board_create_date" column="create_date"/>
-        <result property="board_name" column="board_name"/>
-        <result property="employee_name" column="employee_name"/>
-        
-    </resultMap>
-    
-    <select id ="boardDao.selectBoardList" resultClass="egovMap">
-		select A.board_title, B.department_name, C.employee_name, to_char(A.board_create_date, 'yyyy-mm-dd') board_create_date, A.board_name
+
+	<typeAlias alias="egovMap"
+		type="egovframework.rte.psl.dataaccess.util.EgovMap" />
+	<typeAlias alias="BoardVO" type="com.snt.Springboard.domain.BoardVO" />
+
+	<resultMap id="board" class="com.snt.Springboard.domain.BoardVO">
+		<result property="board_title" column="title" />
+		<result property="department_name" column="department_name" />
+		<result property="board_create_date" column="create_date" />
+		<result property="board_name" column="board_name" />
+		<result property="employee_name" column="employee_name" />
+
+	</resultMap>
+
+	<select id="boardDao.selectBoardList" resultClass="egovMap">
+		select
+		A.board_title, B.department_name, C.employee_name,
+		to_char(A.board_create_date, 'yyyy-mm-dd') board_create_date,
+		A.board_name
 		from board A, department B, employee C
-		where A.department_id = B.department_id and A.employee_id = C.employee_id
-    </select>
-    
-    <select id ="boardDao.selectBoardListTotCnt" resultClass="int">
-		select count(*) from board
-    </select>
-    
+		where
+		A.department_id = B.department_id and A.employee_id = C.employee_id
+	</select>
+
+	<select id="boardDao.selectBoardListTotCnt" resultClass="int">
+		select
+		count(*) from board
+	</select>
+
+	<insert id="boardDao.insertBoard">
+		<![CDATA[
+			INSERT INTO BOARD
+				( BOARD_ID
+				  , BOARD_TITLE
+				  , DEPARTMENT_ID
+				  , BOARD_CREATE_DATE
+				  , BOARD_NAME
+				  , EMPLOYEE_ID )
+			VALUES (
+				#board_id#,
+				#board_title#,
+				#department_name#,
+				##,
+				##,
+				## )
+		]]>
+	</insert>
+
 </sqlMap>

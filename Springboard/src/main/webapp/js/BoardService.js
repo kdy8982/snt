@@ -1,8 +1,9 @@
-var BoardService = (function() {
+var boardService = (function() {
 	function insert(board, callback, error) {
+		console.log(board)
 		$.ajax({
 			type : 'post',
-			url : '/board/insert',
+			url : '/boardService/insert.do',
 			data : JSON.stringify(board),
 			contentType : "application/json; charset=utf-8",
 			success : function(result, status, xhr) {
@@ -17,6 +18,6 @@ var BoardService = (function() {
 	} 
 	
 	return {
-		add : add
+		insert : insert
 	};
 })();

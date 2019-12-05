@@ -11,6 +11,7 @@
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"
 	integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
 	crossorigin="anonymous"></script>
+<script type="text/javascript" src="<c:url value='/js/BoardService.js'/>"></script>
 <script type="text/javascript" src="<c:url value='/js/Board.js'/>"></script>
 <script
 	src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
@@ -80,19 +81,23 @@
 			</div>
 			<div class="form-group">
 				<label>부서</label> <input class="register-text" type="text"
-					name="department"></input>
+					name="department" value="기술연구소" disabled></input>
 			</div>
 			<div class="form-group">
 				<label>작성자</label> <input class="register-text" type="text"
-					name="wrtier"></input>
-			</div>
-			<div class="form-group">
-				<label>작성일</label> <input class="register-text" type="text"
-					name="write_date"></input>
+					name="writer" value="김대연" disabled></input>
 			</div>
 			<div class="form-group">
 				<label>내용</label>
 				<textarea name="content"></textarea>
+			</div>
+			<div class="form-group hidden">
+				<label>부서코드</label>
+				<input type="text" name="deptCode" value="5"></input>
+			</div>
+			<div class="form-group hidden">
+				<label>직원코드</label>
+				<input type="text" name="empCode" value="17"></input>
 			</div>
 			<div id="board-register-footer">
 				<button id="board-register-submitBtn" class="normal-btn">등록</button>
