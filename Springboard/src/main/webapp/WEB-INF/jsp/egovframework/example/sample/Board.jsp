@@ -63,6 +63,7 @@
 	<table id="main-table" class="stripe">
 		<thead>
 			<tr>
+				<th><input type="checkbox"></th>
 				<th>제목</th>
 				<th>부서</th>
 				<th>작성자</th>
