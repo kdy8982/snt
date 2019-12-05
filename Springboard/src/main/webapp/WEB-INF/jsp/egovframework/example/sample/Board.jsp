@@ -16,9 +16,7 @@
 	src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 
 <link rel="stylesheet" type="text/css" href="Board.css" />
-<link rel="stylesheet"
-	href="  https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
-
+<link rel="stylesheet" href="  https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
 
 </head>
 

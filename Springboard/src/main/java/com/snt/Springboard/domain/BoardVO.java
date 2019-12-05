@@ -2,29 +2,28 @@ package com.snt.Springboard.domain;
 
 public class BoardVO {
 
-	String board_id;
 	String title;
-	String writer;
+	String department_name;
+	String create_date;
 	String board_name;
-	
-	
-	public String getBoard_id() {
-		return board_id;
-	}
-	public void setBoard_id(String board_id) {
-		this.board_id = board_id;
-	}
+	String employee_name;
 	public String getTitle() {
 		return title;
 	}
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getWriter() {
-		return writer;
+	public String getDepartment_name() {
+		return department_name;
 	}
-	public void setWriter(String writer) {
-		this.writer = writer;
+	public void setDepartment_name(String department_name) {
+		this.department_name = department_name;
+	}
+	public String getCreate_date() {
+		return create_date;
+	}
+	public void setCreate_date(String create_date) {
+		this.create_date = create_date;
 	}
 	public String getBoard_name() {
 		return board_name;
@@ -32,6 +31,13 @@ public class BoardVO {
 	public void setBoard_name(String board_name) {
 		this.board_name = board_name;
 	}
+	public String getEmployee_name() {
+		return employee_name;
+	}
+	public void setEmployee_name(String employee_name) {
+		this.employee_name = employee_name;
+	}
+	
 	
 	
 }

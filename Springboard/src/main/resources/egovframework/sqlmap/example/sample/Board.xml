@@ -7,13 +7,17 @@
     <typeAlias alias="BoardVO" type="com.snt.Springboard.domain.BoardVO" />
     
     <resultMap id="board" class="com.snt.Springboard.domain.BoardVO">
-        <result property="board_id" column="board_id"/>
         <result property="title" column="title"/>
-        <result property="writer" column="writer"/>
+        <result property="department_name" column="department_name"/>
+        <result property="create_date" column="create_date"/>
         <result property="board_name" column="board_name"/>
+        <result property="employee_name" column="employee_name"/>
+        
     </resultMap>
     
     <select id ="boardDao.selectBoardList" resultClass="egovMap">
-        select * from board
+	    select A.title, B.department_name, C.employee_name, A.create_date, A.board_name
+		from board A, department B, employee C
+		where A.department_id = B.department_id and A.employee_id = C.employee_id
     </select>
 </sqlMap>

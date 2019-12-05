@@ -1,6 +1,8 @@
 package com.snt.Springboard.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -20,15 +22,18 @@ import com.snt.Springboard.service.MemberService;
 @RestController
 @ResponseBody
 public class BoardRestController {
-Logger logger =  LogManager.getLogger(MemberRestController.class.getName()); // 로그
+	Logger logger = LogManager.getLogger(MemberRestController.class.getName()); // 로그
 
-@Resource(name="boardService")
-private BoardService boardService;
+	@Resource(name = "boardService")
+	private BoardService boardService;
 
-@RequestMapping(value="/board.json", produces={MediaType.APPLICATION_JSON_VALUE})
-public List<?>  selectBoardList( ModelMap model ) {
-	System.out.println("레스트컨트롤러");
-	return boardService.selectBoardList();
-}
+	@RequestMapping(value = "/board.json", produces = { MediaType.APPLICATION_JSON_VALUE })
+	public Object selectBoardList(ModelMap model) {
+		System.out.println("레스트컨트롤러");
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("data", boardService.selectBoardList());
+		Object result = map;
+		return result;
+	}
 
 }
