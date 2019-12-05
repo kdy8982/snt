@@ -58,6 +58,7 @@ $(document).ready(function() {
     	    var board_date1 = new Date(date1[0],date1[1],date1[2]);
     	    var board_date2 = new Date(date2[0],date2[1],date2[2]);
             if(board_date1.getTime()>board_date2.getTime()){
+            	$('#datepicker2').val(null);
             	alert('지정한 날짜가 맞지 않습니다. 다시 선택 해 주세요.');
             }
     	}
