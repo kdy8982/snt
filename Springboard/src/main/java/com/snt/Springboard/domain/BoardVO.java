@@ -2,17 +2,17 @@ package com.snt.Springboard.domain;
 
 public class BoardVO {
 
-	String title;
+	String board_title;
 	String department_name;
 	String create_date;
 	String board_name;
 	String employee_name;
 	
-	public String getTitle() {
-		return title;
+	public String getBoard_title() {
+		return board_title;
 	}
-	public void setTitle(String title) {
-		this.title = title;
+	public void setBoard_title(String board_title) {
+		this.board_title = board_title;
 	}
 	public String getDepartment_name() {
 		return department_name;

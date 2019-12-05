@@ -8,7 +8,7 @@ $(document).ready(function() {
 	         dataType : 'JSON'
 	      },
 	     columns: [
-	         {"data": "title"},
+	         {"data": "boardTitle"},
 	         {"data": "departmentName"},
 	         {"data": "employeeName"},
 	         {"data": "createDate"}, 
