@@ -1,68 +1,56 @@
-#boardinfo-wrap{
-	width: 60%;
-	height : 50px;
-	margin : 50px 150px 5px 150px;
-	padding : 50px 25px;
-	background-color : #f2f2f2;	
-	border : 1px solid #e2e2e2;
+.normal-btn {
 }
 
-#search-wrap{
-	width : 57.3%;
-	height : 130px;
-	padding : 10px 0px 10px 100px;
-	margin : 0px 100px 20px 150px;
-	background-color : #f2f2f2;
-	border : 1px solid #e2e2e2;
-}
-.input_title, .input_writer, .input_department{
-	margin : 10px;
-}
-#datepicker1, #datepicker2{
-	margin-left : 10px;
+
+
+/* board 등록 css */
+#board-register-wrap {
+	display: none;
+	position: fixed;
+    width: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    background-color: #EFEFEF;
+    padding: 40px;
+    box-sizing: border-box;
+    border-radius: 10px;
 }
 
-#department2{
-	margin-left : 70px;
+#board-register {
+	margin: 0 auto;
+	width: 80%;
 }
 
-.search_button{
-	float : right;
-	margin-right : 30px;
+.form-group > label {
+	width: 100%;
+	display: block;
 }
 
-.search_button > *{
-	background-color : gray;
-	font-size : 16px;
-	border-radius : 5px;
+.register-text {
+	width: 100%;
+	background: border-box;
+    border-right: 0px;
+    border-top: 0px;
+    border-left: 0px;
+    border-bottom: 1px solid #261111;
 }
 
-#button-wrap {
-	width : 62.7%;
-	margin : 5px 150px 5px 150px;
-	border : 1px solid black;
-	padding : 5px;
-}
-.printer {
-	float : right;
-	margin-right : 25px;
-	border: 1px solid #FFB2F5; 
-	background-color: #FFB2F5; 
-	color: whilte;
-	border-radius : 3px;
-}
-.printer:hover {
-	background-color : blue;
-	color : white;
+#board-register-footer {
+	text-align: right;	
+	margin-top: 10px;
 }
 
-.insert, .modify, .delete {
-	border: 1px solid #FFB2F5; 
-	background-color: #FFB2F5; 
-	color: whilte;
-	border-radius : 3px;
+.form-group {
+	margin-top: 15px;
 }
 
-.organization_chart {
-	background-color : #f2f2f2;
-} 
+.form-group textarea {
+    width: 100%;
+    background: border-box;
+    border: 1px solid #261111;
+    height: 100px;
+    margin-top: 10px;
+}
+
