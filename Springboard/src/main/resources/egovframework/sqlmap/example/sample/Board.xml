@@ -16,7 +16,7 @@
     </resultMap>
     
     <select id ="boardDao.selectBoardList" resultClass="egovMap">
-	    select A.board_title, B.department_name, C.employee_name, A.board_create_date, A.board_name
+		select A.board_title, B.department_name, C.employee_name, to_char(A.board_create_date, 'yyyy-mm-dd') board_create_date, A.board_name
 		from board A, department B, employee C
 		where A.department_id = B.department_id and A.employee_id = C.employee_id
     </select>
