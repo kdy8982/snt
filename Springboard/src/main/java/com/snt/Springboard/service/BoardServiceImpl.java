@@ -20,11 +20,6 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public List<?> selectBoardList() {
-		try {
-			boardDao.selectBoardList();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		return boardDao.selectBoardList();
 	}
 
