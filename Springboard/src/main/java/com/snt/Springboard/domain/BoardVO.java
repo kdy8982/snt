@@ -4,7 +4,7 @@ public class BoardVO {
 
 	String board_title;
 	String department_name;
-	String create_date;
+	String board_create_date;
 	String board_name;
 	String employee_name;
 	
@@ -20,11 +20,11 @@ public class BoardVO {
 	public void setDepartment_name(String department_name) {
 		this.department_name = department_name;
 	}
-	public String getCreate_date() {
-		return create_date;
+	public String getBoard_create_date() {
+		return board_create_date;
 	}
-	public void setCreate_date(String create_date) {
-		this.create_date = create_date;
+	public void setBoard_create_date(String board_create_date) {
+		this.board_create_date = board_create_date;
 	}
 	public String getBoard_name() {
 		return board_name;

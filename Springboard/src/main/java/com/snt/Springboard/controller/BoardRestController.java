@@ -23,9 +23,8 @@ public class BoardRestController {
 	@Resource(name = "boardService")
 	private BoardService boardService;
 
-	@RequestMapping(value = "/board.json", produces = { MediaType.APPLICATION_JSON_VALUE })
+	@RequestMapping(value = "/boardList.json", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public Object selectBoardList(ModelMap model) {
-		System.out.println("board JSON CALL!! ");
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("data", boardService.selectBoardList());
 		Object result = map;

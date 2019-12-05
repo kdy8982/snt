@@ -4,14 +4,14 @@ $(document).ready(function() {
 	     ajax: {
 	         type: 'POST',
 	         dataSrc: 'data',
-	         url:'board.json',
+	         url:'boardList.json',
 	         dataType : 'JSON'
 	      },
 	     columns: [
 	         {"data": "boardTitle"},
 	         {"data": "departmentName"},
 	         {"data": "employeeName"},
-	         {"data": "createDate"}, 
+	         {"data": "boardCreateDate"}, 
 	         {"data": "boardName"}
 	     ]
 		
