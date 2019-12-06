@@ -125,3 +125,10 @@ label[for='title'] {
     margin-top: 10px;
 }
 /* Board 등록 css End*/
+
+.datetables.filter{
+	display : none;
+}
+#main-table_filter {
+	display : none;
+}

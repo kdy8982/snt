@@ -2,6 +2,11 @@ $(document).ready(function() {
 	
 	/* jQuery DataTable 시작 */
 	$("#main-table").DataTable({
+		"language" : {
+			"paginate" : {
+				"next" : "다음", "previous" : "이전"
+			}
+		},
 		displayLength: 10,
 		lengthChange : true,
 		ajax : {
@@ -11,6 +16,8 @@ $(document).ready(function() {
 			dataType : 'JSON'
 		},
 		columns : [ {
+			"data": null, defaultContent: '<input type="checkbox" id="selected" class="select-checkbox" />' 
+		},{
 			"data" : "boardTitle"
 		}, {
 			"data" : "departmentName"
@@ -20,7 +27,7 @@ $(document).ready(function() {
 			"data" : "boardCreateDate"
 		}, {
 			"data" : "boardName"
-		} ]
+		}]
 
 	}) //DataTable()
 	/* jQueryDataTable 끝 */
