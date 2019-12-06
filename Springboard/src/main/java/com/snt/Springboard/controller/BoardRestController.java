@@ -23,13 +23,13 @@ import com.snt.Springboard.service.BoardService;
 @RestController
 @ResponseBody
 public class BoardRestController {
-	Logger logger = LogManager.getLogger(MemberRestController.class.getName()); // 로그
+	Logger logger = LogManager.getLogger(BoardRestController.class.getName()); // 로그
 
 	@Resource(name = "boardService")
 	private BoardService boardService;
 
 	@RequestMapping(value = "/boardList.json", produces = { MediaType.APPLICATION_JSON_VALUE })
-	public Object selectBoardList(ModelMap model) {
+	public Object selectBoardList() {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("data", boardService.selectBoardList());
 		Object result = map;
@@ -43,5 +43,24 @@ public class BoardRestController {
 		return new ResponseEntity<>("새로운 게시글이 등록되었습니다." , HttpStatus.OK);
 	}
 	
+	@RequestMapping(value="/boardService/selectBoard.do", method=RequestMethod.POST, produces= {MediaType.APPLICATION_JSON_VALUE})
+	@ResponseBody
+	public BoardVO getBoard(@RequestBody BoardVO board) {
+		logger.info(board.getBoard_id());
+		try {
+			boardService.selectBoard(board);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return boardService.selectBoard(board);
+	}
 	
+	@RequestMapping(value="/boardService/delete.do", method=RequestMethod.POST, consumes = "application/json", produces= {MediaType.TEXT_PLAIN_VALUE, "text/plain;charset=UTF-8"})
+	@ResponseBody
+	public ResponseEntity<String> deleteBoard(@RequestBody BoardVO board) {
+		boardService.deleteBoard(board);
+		return new ResponseEntity<>("게시글이 삭제되었습니다." , HttpStatus.OK);
+	}
 }

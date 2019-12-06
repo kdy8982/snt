@@ -24,4 +24,13 @@ public class BoardDao extends EgovAbstractDAO {
 		insert("boardDao.insertBoard", board);
 		
 	}
+
+	public BoardVO selectBoard(BoardVO board) {
+		return (BoardVO) select("boardDao.selectBoard", board);
+	}
+
+	public void deleteBoard(BoardVO board) {
+		delete("boardDao.deleteBoard",board);
+		
+	}
 }
