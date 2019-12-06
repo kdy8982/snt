@@ -159,7 +159,7 @@
 		</dependency>
 
 
-		<!-- json관련 -->
+		<!-- json관련 : START -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-core</artifactId>
@@ -175,22 +175,20 @@
 			<artifactId>jackson-databind</artifactId>
 			<version>2.8.8</version>
 		</dependency>
-
-
+		<!-- json관련 : END -->
+		
+		<!-- 쿼리 로그 찍기 위해서 추가 : START -->
 		<dependency>
 			<groupId>org.lazyluke</groupId>
 			<artifactId>log4jdbc-remix</artifactId>
 			<version>0.2.4</version>
 		</dependency>
-
-
-
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>1.6.1</version>
 		</dependency>
-
+		<!-- 쿼리 로그 찍기 위해서 추가 : END-->
 
 
 

@@ -7,7 +7,9 @@ import javax.annotation.Resource;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,10 +38,9 @@ public class BoardRestController {
 
 	@RequestMapping(value="/boardService/insert.do", method=RequestMethod.POST, consumes = "application/json", produces= {MediaType.TEXT_PLAIN_VALUE, "text/plain;charset=UTF-8"})
 	@ResponseBody
-	public void insertBoard(@RequestBody BoardVO board) {
-		logger.info("댓글 입력 call !!");
-		logger.info(board);
+	public ResponseEntity<String> insertBoard(@RequestBody BoardVO board) {
 		boardService.insertBoard(board);
+		return new ResponseEntity<>("새로운 게시글이 등록되었습니다." , HttpStatus.OK);
 	}
 	
 	

@@ -2,15 +2,23 @@ package com.snt.Springboard.domain;
 
 public class BoardVO {
 
+	String board_id;
+	String department_id;
+	String employee_id;
+	
 	String board_title;
 	String department_name;
 	String board_create_date;
 	String board_name;
 	String employee_name;
-	String board_id;
-	String department_id;
-	String employee_id;
+	String board_content;
 	
+	public String getBoard_content() {
+		return board_content;
+	}
+	public void setBoard_content(String board_content) {
+		this.board_content = board_content;
+	}
 	public String getBoard_title() {
 		return board_title;
 	}
