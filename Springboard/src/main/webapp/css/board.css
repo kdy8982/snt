@@ -90,3 +90,13 @@
     margin-top: 10px;
 }
 /* Board 등록 css End*/
+
+#main-table_paginate {
+	float : none;
+	margin : 0 auto;
+	text-align : center;
+	margin-top : 10px;
+}
+#main-table_info {
+	display : none;
+}
