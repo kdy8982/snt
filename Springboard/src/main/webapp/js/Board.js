@@ -1,7 +1,12 @@
 $(document).ready(function() {
 	
 	/* jQuery DataTable 시작 */
-	$("#main-table").DataTable({
+	var table = $("#main-table").DataTable({
+		"language" : {
+			"paginate" : {
+				"next" : "다음", "previous" : "이전"
+			}
+		},
 		displayLength: 10,
 		lengthChange : true,
 		ajax : {
@@ -11,17 +16,7 @@ $(document).ready(function() {
 			dataType : 'JSON'
 		},
 		columns : [ {
-			columnDefs: [ {
-				orderable: false,
-				className: 'select-checkbox',
-				targets:   0
-			}],
-			dom: 't',
-			select: {
-				style: 'multi',
-				selector: 'td:first-child'
-			},
-			order: [[ 1, 'asc' ]]
+			"data": null, defaultContent: '<input type="checkbox" id="selected" class="select-checkbox" />' 
 		},{
 			"data" : "boardTitle"
 		}, {
@@ -32,7 +27,7 @@ $(document).ready(function() {
 			"data" : "boardCreateDate"
 		}, {
 			"data" : "boardName"
-		} ]
+		}]
 
 	}) //DataTable()
 	/* jQueryDataTable 끝 */
@@ -70,6 +65,7 @@ $(document).ready(function() {
     	    var board_date1 = new Date(date1[0],date1[1],date1[2]);
     	    var board_date2 = new Date(date2[0],date2[1],date2[2]);
             if(board_date1.getTime()>board_date2.getTime()){
+            	$('#datepicker2').val(null);
             	alert('지정한 날짜가 맞지 않습니다. 다시 선택 해 주세요.');
             }
     	}
@@ -77,12 +73,50 @@ $(document).ready(function() {
     /* jQueryUI;datepcker 끝 */
 	
     
-	$("#add_btn").on("click", function() {
+
+	
+
+	/* 게시글 등록 : START */
+	$("#add-btn").on("click", function() {
 		$("#board-register-wrap").css("display", "block");	
 	});
-	
 	$("#board-register-cancleBtn").on("click", function() {
 		$("#board-register-wrap").css("display", "none");	
 	})
 	
+	$("#board-register-submitBtn").on("click" , function() {
+		var modalInputTitle = $("input[name='title']").val();
+		var modalInputWriter = $("input[name='writer']").val();
+		var modalInputContent = $("textarea[name='content']").val();
+		var modalInputDeptCode = $("input[name='deptCode']").val();
+		var modalInputWriterCode = $("input[name='empCode']").val();
+		
+		var board = {
+				board_title : modalInputTitle,
+				employee_name : modalInputWriter,
+				board_content : modalInputContent,
+				department_id : modalInputDeptCode,
+				employee_id : modalInputWriterCode
+		};
+		
+		boardService.insert(board, function(result, status) {
+			if(status="success") {
+				alert(result);
+				$("input[name='title']").val("");
+				$("textarea[name='content']").val(""); 
+				$("#board-register-wrap").css("display", "none");
+			}
+		}) 
+	})
+	/* 게시글 등록 : END */
+	
+	/* 체크박스 선택 : START */
+	$('#main-table tbody').on( 'click', 'tr input[type="checkbox"]', function () {
+	    var thisRow = $(this).parents("tr")
+	    console.log(table.row(thisRow).data()); // 선택된 로우의 데이터를 출력한다.
+	} );
+	/* 체크박스 선택 : END */
+	
+	/* 게시글 삭제 : START */
+	/* 게시글 삭제 : END */
 })

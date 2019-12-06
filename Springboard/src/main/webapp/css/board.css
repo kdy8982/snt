@@ -1,13 +1,40 @@
+/* 공통 CSS : START */
+.btn {
+	padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+  	font-weight: 600;
+	
+}
+.pink-btn {
+    background-color: #FFCCFF;
+}
+
+.gray-btn {
+	background-color: #BFBFBF;
+}
+
+input[type='text'] {
+	height: 23px;
+}
+
+/* 공통 CSS : END */
+
 /* Board 상단 스타일Start */
 #boardinfo-wrap {
 	border: 1px solid #CCC;
     background-color: #EFEFEF;
     padding: 35px;
+    font-weight: 600;
 }
 #search-wrap {
     margin-top: 7px;
 	border: 1px solid #CCC;
-    padding: 35px;
+    padding: 17px;
     background-color: #EFEFEF;
 }
 #search_button {
@@ -34,6 +61,14 @@
 
 #writer {
 	margin-left: 5px;
+}
+
+label[for='title'] {
+	padding-left: 16px;
+}
+
+#button-wrap > button:last-child {
+	float: right;
 }
 /* Board 상단 스타일 End */
 

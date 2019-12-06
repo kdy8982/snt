@@ -8,4 +8,6 @@ public interface BoardService {
 	List<?> selectBoardList();
 
 	int selectBoardListTotCnt();
+
+	void insertBoard(BoardVO board);
 }
