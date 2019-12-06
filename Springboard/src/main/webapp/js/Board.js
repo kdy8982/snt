@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	
 	/* jQuery DataTable 시작 */
-	$("#main-table").DataTable({
+	var table = $("#main-table").DataTable({
 		"language" : {
 			"paginate" : {
 				"next" : "다음", "previous" : "이전"
@@ -73,15 +73,17 @@ $(document).ready(function() {
     /* jQueryUI;datepcker 끝 */
 	
     
-	$("#add_btn").on("click", function() {
+
+	
+
+	/* 게시글 등록 : START */
+	$("#add-btn").on("click", function() {
 		$("#board-register-wrap").css("display", "block");	
 	});
-	
 	$("#board-register-cancleBtn").on("click", function() {
 		$("#board-register-wrap").css("display", "none");	
 	})
 	
-	/* 게시글 등록 : START */
 	$("#board-register-submitBtn").on("click" , function() {
 		var modalInputTitle = $("input[name='title']").val();
 		var modalInputWriter = $("input[name='writer']").val();
@@ -108,6 +110,13 @@ $(document).ready(function() {
 	})
 	/* 게시글 등록 : END */
 	
+	/* 체크박스 선택 : START */
+	$('#main-table tbody').on( 'click', 'tr input[type="checkbox"]', function () {
+	    var thisRow = $(this).parents("tr")
+	    console.log(table.row(thisRow).data()); // 선택된 로우의 데이터를 출력한다.
+	} );
+	/* 체크박스 선택 : END */
 	
-	
+	/* 게시글 삭제 : START */
+	/* 게시글 삭제 : END */
 })

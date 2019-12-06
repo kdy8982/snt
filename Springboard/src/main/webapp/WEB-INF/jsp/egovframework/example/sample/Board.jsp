@@ -55,8 +55,8 @@
 		</div>
 	</div>
 	<div id=button-wrap>
-		<button id="add_btn" class="btn pink-btn">등록</button>
-		<button class="btn pink-btn">수정</button>
+		<button id="add-btn" class="btn pink-btn">등록</button>
+		<button id="mod-btn" class="btn pink-btn">수정</button>
 		<button class="btn pink-btn">삭제</button>
 		<button class="btn pink-btn">인쇄</button>
 	</div>
