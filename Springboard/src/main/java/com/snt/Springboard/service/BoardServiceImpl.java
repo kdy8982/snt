@@ -17,7 +17,6 @@ public class BoardServiceImpl implements BoardService {
 	@Resource(name="boardDao")
 	private BoardDao boardDao;
 	
-
 	@Override
 	public List<?> selectBoardList() {
 		try {
@@ -28,11 +27,19 @@ public class BoardServiceImpl implements BoardService {
 		return boardDao.selectBoardList();
 	}
 
-
 	@Override
 	public int selectBoardListTotCnt() {
 		return boardDao.selectBoardListTotCnt();
 	}
-
+	
+	@Override
+	public List<?> selectBoardListToSearch() {
+		try {
+			boardDao.selectBoardListToSearch();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return boardDao.selectBoardListToSearch();
+	}
 
 }

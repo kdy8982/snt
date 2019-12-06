@@ -24,73 +24,106 @@ $(document).ready(function() {
 
 	}) //DataTable()
 	/* jQueryDataTable 끝 */
+
+	    /*var resData = [ 
+	                   {
+	                	   'text':'부서명1',
+	                	   'children':[
+	                	               {'text':'사원명1'},
+	                	               {'text':'사원명2'}
+	                	   ]
+	                   },
+	                   {
+	                	   'text':'부서명2',
+	                	   'children':[
+	                	               {'text':'사원명1'},
+	                	               {'text':'사원명2'}
+	                	   ]
+	                   },
+	                   {
+	                	   'text':'부서명3',
+	                	   'children':[
+	                	               {'text':'사원명1'},
+	                	               {'text':'사원명2'}
+	                	   ]
+	                   }
+		];*/
 	
-	
-	
-	    var resData = [ 
-		{ 
-			"parent": "#", 
-			"text": "샘플데이터1" ,
-			"data" : { "url" : "/context/url1" } 
-		}, 
-		{ 
-			"parent": "#", 
-			"text": "샘플데이터2" ,
-			"data" : { "url" : "/context/url2" } 
-		}, 
-		{ 
-			"parent": "#", 
-			"text": "샘플데이터3" ,
-			"data" : { "url" : "/context/url3" } 
-		} 
-	]
-    
-    
     /*jsTree 시작*/
     var treeArray = new Array();
-    
     $('.organization_chart').on('click',function(){
-    	/*$.ajax({
+    	$.ajax({
         	type: 'post',
         	dataType: 'json',
         	async: false,
-        	url: '/Springboard/boardList.do',
+        	url: '/Springboard/treeList.json',
         	success: function(data, textStatus){
-        		var treeJson = {
-        				'id':'',
-        				'parent':'',
-        				'text':'',
-        				'data':{
-        					'rownum':''
+        		for(var i=0; i<data.length-1; i++){
+        			if(data[i].department_name!=data[i+1].department_name){
+        				temp = data[i+1].department_name;
+        				root['text'] = data[i].department_name;
+        				console.log('1. root text : '+root['text']);
+        				for(var j=0; j<data.length; j++){
+        					if(root['text']==data[j].department_name){
+        						child['text'] = data[j].employee_name;
+        						console.log('2. child text : '+child['text']);
+        						root['children'] = { 'text' : data[j].employee_name };
+        						console.log('3. root.children text : '+root['children']);
+        					}
         				}
-        		};
-        		for(var i in data){
-        			treeJson['id'] = data[i].id;
-        			treeJson['parent'] = data[i].parent;
-        			treeJson['text'] = data[i].text;
-        			treeJson['data'] = data[i].data;
-        			treeJson.data['rownum'] = data[i].rownum;
-        			treeArray.push(treeJson);
+        			}
+        			treeArray.push(root);
         		}
+        		/*
+        		var temp;
+        		var root = {};
+        		var child = {};
+        		for(var i=0; i<data.length-1; i++){
+        			if(data[i].department_name!=data[i+1].department_name){
+        				temp = data[i+1].department_name;
+        				root['text'] = data[i].department_name;
+        				console.log('1. root text : '+root['text']);
+        				for(var j=0; j<data.length; j++){
+        					if(root['text']==data[j].department_name){
+        						child['text'] = data[j].employee_name;
+        						console.log('2. child text : '+child['text']);
+        						root['children'] = { 'text' : data[j].employee_name };
+        						console.log('3. root.children text : '+root['children']);
+        					}
+        				}
+        			}
+        			treeArray.push(root);
+        		}*/
+        		
+        		/*root['text'] = temp;
+        		for(var k in data){
+        			if(temp==data[k].department_name){
+						child['text'] = data[k].employee_name;
+						childArray.push(child['text']);
+					}
+        		}
+        		root['children'] = childArray;
+        		treeArray.push(root);*/
         	},
         	error: function(data,textstatus){
         		alert('에러');
         	}
-        });*/
+        });
     	
-    	$('.tree').jstree({
-        	"plugins" : ['wholerow',"json_data","changed","contextmenu","sort","crrm" ], 
-        	"core" : { "data" : resData }
-        }).on('select_node.jstree',function(event, data){
-        	$('#writer').val($tree.jstree('get_selected'));
-        	/* $('#tree').hide(); */
+    	$(this).find('.tree').jstree({
+        	'plugins' : ['wholerow','json_data','changed','contextmenu','sort','crrm' ], 
+        	'core' : { 'data' : treeArray }
+        }).on('select_node.jstree',function(event, data){ //select_node.jstree
+        	var treeData = data.instance.get_node(data.selected).text;
+        	$('#writer').val(treeData);
+        	$(this).find('.tree').toggle();
         });
     });
     /*jsTree 끝*/
 	
     
 	/* jQueryUI;datepcker 시작 */
-	$("#datepicker1").datepicker({
+	$('#datepicker1').datepicker({
     	dateFormat:'yy-mm-dd',
     	showOn: 'both',
     	buttonImage: 'https://jqueryui.com/resources/demos/datepicker/images/calendar.gif',
@@ -103,7 +136,7 @@ $(document).ready(function() {
     	dayNamesMin: ['일', '월', '화', '수', '목', '금', '토']
     }); // datepikcer();
 	
-    $("#datepicker2").datepicker({
+    $('#datepicker2').datepicker({
     	dateFormat:'yy-mm-dd',
     	showOn: 'both',
     	buttonImage: 'https://jqueryui.com/resources/demos/datepicker/images/calendar.gif',
@@ -128,7 +161,33 @@ $(document).ready(function() {
     	}
     });
     /* jQueryUI;datepcker 끝 */
-	
+    
+    
+    /*게시판 검색 시작*/
+    $('#search_btn').on('click',function(){
+    	$.ajax({
+        	type: 'post',
+        	dataType: 'json',
+        	async: false,
+        	url: '/Springboard/boardListSearch.json',
+        	data: {
+        		search_date1 : $('#datepicker1').val(),
+        		search_date2 : $('#datepicker2').val()
+        	},
+        	success: function(data, textStatus){
+        		if(data!=null){
+        			$('#main-table').DataTable().row.add(data).draw();
+        		}else{
+        			alert('데이터가 없습니다.');
+        		}
+        	},
+        	error: function(data,textstatus){
+        		alert('에러');
+        	}
+        });
+    });
+    /*게시판 검색 끝*/
+    
     
 	$("#add_btn").on("click", function() {
 		$("#board-register-wrap").css("display", "block");	

@@ -7,14 +7,14 @@
     <typeAlias alias="BoardVO" type="com.snt.Springboard.domain.BoardVO" />
     
     <resultMap id="board" class="com.snt.Springboard.domain.BoardVO">
+        <result property="board_id" column="id"/>
         <result property="board_title" column="title"/>
         <result property="department_name" column="department_name"/>
+        <result property="employee_name" column="employee_name"/>
         <result property="board_create_date" column="create_date"/>
         <result property="board_name" column="board_name"/>
-        <result property="employee_name" column="employee_name"/>
-        
     </resultMap>
-    
+
     <select id ="boardDao.selectBoardList" resultClass="egovMap">
 		select A.board_title, B.department_name, C.employee_name, to_char(A.board_create_date, 'yyyy-mm-dd') board_create_date, A.board_name
 		from board A, department B, employee C
@@ -23,6 +23,14 @@
     
     <select id ="boardDao.selectBoardListTotCnt" resultClass="int">
 		select count(*) from board
+    </select>
+    
+    <select id="boardDao.selectBoardListToSearch" parameterClass="BoardVO" resultClass="BoardVO" remapResults="true">
+        select a.board_id, a.board_title, b.department_name, c.employee_name, to_char(a.board_create_date,'yyyy-mm-dd') board_create_date, a.board_name 
+		from board a, department b, employee c  
+		where a.department_id=b.department_id and a.employee_id=c.employee_id and b.department_id=c.department_id 
+		and a.board_create_date between TO_DATE(#search_date1#) and TO_DATE(#search_date2#) 
+		order by a.board_id desc
     </select>
     
 </sqlMap>

@@ -14,6 +14,7 @@
 <script
 	src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
 
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='/css/board.css'/>" />
@@ -21,7 +22,8 @@
 	href="  https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
-
+<link rel="stylesheet" 
+	href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
 </head>
 
 <body>
@@ -36,22 +38,22 @@
 			<input type="text" id="title" class="input_title"></input> 
 		</div>	
 		<div class="form-group">
-			<label for="writer">작성자</label><input
-			type="text" id="writer" class="input_writer" disabled="disabled"></input>
-			<button class="organization_chart">조직도</button>
-			<div class="tree"></div>
+			<label for="writer">작성자</label>
+			<input type="text" id="writer" class="input_writer" disabled="disabled"></input>
+			<button class="organization_chart"><span>조직도</span><div class="tree"></div></button>
 			
 			<label id="department2" for="department">부서</label>
 			<input type="text" id="department" class="input_department" disabled="disabled"></input>
-			<button class="organization_chart">조직도</button>
-			<div class="tree"></div>
+			<button class="organization_chart"><span>조직도</span><div class="tree"></div></button>
 		</div>
 		<div class="form-group">
-			<label id="writedate" for="department">작성일</label><input type="text" name="board_date" id="datepicker1" class="input_date_created1" disabled />~<input type="text" name="board_date" id="datepicker2" class="input_date_created2" disabled/>
+			<label id="writedate" for="department">작성일</label>
+			<input type="text" name="board_date" id="datepicker1" class="input_date_created1" disabled />~
+			<input type="text" name="board_date" id="datepicker2" class="input_date_created2" disabled/>
 		</div>
 		
 		<div id="search_button">
-			<button>검색</button>
+			<button id="search_btn">검색</button>
 			<button>초기화</button>
 		</div>
 	</div>
