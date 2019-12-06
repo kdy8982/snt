@@ -172,20 +172,56 @@ $(document).ready(function() {
 			alert("수정하실 게시물을 체크해 주세요.");
 			return;
 		}
-		
 		$("#board-register-wrap").css("display", "block");	
-		$("#board-register-footer").css("display", "block");
+		$("#board-modify-footer").css("display", "block");
+		
+		// 글을 다시 조회하여 출력한다.
+		var boardId = _chkArr[0];
+		var board = {
+			board_id : boardId
+		}
+		boardService.selectBoard(board, function(result, status) {
+	    	if(status="success") {
+	    		$("input[name='title']").val(result.board_title);
+	    		$("input[name='department']").val(result.department_name);
+	    		$("input[name='writer']").val(result.employee_name);
+	    		$("textarea[name='content']").val(result.board_content);
+	    	}
+	    });
 		
 		
 	});
+	// 취소버튼
 	$(document).on("click", "#board-register-cancleBtn", function() {
 		$("#board-register-wrap").css("display", "none");
-		$("#board-register-footer").css("display", "none")
-		$("#board-select-footer").css("display", "none")
+		$("#board-register-footer").css("display", "none");
+		$("#board-select-footer").css("display", "none");
 	})
-	
-	$("#board-register-submitBtn").on("click" , function() {
+	//수정버튼
+	$("#board-modify-submitBtn").on("click" , function() {
+		var modalInputTitle = $("input[name='title']").val();
+		var modalInputWriter = $("input[name='writer']").val();
+		var modalInputContent = $("textarea[name='content']").val();
+		var modalInputDeptCode = $("input[name='deptCode']").val();
+		var modalInputWriterCode = $("input[name='empCode']").val();
 		
+		var board = {
+				board_title : modalInputTitle,
+				employee_name : modalInputWriter,
+				board_content : modalInputContent,
+				department_id : modalInputDeptCode,
+				employee_id : modalInputWriterCode
+		};
+		
+		console.log(board);
+		boardService.updateBoard(board, function(result, status) {
+			if(status="success") {
+				alert(result);
+				$("input[name='title']").val("");
+				$("textarea[name='content']").val(""); 
+				$("#board-register-wrap").css("display", "none");
+			}
+		}) 
 	})
 	
 	/* 게시글 수정 : END */

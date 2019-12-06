@@ -124,6 +124,11 @@ label[for='title'] {
 	text-align: right;	
 	margin-top: 10px;
 }
+#board-modify-footer {
+	display:none;
+	text-align: right;	
+	margin-top: 10px;
+}
 
 .form-group {
 	margin-top: 15px;

@@ -45,16 +45,20 @@ public class BoardRestController {
 	
 	@RequestMapping(value="/boardService/selectBoard.do", method=RequestMethod.POST, produces= {MediaType.APPLICATION_JSON_VALUE})
 	@ResponseBody
-	public BoardVO getBoard(@RequestBody BoardVO board) {
+	public BoardVO selectBoard(@RequestBody BoardVO board) {
 		logger.info(board.getBoard_id());
 		try {
 			boardService.selectBoard(board);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
 		return boardService.selectBoard(board);
+	}
+	
+	@RequestMapping(method= {RequestMethod.PUT, RequestMethod.PATCH}, value="/boardService/updateBoard.do", consumes="application/json", produces= {MediaType.TEXT_PLAIN_VALUE, "text/plain;charset=UTF-8"})
+	@ResponseBody
+	public void updateBoard(@RequestBody BoardVO board) {
+		logger.info(board.getBoard_title());
 	}
 	
 	
