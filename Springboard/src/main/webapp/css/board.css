@@ -126,9 +126,12 @@ label[for='title'] {
 }
 /* Board 등록 css End*/
 
-.datetables.filter{
-	display : none;
+#main-table_paginate {
+	float : none;
+	margin : 0 auto;
+	text-align : center;
+	margin-top : 10px;
 }
-#main-table_filter {
+#main-table_info {
 	display : none;
 }
