@@ -39,26 +39,26 @@
 		<div class="form-group">
 			<label for="writer">작성자</label><input
 			type="text" id="writer" class="input_writer"></input>
-			<button class="organization_chart">조직도</button>
+			<button class="organization_chart btn gray-btn">조직도</button>
 			
 			<label id="department2" for="department">부서</label>
 			<input type="text" id="department" class="input_department"></input>
-			<button class="organization_chart">조직도</button>
+			<button class="organization_chart btn gray-btn">조직도</button>
 		</div>
 		<div class="form-group">
 			<label id="writedate" for="department">작성일</label><input type="text" name="board_date" id="datepicker1" class="input_date_created1" disabled />~<input type="text" name="board_date" id="datepicker2" class="input_date_created2" disabled/>
 		</div>
 		
 		<div id="search_button">
-			<button>검색</button>
-			<button>초기화</button>
+			<button class="btn gray-btn">검색</button>
+			<button class="btn gray-btn">초기화</button>
 		</div>
 	</div>
 	<div id=button-wrap>
-		<button id="add_btn" class="insert">등록</button>
-		<button class="modify">수정</button>
-		<button class="delete">삭제</button>
-		<button class="printer">인쇄</button>
+		<button id="add_btn" class="btn pink-btn">등록</button>
+		<button class="btn pink-btn">수정</button>
+		<button class="btn pink-btn">삭제</button>
+		<button class="btn pink-btn">인쇄</button>
 	</div>
 	<table id="main-table" class="stripe">
 		<thead>
