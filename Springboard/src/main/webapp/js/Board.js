@@ -81,6 +81,7 @@ $(document).ready(function() {
 		$("#board-register-wrap").css("display", "none");	
 	})
 	
+	/* 게시글 등록 : START */
 	$("#board-register-submitBtn").on("click" , function() {
 		var modalInputTitle = $("input[name='title']").val();
 		var modalInputWriter = $("input[name='writer']").val();
@@ -89,17 +90,23 @@ $(document).ready(function() {
 		var modalInputWriterCode = $("input[name='empCode']").val();
 		
 		var board = {
-				title : modalInputTitle,
-				writer : modalInputWriter,
-				content : modalInputContent,
-				deptCode : modalInputDeptCode,
-				writerCode : modalInputWriterCode
+				board_title : modalInputTitle,
+				employee_name : modalInputWriter,
+				board_content : modalInputContent,
+				department_id : modalInputDeptCode,
+				employee_id : modalInputWriterCode
 		};
 		
-		boardService.insert(board, function(result) {
-			alert(result);
+		boardService.insert(board, function(result, status) {
+			if(status="success") {
+				alert(result);
+				$("input[name='title']").val("");
+				$("textarea[name='content']").val(""); 
+				$("#board-register-wrap").css("display", "none");
+			}
 		}) 
 	})
+	/* 게시글 등록 : END */
 	
 	
 	

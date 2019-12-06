@@ -22,5 +22,6 @@ public class BoardDao extends EgovAbstractDAO {
 
 	public void insertBoard(BoardVO board) {
 		insert("boardDao.insertBoard", board);
+		
 	}
 }

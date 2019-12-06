@@ -8,7 +8,7 @@
 	<typeAlias alias="BoardVO" type="com.snt.Springboard.domain.BoardVO" />
 
 	<resultMap id="board" class="com.snt.Springboard.domain.BoardVO">
-		<result property="board_title" column="title" />
+		<result property="board_title" column="board_title" />
 		<result property="department_name" column="department_name" />
 		<result property="board_create_date" column="create_date" />
 		<result property="board_name" column="board_name" />
@@ -33,7 +33,7 @@
 		count(*) from board
 	</select>
 
-	<insert id="boardDao.insertBoard">
+	<insert id="boardDao.insertBoard" parameterClass="boardVO">
 		<![CDATA[
 			INSERT INTO BOARD
 				( BOARD_ID 
@@ -46,9 +46,9 @@
 				board_seq.nextval,
 				#board_title#,
 				#department_id#,
-				sysdate,
-				자유,
-				#employee_id# )
+				TO_DATE(sysdate),
+				'자유',
+				#employee_id#)
 		]]>
 	</insert>
 
