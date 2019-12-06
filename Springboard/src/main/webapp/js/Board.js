@@ -111,10 +111,30 @@ $(document).ready(function() {
 	/* 게시글 등록 : END */
 	
 	/* 체크박스 선택 : START */
-	$('#main-table tbody').on( 'click', 'tr input[type="checkbox"]', function () {
+	var _imsiArr= []; // 중복배열 제거를 위한 임시 배열
+	var _chkArr = []; // 체크된 row를 관리하는 배열
+	
+	$('#main-table tbody').on('click', 'tr input[type="checkbox"]', function () {
 	    var thisRow = $(this).parents("tr")
 	    console.log(table.row(thisRow).data()); // 선택된 로우의 데이터를 출력한다.
-	} );
+	    var thisRowId= table.row(thisRow).data().boardId;
+	    
+	    // 체크가 있는지 여부
+	    if(_chkArr.indexOf(thisRowId) == -1) {
+	    	_imsiArr.push(thisRowId);
+	    	$.each(_imsiArr, function(i, el){
+	    		if($.inArray(el, _chkArr) === -1) _chkArr.push(el);
+	    	});
+	    } else {
+	    	var idxChk = _chkArr.indexOf(thisRowId);
+	    	if (idxChk > -1) _chkArr.splice(idxChk, 1);
+	    	
+	    	var idxImsi = _imsiArr.indexOf(thisRowId);
+	    	if(idxImsi > -1) _imsiArr.splice(idxImsi, 1);
+	    }
+	    console.log(_chkArr);
+	});
+	
 	/* 체크박스 선택 : END */
 	
 	/* 게시글 조회 : START */
@@ -139,5 +159,34 @@ $(document).ready(function() {
 	
 	/* 게시글 삭제 : START */
 	/* 게시글 삭제 : END */
+
 	
+	/* 게시글 수정 : START  TODO : 체크박스 배열 갯수가 한개인지 검증하는 로직 추가해야 함.*/ 
+	$("#mod-btn").on("click", function() {
+		if(_chkArr.length > 1) {
+			alert("하나의 글만 수정할 수 있습니다.");
+			$("input[type='checkbox']").prop("checked", false);
+			
+			return;
+		} else if (_chkArr.length == 0){
+			alert("수정하실 게시물을 체크해 주세요.");
+			return;
+		}
+		
+		$("#board-register-wrap").css("display", "block");	
+		$("#board-register-footer").css("display", "block");
+		
+		
+	});
+	$(document).on("click", "#board-register-cancleBtn", function() {
+		$("#board-register-wrap").css("display", "none");
+		$("#board-register-footer").css("display", "none")
+		$("#board-select-footer").css("display", "none")
+	})
+	
+	$("#board-register-submitBtn").on("click" , function() {
+		
+	})
+	
+	/* 게시글 수정 : END */
 })
