@@ -100,8 +100,11 @@
 				<input type="text" name="empCode" value="17"></input>
 			</div>
 			<div id="board-register-footer">
-				<button id="board-register-submitBtn" class="normal-btn">등록</button>
-				<button id="board-register-cancleBtn" class="normal-btn">취소</button>
+				<button id="board-register-submitBtn" class="btn gray-btn">등록</button>
+				<button id="board-register-cancleBtn" class="btn gray-btn">취소</button>
+			</div>
+			<div id="board-select-footer">
+				<button id="board-register-cancleBtn" class="btn gray-btn">확인</button>
 			</div>
 		</div>
 	</div>

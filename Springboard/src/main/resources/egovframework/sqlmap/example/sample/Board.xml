@@ -16,6 +16,7 @@
 		<result property="board_id" column="board_id" />
 		<result property="department_id" column="department_id" />
 		<result property="employee_id" column="employee_id" />
+		<result property="board_content" column="board_content" />
 	</resultMap>
 
 	<select id="boardDao.selectBoardList" resultClass="egovMap">
@@ -32,6 +33,18 @@
 		select
 		count(*) from board
 	</select>
+	
+	<select id="boardDao.selectBoard" resultClass="boardVO" parameterClass="boardVO">
+   		select
+		A.board_id, A.board_title, A.board_content, B.department_name, C.employee_name,
+		to_char(A.board_create_date, 'yyyy-mm-dd') board_create_date,
+		A.board_name
+		from board A, department B, employee C
+		where
+		A.department_id = B.department_id and A.employee_id = C.employee_id
+        and A.board_id = #board_id#
+    </select>
+	     
 
 	<insert id="boardDao.insertBoard" parameterClass="boardVO">
 		<![CDATA[
@@ -41,14 +54,16 @@
 				  , DEPARTMENT_ID
 				  , BOARD_CREATE_DATE
 				  , BOARD_NAME
-				  , EMPLOYEE_ID )
+				  , EMPLOYEE_ID
+				  , BOARD_CONTENT )
 			VALUES (
 				board_seq.nextval,
 				#board_title#,
 				#department_id#,
 				TO_DATE(sysdate),
 				'자유',
-				#employee_id#)
+				#employee_id#,
+				#board_content#)
 		]]>
 	</insert>
 

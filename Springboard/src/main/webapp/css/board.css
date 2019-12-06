@@ -22,6 +22,12 @@ input[type='text'] {
 	height: 23px;
 }
 
+.hidden {
+	display: none;
+	
+}
+
+
 /* 공통 CSS : END */
 
 /* Board 상단 스타일Start */
@@ -109,6 +115,12 @@ label[for='title'] {
 }
 
 #board-register-footer {
+	display:none;
+	text-align: right;	
+	margin-top: 10px;
+}
+#board-select-footer {
+	display:none;
 	text-align: right;	
 	margin-top: 10px;
 }
@@ -124,14 +136,24 @@ label[for='title'] {
     height: 100px;
     margin-top: 10px;
 }
+
+
 /* Board 등록 css End*/
 
+/* DataTable CSS : START */
 #main-table_paginate {
 	float : none;
 	margin : 0 auto;
 	text-align : center;
 	margin-top : 10px;
 }
+
 #main-table_info {
 	display : none;
 }
+
+#main-table tr td:nth-child(2){
+	cursor: pointer;
+}
+
+/* DataTable CSS : END */

@@ -10,4 +10,6 @@ public interface BoardService {
 	int selectBoardListTotCnt();
 
 	void insertBoard(BoardVO board);
+
+	BoardVO selectBoard(BoardVO board);
 }

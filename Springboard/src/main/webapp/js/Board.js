@@ -32,7 +32,7 @@ $(document).ready(function() {
 	}) //DataTable()
 	/* jQueryDataTable 끝 */
 	
-	/* jQueryUI;datepcker 시작 */
+	/* jQueryUI datepcker : START	 */
 	$("#datepicker1").datepicker({
     	dateFormat:'yy-mm-dd',
     	showOn: 'both',
@@ -70,18 +70,18 @@ $(document).ready(function() {
             }
     	}
     });
-    /* jQueryUI;datepcker 끝 */
-	
-    
-
+    /* jQueryUI datepcker : END */
 	
 
 	/* 게시글 등록 : START */
 	$("#add-btn").on("click", function() {
 		$("#board-register-wrap").css("display", "block");	
+		$("#board-register-footer").css("display", "block");
 	});
-	$("#board-register-cancleBtn").on("click", function() {
-		$("#board-register-wrap").css("display", "none");	
+	$(document).on("click", "#board-register-cancleBtn", function() {
+		$("#board-register-wrap").css("display", "none");
+		$("#board-register-footer").css("display", "none")
+		$("#board-select-footer").css("display", "none")
 	})
 	
 	$("#board-register-submitBtn").on("click" , function() {
@@ -117,6 +117,27 @@ $(document).ready(function() {
 	} );
 	/* 체크박스 선택 : END */
 	
+	/* 게시글 조회 : START */
+	$('#main-table tbody').on( 'click', 'tr td:nth-child(2)', function () {
+		var thisRow = $(this).parents("tr");
+		var boardId = table.row(thisRow).data().boardId;
+		var board = {
+				board_id : boardId
+		}
+		boardService.selectBoard(board,function(result, status) {
+	    	if(status="success") {
+	    		$("#board-register-wrap").css("display", "block");
+	    		$("#board-select-footer").css("display", "block");
+	    		$("input[name='title']").val(result.board_title);
+	    		$("input[name='department']").val(result.department_name);
+	    		$("input[name='writer']").val(result.employee_name);
+	    		$("textarea[name='content']").val(result.board_content);
+	    	}
+	    });
+		
+	} );
+	
 	/* 게시글 삭제 : START */
 	/* 게시글 삭제 : END */
+	
 })
