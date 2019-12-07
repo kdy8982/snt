@@ -83,8 +83,8 @@ $(document).ready(function() {
 			var parent = $('#tree').jstree(true).get_node(data.selected).parent; //선택한 노드의 부모노드 구하기
 			var dept = $('#tree').jstree(true).get_node(parent).text; //선택한 노드의 부모노드의 텍스트 = 부서명
 			var empl = $('#tree').jstree(true).get_node(data.selected).text; //선택한 노드의 텍스트 = 사원명
-			$('#dept').val(dept);
-		    $('#empl').val(empl);
+			$('#department').val(dept);
+		    $('#writer').val(empl);
 		}
 	}).dblclick(function(){
 		var ok = confirm('선택하시겠습니까?');
