@@ -12,4 +12,6 @@ public interface BoardService {
 	void insertBoard(BoardVO board);
 
 	BoardVO selectBoard(BoardVO board);
+
+	int updateBoard(BoardVO board);
 }

@@ -72,18 +72,31 @@ $(document).ready(function() {
     });
     /* jQueryUI datepcker : END */
 	
-
+    // 조회 모달 확인버튼. 
+    $(document).on("click", "#board-select-cancleBtn", function() {
+    	$(".modal-wrap").css("display", "none");
+    	$("#board-select-footer").css("display", "none");
+    	$(".modal-wrap").removeClass("modal-select");
+    })
+    //등록 모달 취소버튼.
+    $(document).on("click", "#board-register-cancleBtn", function() {
+    	$(".modal-wrap").css("display", "none");
+    	$("#board-register-footer").css("display", "none");
+    	$(".modal-wrap").removeClass("modal-regist");
+    })
+    //수정 모달 취소버튼.
+    $(document).on("click", "#board-modify-cancleBtn", function() {
+    	$(".modal-wrap").css("display", "none");
+    	$("#board-modify-footer").css("display", "none");
+    	$(".modal-wrap").removeClass("modal-modify");
+    })
+    
 	/* 게시글 등록 : START */
 	$("#add-btn").on("click", function() {
-		$("#board-register-wrap").css("display", "block");	
+		$(".modal-wrap").css("display", "block");	
 		$("#board-register-footer").css("display", "block");
+		$(".modal-wrap").addClass("modal-regist");
 	});
-	$(document).on("click", "#board-register-cancleBtn", function() {
-		$("#board-register-wrap").css("display", "none");
-		$("#board-register-footer").css("display", "none")
-		$("#board-select-footer").css("display", "none")
-	})
-	
 	$("#board-register-submitBtn").on("click" , function() {
 		var modalInputTitle = $("input[name='title']").val();
 		var modalInputWriter = $("input[name='writer']").val();
@@ -104,7 +117,7 @@ $(document).ready(function() {
 				alert(result);
 				$("input[name='title']").val("");
 				$("textarea[name='content']").val(""); 
-				$("#board-register-wrap").css("display", "none");
+				$(".modal-wrap").css("display", "none");
 			}
 		}) 
 	})
@@ -113,7 +126,6 @@ $(document).ready(function() {
 	/* 체크박스 선택 : START */
 	var _imsiArr= []; // 중복배열 제거를 위한 임시 배열
 	var _chkArr = []; // 체크된 row를 관리하는 배열
-	
 	$('#main-table tbody').on('click', 'tr input[type="checkbox"]', function () {
 	    var thisRow = $(this).parents("tr")
 	    console.log(table.row(thisRow).data()); // 선택된 로우의 데이터를 출력한다.
@@ -134,6 +146,13 @@ $(document).ready(function() {
 	    }
 	    console.log(_chkArr);
 	});
+	//체크박스 초기화 메서드
+	var checkBoxReset = function() {
+		console.log("checkBoxReset Method call..");
+		_imsiArr= []; // 중복배열 제거를 위한 임시 배열 초기화
+		_chkArr = []; // 체크된 row를 관리하는 배열 초기화
+		$("input[type='checkbox']").prop("checked", false); // checkbox ui 모두 초기화
+	}
 	
 	/* 체크박스 선택 : END */
 	
@@ -146,7 +165,10 @@ $(document).ready(function() {
 		}
 		boardService.selectBoard(board,function(result, status) {
 	    	if(status="success") {
-	    		$("#board-register-wrap").css("display", "block");
+	    		$(".modal-wrap").css("display", "block");
+	    		$(".modal-wrap").addClass("modal-select");
+	    		$(".modal-select input,textarea").attr("readonly", true);
+	    		
 	    		$("#board-select-footer").css("display", "block");
 	    		$("input[name='title']").val(result.board_title);
 	    		$("input[name='department']").val(result.department_name);
@@ -165,14 +187,15 @@ $(document).ready(function() {
 	$("#mod-btn").on("click", function() {
 		if(_chkArr.length > 1) {
 			alert("하나의 글만 수정할 수 있습니다.");
-			$("input[type='checkbox']").prop("checked", false);
-			
+			checkBoxReset();
 			return;
 		} else if (_chkArr.length == 0){
 			alert("수정하실 게시물을 체크해 주세요.");
 			return;
 		}
-		$("#board-register-wrap").css("display", "block");	
+		$(".modal-wrap").css("display", "block");
+		$(".modal-wrap modal-register").css("display", "block");
+		$(".modal-register input,textarea").attr("readonly", false);
 		$("#board-modify-footer").css("display", "block");
 		
 		// 글을 다시 조회하여 출력한다.
@@ -181,19 +204,20 @@ $(document).ready(function() {
 			board_id : boardId
 		}
 		boardService.selectBoard(board, function(result, status) {
+			console.log(result)
 	    	if(status="success") {
 	    		$("input[name='title']").val(result.board_title);
 	    		$("input[name='department']").val(result.department_name);
 	    		$("input[name='writer']").val(result.employee_name);
 	    		$("textarea[name='content']").val(result.board_content);
+	    		$("input[name='boardCode']").val(result.board_id);
+	    		checkBoxReset();
 	    	}
 	    });
-		
-		
 	});
 	// 취소버튼
 	$(document).on("click", "#board-register-cancleBtn", function() {
-		$("#board-register-wrap").css("display", "none");
+		$(".modal-wrap").css("display", "none");
 		$("#board-register-footer").css("display", "none");
 		$("#board-select-footer").css("display", "none");
 	})
@@ -204,25 +228,28 @@ $(document).ready(function() {
 		var modalInputContent = $("textarea[name='content']").val();
 		var modalInputDeptCode = $("input[name='deptCode']").val();
 		var modalInputWriterCode = $("input[name='empCode']").val();
+		var modalInputBoardCode = $("input[name='boardCode']").val();
 		
 		var board = {
 				board_title : modalInputTitle,
 				employee_name : modalInputWriter,
 				board_content : modalInputContent,
 				department_id : modalInputDeptCode,
-				employee_id : modalInputWriterCode
+				employee_id : modalInputWriterCode,
+				board_id : modalInputBoardCode
 		};
-		
 		console.log(board);
+		
 		boardService.updateBoard(board, function(result, status) {
 			if(status="success") {
 				alert(result);
 				$("input[name='title']").val("");
 				$("textarea[name='content']").val(""); 
-				$("#board-register-wrap").css("display", "none");
+				$(".modal-wrap").css("display", "none");
+				$("#board-modify-footer").css("display", "none");
+				table.ajax.reload( null, false );
 			}
 		}) 
 	})
-	
 	/* 게시글 수정 : END */
 })

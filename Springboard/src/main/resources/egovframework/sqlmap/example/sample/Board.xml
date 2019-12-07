@@ -33,18 +33,22 @@
 		select
 		count(*) from board
 	</select>
-	
-	<select id="boardDao.selectBoard" resultClass="boardVO" parameterClass="boardVO">
-   		select
-		A.board_id, A.board_title, A.board_content, B.department_name, C.employee_name,
-		to_char(A.board_create_date, 'yyyy-mm-dd') board_create_date,
+
+	<select id="boardDao.selectBoard" resultClass="boardVO"
+		parameterClass="boardVO">
+		select
+		A.board_id, A.board_title, A.board_content, B.department_name,
+		C.employee_name,
+		to_char(A.board_create_date, 'yyyy-mm-dd')
+		board_create_date,
 		A.board_name
 		from board A, department B, employee C
 		where
-		A.department_id = B.department_id and A.employee_id = C.employee_id
-        and A.board_id = #board_id#
-    </select>
-	     
+		A.department_id = B.department_id and A.employee_id =
+		C.employee_id
+		and A.board_id = #board_id#
+	</select>
+
 
 	<insert id="boardDao.insertBoard" parameterClass="boardVO">
 		<![CDATA[
@@ -66,5 +70,15 @@
 				#board_content#)
 		]]>
 	</insert>
+
+	<update id="boardDao.updateBoard" parameterClass="boardVO">
+		<![CDATA[
+			UPDATE BOARD
+			SET 
+			BOARD_TITLE=#board_title#
+		  , BOARD_CONTENT=#board_content#
+			WHERE BOARD_ID=#board_id#
+		]]>
+	</update>
 
 </sqlMap>

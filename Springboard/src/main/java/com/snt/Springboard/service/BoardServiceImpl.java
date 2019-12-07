@@ -42,4 +42,10 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 
+	@Override
+	public int updateBoard(BoardVO board) {
+		return boardDao.updateBoard(board);
+	}
+
+
 }

@@ -58,8 +58,8 @@ public class BoardRestController {
 	@RequestMapping(method= {RequestMethod.PUT, RequestMethod.PATCH}, value="/boardService/updateBoard.do", consumes="application/json", produces= {MediaType.TEXT_PLAIN_VALUE, "text/plain;charset=UTF-8"})
 	@ResponseBody
 	public void updateBoard(@RequestBody BoardVO board) {
-		logger.info(board.getBoard_title());
+		logger.info(board.getBoard_id());
+		int updateCount = boardService.updateBoard(board);
+		logger.info(updateCount);
 	}
-	
-	
 }

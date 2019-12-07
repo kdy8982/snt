@@ -13,4 +13,6 @@ public interface BoardMapper {
 	int selectBoardListTotCnt();
 	
 	int insertBoard(BoardVO board);
+	
+	int updateBoard(BoardVO board);
 }
