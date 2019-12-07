@@ -86,6 +86,8 @@ $(document).ready(function() {
     	$(".modal-wrap").css("display", "none");
     	$("#board-select-footer").css("display", "none");
     	$(".modal-wrap").removeClass("modal-select");
+    	$("div[name='content']").empty();
+    	
     })
     //등록 모달 취소버튼.
     $(document).on("click", "#board-register-cancleBtn", function() {
@@ -98,20 +100,29 @@ $(document).ready(function() {
     	$(".modal-wrap").css("display", "none");
     	$("#board-modify-footer").css("display", "none");
     	$(".modal-wrap").removeClass("modal-modify");
+    	$("div[name='content']").empty();
     })
     
 	/* 게시글 등록 : START */
 	$("#add-btn").on("click", function() {
-		$(".modal-wrap").css("display", "block");	
+		$(".modal-regist-wrap").css("display", "block");	
 		$("#board-register-footer").css("display", "block");
 		$(".modal-wrap").addClass("modal-regist");
+		var oEditors = [];
+		nhn.husky.EZCreator.createInIFrame({
+			oAppRef: oEditors,
+			elPlaceHolder: "ir1",
+			sSkinURI: "/SE2/SmartEditor2Skin.html",
+			fCreator: "createSEditor2"
+		});
 	});
 	$("#board-register-submitBtn").on("click" , function() {
-		var modalInputTitle = $("input[name='title']").val();
-		var modalInputWriter = $("input[name='writer']").val();
-		var modalInputContent = $("textarea[name='content']").val();
-		var modalInputDeptCode = $("input[name='deptCode']").val();
-		var modalInputWriterCode = $("input[name='empCode']").val();
+		var modalInputTitle = $(".modal-regist-wrap input[name='title']").val();
+		var modalInputWriter = $(".modal-regist-wrap input[name='writer']").val();
+		var modalInputContent = oEditors.getById["ir1"].getIR();
+		var modalInputDeptCode = $(".modal-regist-wrap input[name='deptCode']").val();
+		var modalInputWriterCode = $(".modal-regist-wrap input[name='empCode']").val();
+		console.log(modalInputTitle)
 		
 		var board = {
 				board_title : modalInputTitle,
@@ -174,8 +185,9 @@ $(document).ready(function() {
 				board_id : boardId
 		}
 		boardService.selectBoard(board,function(result, status) {
+			console.log(result);
 	    	if(status="success") {
-	    		$(".modal-wrap").css("display", "block");
+	    		$(".modal-select-wrap").css("display", "block");
 	    		$(".modal-wrap").addClass("modal-select");
 	    		$(".modal-select input,textarea").attr("readonly", true);
 	    		
@@ -183,7 +195,7 @@ $(document).ready(function() {
 	    		$("input[name='title']").val(result.board_title);
 	    		$("input[name='department']").val(result.department_name);
 	    		$("input[name='writer']").val(result.employee_name);
-	    		$("textarea[name='content']").val(result.board_content);
+	    		$("div[name='content']").append(result.board_content);
 	    	}
 	    });
 		
@@ -193,7 +205,7 @@ $(document).ready(function() {
 	/* 게시글 삭제 : END */
 
 	
-	/* 게시글 수정 : START  TODO : 체크박스 배열 갯수가 한개인지 검증하는 로직 추가해야 함.*/ 
+	/* 게시글 수정 : START */
 	$("#mod-btn").on("click", function() {
 		if(_chkArr.length > 1) {
 			alert("하나의 글만 수정할 수 있습니다.");
@@ -203,8 +215,7 @@ $(document).ready(function() {
 			alert("수정하실 게시물을 체크해 주세요.");
 			return;
 		}
-		$(".modal-wrap").css("display", "block");
-		$(".modal-wrap modal-register").css("display", "block");
+		$(".modal-wrap.regist").css("display", "block");
 		$(".modal-register input,textarea").attr("readonly", false);
 		$("#board-modify-footer").css("display", "block");
 		
@@ -219,8 +230,8 @@ $(document).ready(function() {
 	    		$("input[name='title']").val(result.board_title);
 	    		$("input[name='department']").val(result.department_name);
 	    		$("input[name='writer']").val(result.employee_name);
-	    		$("textarea[name='content']").val(result.board_content);
 	    		$("input[name='boardCode']").val(result.board_id);
+	    		$("div[name='content']").append(result.board_content);
 	    		checkBoxReset();
 	    	}
 	    });
@@ -230,6 +241,7 @@ $(document).ready(function() {
 		$(".modal-wrap").css("display", "none");
 		$("#board-register-footer").css("display", "none");
 		$("#board-select-footer").css("display", "none");
+		
 	})
 	//수정버튼
 	$("#board-modify-submitBtn").on("click" , function() {
@@ -257,6 +269,7 @@ $(document).ready(function() {
 				$("textarea[name='content']").val(""); 
 				$(".modal-wrap").css("display", "none");
 				$("#board-modify-footer").css("display", "none");
+				$("div[name='content']").empty();
 				table.ajax.reload( null, false );
 			}
 		}) 

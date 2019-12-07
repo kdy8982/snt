@@ -99,8 +99,12 @@ label[for='title'] {
 	margin: 0 auto;
 	width: 80%;
 }
+.modal-select-wrap {
+	display: none;
+}
 
-.modal-wrap {
+
+.modal-regist-wrap {
 	display: none;
 	position: fixed;
     width: 50%;
@@ -134,7 +138,7 @@ label[for='title'] {
 }
 
 #board-register-footer {
-	display:none;
+	/* display:none; */
 	text-align: right;	
 	margin-top: 10px;
 }
@@ -161,6 +165,13 @@ label[for='title'] {
     margin-top: 10px;
 }
 
+div[name="content"] {
+	font-size: 11px;
+}
+div[name="content"] p {
+	margin-top: 0;
+	margin-bottom: 0;
+}
 
 /* Board 등록 css End*/
 

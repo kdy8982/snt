@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -64,4 +65,12 @@ public class BoardRestController {
 		return updateCount == 1 ? new ResponseEntity <String> ("게시글을 성공적으로 수정하였습니다.", HttpStatus.OK) : new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
 
 	}
+	
+	@RequestMapping("/SE_submit.do")
+	public void submit(HttpServletRequest request){
+	    System.out.println("에디터 컨텐츠값:"+request.getParameter("ir1"));
+	}
+
+
+	
 }
