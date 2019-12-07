@@ -57,9 +57,11 @@ public class BoardRestController {
 	
 	@RequestMapping(method= {RequestMethod.PUT, RequestMethod.PATCH}, value="/boardService/updateBoard.do", consumes="application/json", produces= {MediaType.TEXT_PLAIN_VALUE, "text/plain;charset=UTF-8"})
 	@ResponseBody
-	public void updateBoard(@RequestBody BoardVO board) {
+	public ResponseEntity<String> updateBoard(@RequestBody BoardVO board) {
 		logger.info(board.getBoard_id());
 		int updateCount = boardService.updateBoard(board);
 		logger.info(updateCount);
+		return updateCount == 1 ? new ResponseEntity <String> ("게시글을 성공적으로 수정하였습니다.", HttpStatus.OK) : new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
+
 	}
 }
