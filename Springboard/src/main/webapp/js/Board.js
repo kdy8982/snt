@@ -27,7 +27,12 @@ $(document).ready(function() {
 			"data" : "boardCreateDate"
 		}, {
 			"data" : "boardName"
-		}]
+		}],
+		order: [ [ 4, "desc" ] ],
+        "aoColumnDefs" : [ {
+            'bSortable' : false,
+            'aTargets' : [ 0,2,3,5 ]
+        } ]
 
 	}) //DataTable()
 	/* jQueryDataTable 끝 */
