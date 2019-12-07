@@ -4,9 +4,13 @@ $(document).ready(function() {
 	var table = $("#main-table").DataTable({
 		"language" : {
 			"paginate" : {
-				"next" : "다음", "previous" : "이전"
+				"first" : "<<",
+				"previous" : "<",
+				"next" : ">",
+				"last" : ">>"
 			}
 		},
+		"pagingType": "full_numbers",
 		displayLength: 10,
 		lengthChange : true,
 		ajax : {
@@ -28,7 +32,7 @@ $(document).ready(function() {
 		}, {
 			"data" : "boardName"
 		}],
-		order: [ [ 4, "desc" ] ],
+		//order: [ [ 4, "desc" ] ],
         "aoColumnDefs" : [ {
             'bSortable' : false,
             'aTargets' : [ 0,2,3,5 ]
@@ -123,6 +127,7 @@ $(document).ready(function() {
 				$("input[name='title']").val("");
 				$("textarea[name='content']").val(""); 
 				$(".modal-wrap").css("display", "none");
+				table.ajax.reload( null, false );
 			}
 		}) 
 	})

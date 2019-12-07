@@ -27,6 +27,7 @@
 		from board A, department B, employee C
 		where
 		A.department_id = B.department_id and A.employee_id = C.employee_id
+		order by board_id desc
 	</select>
 
 	<select id="boardDao.selectBoardListTotCnt" resultClass="int">
