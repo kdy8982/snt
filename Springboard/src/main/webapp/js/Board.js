@@ -95,7 +95,7 @@ $(document).ready(function() {
 	});
 	/*jsTree 끝*/
 	
-	/* jQueryUI datepcker : START	 */
+	/* jQueryUI datepicker : START	 */
 	$("#datepicker1").datepicker({
     	dateFormat:'yy-mm-dd',
     	showOn: 'both',
@@ -106,8 +106,20 @@ $(document).ready(function() {
     	monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
     	dayNames: ['일', '월', '화', '수', '목', '금', '토'],
     	dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
-    	dayNamesMin: ['일', '월', '화', '수', '목', '금', '토']
-    }); // datepikcer();
+    	dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+    	onSelect: function(){     
+    		var datepicker1 = $('#datepicker1').val();
+    	    var datepicker2 = $('#datepicker2').val();
+    	    var date1 = datepicker1.split('-');
+    	    var date2 = datepicker2.split('-');
+    	    var board_date1 = new Date(date1[0],date1[1],date1[2]);
+    	    var board_date2 = new Date(date2[0],date2[1],date2[2]);
+            if(board_date1.getTime()>board_date2.getTime()){
+            	$('#datepicker1').val(null);
+            	alert('지정한 날짜가 맞지 않습니다. 다시 선택 해 주세요.');
+            }
+    	}
+    });
 	
     $("#datepicker2").datepicker({
     	dateFormat:'yy-mm-dd',
@@ -133,7 +145,7 @@ $(document).ready(function() {
             }
     	}
     });
-    /* jQueryUI datepcker : END */
+    /* jQueryUI datepicker : END */
 	
     // 조회 모달 확인버튼. 
     $(document).on("click", "#board-select-cancleBtn", function() {
