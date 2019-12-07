@@ -15,6 +15,7 @@
 <script
 	src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
 
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='/css/board.css'/>" />
@@ -22,6 +23,8 @@
 	href="  https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" 
+	href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
 
 </head>
 
@@ -39,11 +42,14 @@
 		<div class="form-group">
 			<label for="writer">작성자</label><input
 			type="text" id="writer" class="input_writer"></input>
-			<button class="organization_chart btn gray-btn">조직도</button>
+			<button class="organization_chart btn gray-btn tree-btn">조직도</button>
 			
 			<label id="department2" for="department">부서</label>
 			<input type="text" id="department" class="input_department"></input>
-			<button class="organization_chart btn gray-btn">조직도</button>
+			<button class="organization_chart btn gray-btn tree-btn">조직도</button>
+			<div id="treeBox">
+				<div id="tree"></div> <!-- modal 할 줄 아시는 분 도움 부탁드려요 -->
+			</div>
 		</div>
 		<div class="form-group">
 			<label id="writedate" for="department">작성일</label><input type="text" name="board_date" id="datepicker1" class="input_date_created1" disabled />~<input type="text" name="board_date" id="datepicker2" class="input_date_created2" disabled/>
