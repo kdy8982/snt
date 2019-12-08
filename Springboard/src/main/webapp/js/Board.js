@@ -352,12 +352,12 @@ $(document).ready(function() {
 	//수정버튼
 	$("#board-modify-submitBtn").on("click" , function() {
 		console.log("수정버튼 눌림")
-		var modalInputTitle = $("input[name='title']").val();
-		var modalInputWriter = $("input[name='writer']").val();
+		var modalInputTitle = $(".modal-modify-wrap input[name='title']").val();
+		var modalInputWriter = $(".modal-modify-wrap input[name='writer']").val();
 		var modalInputContent = oEditors.getById["ir2"].getIR();
-		var modalInputDeptCode = $("input[name='deptCode']").val();
-		var modalInputWriterCode = $("input[name='empCode']").val();
-		var modalInputBoardCode = $("input[name='boardCode']").val();
+		var modalInputDeptCode = $(".modal-modify-wrap input[name='deptCode']").val();
+		var modalInputWriterCode = $(".modal-modify-wrap input[name='empCode']").val();
+		var modalInputBoardCode = $(".modal-modify-wrap input[name='boardCode']").val();
 		
 		var board = {
 				board_title : modalInputTitle,
