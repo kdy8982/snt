@@ -381,4 +381,48 @@ $(document).ready(function() {
 		}) 
 	})
 	/* 게시글 수정 : END */
-})
+	
+	$.fn.dataTable.ext.search.push(
+		function( settings, data, dataIndex ) {
+		var title = $("#title").val(); // data[1]
+		var department = $("#department").val(); // data[2]
+		var writer = $("#writer").val(); // data[3]
+		var dp1 = $("#datepicker1").val(); // data[4] "" or 2019-12-04 
+		var dp2= $("#datepicker2").val(); // data[4] "" or 2019-12-04 
+		
+		if(dp1 == "") {
+			dp1 = "0";
+		}
+		if(dp2 == "") {
+			dp2 = "999999";
+		}
+    	if((data[1].indexOf(title) != -1) && (data[2].indexOf(department) != -1) && (data[3].indexOf(writer) != -1) && (dp1 <= data[4]) && (dp2 >= data[4]) ) {
+    		return true;
+    	} else {
+    		return false;
+    	} 
+	/*
+        var min = parseInt( $('#min').val(), 10 );
+        var max = parseInt( $('#max').val(), 10 );
+        var age = parseFloat( data[3] ) || 0; // use data for the age column
+ 
+        if ( ( isNaN( min ) && isNaN( max ) ) ||
+             ( isNaN( min ) && age <= max ) ||
+             ( min <= age   && isNaN( max ) ) ||
+             ( min <= age   && age <= max ) )
+        {
+            return true;
+        }
+        return false;
+	 */ 
+		}
+	);
+
+	
+	/* 게시글 검색 : START */
+	$("#searchdata").on("click", function() {
+  		table.draw();
+	})
+	/* 게시글 검색 : END */
+	
+}) // $(document).ready(function() {

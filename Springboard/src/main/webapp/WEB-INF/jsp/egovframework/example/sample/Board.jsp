@@ -59,7 +59,7 @@
 		</div>
 
 		<div id="search_button">
-			<button class="btn gray-btn">검색</button>
+			<button id="searchdata" class="btn gray-btn">검색</button>
 			<button class="btn gray-btn">초기화</button>
 		</div>
 	</div>
