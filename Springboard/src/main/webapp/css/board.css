@@ -101,15 +101,10 @@ label[for='title'] {
 }
 .modal-select-wrap {
 	display: none;
-}
-
-
-.modal-regist-wrap {
-	display: none;
 	position: fixed;
-    width: 50%;
     top: 50%;
     left: 50%;
+    min-width: 820px;
     transform: translate(-50%, -50%);
     
     background-color: #EFEFEF;
@@ -118,6 +113,36 @@ label[for='title'] {
     border-radius: 10px;
     border: 1px solid black;
 }
+.modal-regist-wrap {
+	display: none;
+	position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 820px;
+    transform: translate(-50%, -50%);
+    
+    background-color: #EFEFEF;
+    padding: 40px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+.modal-modify-wrap {
+	display: none;
+	position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 820px;
+    transform: translate(-50%, -50%);
+    
+    background-color: #EFEFEF;
+    padding: 40px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+
 .modal-inner{
 	margin: 0 auto;
 	width: 80%;
