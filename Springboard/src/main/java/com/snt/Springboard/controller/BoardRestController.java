@@ -68,11 +68,15 @@ public class BoardRestController {
 		return new ResponseEntity<>("게시글이 삭제되었습니다." , HttpStatus.OK);
 	}
 	
-	@RequestMapping("/SE_submit.do")
-	public void submit(HttpServletRequest request){
-	    System.out.println("에디터 컨텐츠값:"+request.getParameter("ir1"));
-	}
+	@RequestMapping(method= {RequestMethod.PUT, RequestMethod.PATCH}, value="/boardService/updateBoard.do", consumes="application/json", produces= {MediaType.TEXT_PLAIN_VALUE, "text/plain;charset=UTF-8"})
+	@ResponseBody
+	public ResponseEntity<String> updateBoard(@RequestBody BoardVO board) {
+		logger.info(board.getBoard_id());
+		int updateCount = boardService.updateBoard(board);
+		logger.info(updateCount);
+		return updateCount == 1 ? new ResponseEntity <String> ("게시글을 성공적으로 수정하였습니다.", HttpStatus.OK) : new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
 
+	}
 
 	
 }
