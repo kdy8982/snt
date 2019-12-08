@@ -50,23 +50,23 @@ var boardService = (function() {
 			}
 		})
 	}
-	function remove(board, callback, error){
+	function remove(board, callback, error) {
 		if(confirm("정말 삭제하시겠습니까??")== true){
 			console.log(board,"board ! !")
 			$.ajax({
 				type : 'POST',
-				url : '/Springboard/boardService/multiDelete.do',
+				url : '/boardService/multiDelete.do',
 				data : JSON.stringify(board),
 				contentType : "application/json; charset=utf-8",
-				success : function(data,er){
-					alert('삭제완료');
+				success : function(result, status){
+					if(callback) {
+						callback(result, status)
+					}
 				},
 				error : function(xhr, status, er){
 					console.log(er)
 				}
 			})
-		
-
 		}
 	}
 	

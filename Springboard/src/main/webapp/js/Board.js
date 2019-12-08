@@ -46,7 +46,7 @@ $(document).ready(function() {
 		type: 'post',
 		dataType: 'json',
 		//async: false,
-		url: '/Springboard/treeList.json',
+		url: '/treeList.json',
 		success: function(data,textStatus){
 			var a = '<ul>';
 			for(var m=1; m<data.length; m++){
@@ -270,11 +270,12 @@ $(document).ready(function() {
 		}else {
 			var board = _chkArr;
 			boardService.remove(board, function(result, status){
-				alert(result);
+				if(status="success") {
+					alert(result)
+					table.ajax.reload( null, false );
+					checkBoxReset();
+				}
 			})
-			
-			
-
 		}
 	})
 	/* 게시글 삭제 : END */
