@@ -32,4 +32,9 @@ public class BoardDao extends EgovAbstractDAO {
 	public int updateBoard(BoardVO board) {
 		return update("boardDao.updateBoard", board);
 	}
+	
+	public void deleteBoard(BoardVO board) {
+		delete("boardDao.deleteBoard",board);
+		
+	}
 }

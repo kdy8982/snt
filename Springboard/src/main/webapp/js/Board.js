@@ -264,6 +264,19 @@ $(document).ready(function() {
 	} );
 	
 	/* 게시글 삭제 : START */
+	$('#del-btn').on('click', function(){
+		if(_chkArr.length == 0){
+			alert('선택해주세요');
+		}else {
+			var board = _chkArr;
+			boardService.remove(board, function(result, status){
+				alert(result);
+			})
+			
+			
+
+		}
+	})
 	/* 게시글 삭제 : END */
 
 	

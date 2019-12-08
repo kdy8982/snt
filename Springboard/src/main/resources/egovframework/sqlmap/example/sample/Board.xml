@@ -81,5 +81,10 @@
 			WHERE BOARD_ID=#board_id#
 		]]>
 	</update>
+	<delete id="boardDao.deleteBoard">
+	    delete from 
+	    board where board_id=#board_id#
+	    
+	</delete>
 
 </sqlMap>

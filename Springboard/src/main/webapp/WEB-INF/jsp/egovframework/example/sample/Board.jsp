@@ -65,7 +65,7 @@
 	<div id=button-wrap>
 		<button id="add-btn" class="btn pink-btn">등록</button>
 		<button id="mod-btn" class="btn pink-btn">수정</button>
-		<button class="btn pink-btn">삭제</button>
+		<button id="del-btn" class="btn pink-btn">삭제</button>
 		<button class="btn pink-btn">인쇄</button>
 	</div>
 	<table id="main-table" class="stripe">

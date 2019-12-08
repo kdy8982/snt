@@ -1,6 +1,7 @@
 package com.snt.Springboard.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -55,13 +56,14 @@ public class BoardRestController {
 		return boardService.selectBoard(board);
 	}
 	
-	@RequestMapping(method= {RequestMethod.PUT, RequestMethod.PATCH}, value="/boardService/updateBoard.do", consumes="application/json", produces= {MediaType.TEXT_PLAIN_VALUE, "text/plain;charset=UTF-8"})
+	@RequestMapping(value="/boardService/multiDelete.do", method=RequestMethod.POST, consumes = "application/json", produces= {MediaType.TEXT_PLAIN_VALUE, "text/plain;charset=UTF-8"})
 	@ResponseBody
-	public ResponseEntity<String> updateBoard(@RequestBody BoardVO board) {
-		logger.info(board.getBoard_id());
-		int updateCount = boardService.updateBoard(board);
-		logger.info(updateCount);
-		return updateCount == 1 ? new ResponseEntity <String> ("게시글을 성공적으로 수정하였습니다.", HttpStatus.OK) : new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
-
+	public ResponseEntity<String> deleteBoard(@RequestBody List<String> board_id) {
+		BoardVO board = new BoardVO();
+		for(int i=0; i<board_id.size(); i++){
+			board.setBoard_id(board_id.get(i));
+			boardService.deleteBoard(board);
+		}
+		return new ResponseEntity<>("게시글이 삭제되었습니다." , HttpStatus.OK);
 	}
 }
