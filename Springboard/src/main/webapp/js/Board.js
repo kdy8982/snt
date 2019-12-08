@@ -46,15 +46,15 @@ $(document).ready(function() {
 		type: 'post',
 		dataType: 'json',
 		//async: false,
-		url: '/cosmetic/treeJSON',
+		url: '/Springboard/treeList.json',
 		success: function(data,textStatus){
 			var a = '<ul>';
 			for(var m=1; m<data.length; m++){
-				if(data[m-1].deptName!=data[m].deptName){	
-					a += '<li>'+data[m-1].deptName+'<ul>';
+				if(data[m-1].department_name!=data[m].department_name){	
+					a += '<li>'+data[m-1].department_name+'<ul>';
 					for(var n=0; n<data.length; n++){
-						if(data[m-1].deptName==data[n].deptName){
-							a += '<li>'+data[n].emplName+'</li>';
+						if(data[m-1].department_name==data[n].department_name){
+							a += '<li>'+data[n].employee_name+'</li>';
 						}
 					}
 					a += '</ul></li>';
@@ -69,25 +69,33 @@ $(document).ready(function() {
 		}
 	});
 	
-	$('.tree-btn').on('click',function(){	
+	var btn;
+	$('.tree-btn').on('click',function(){
+		btn = $(this).attr('id');
 		$('#tree').jstree({
         	'plugins' : [ 'wholerow' ]
         });
 		$('#tree, #treeBox').show();
 	});
 	
+	var text;
 	$('#tree').on('changed.jstree', function (e, data) {
 		var id = $('#tree').jstree(true).get_node(data.selected).id; //선택한 노드의 id 구하기
 		var level = $('#'+id).attr('aria-level'); //선택한 노드의 id를 이용해 노드의 레벨 구하기
-		if(level!=1){ //노드 레벨 1은 부서명, 부서명을 선택하면 입력 폼에 값이 안 들어가게 막음
-			var parent = $('#tree').jstree(true).get_node(data.selected).parent; //선택한 노드의 부모노드 구하기
-			var dept = $('#tree').jstree(true).get_node(parent).text; //선택한 노드의 부모노드의 텍스트 = 부서명
-			var empl = $('#tree').jstree(true).get_node(data.selected).text; //선택한 노드의 텍스트 = 사원명
-			$('#department').val(dept);
-		    $('#writer').val(empl);
+		text = $('#tree').jstree(true).get_node(data.selected).text; //선택한 노드의 텍스트 구하기
+		
+		if(btn=='dept-btn'&&level==1){  //노드 레벨 1은 부서명
+			$('#department').val(text);
+		}else if(btn=='writer-btn'&&level==2){  //노드 레벨 2는 사원명
+			$('#writer').val(text);
 		}
 	}).dblclick(function(){
-		var ok = confirm('선택하시겠습니까?');
+		var ok;
+		if(btn=='dept-btn'){
+			ok = confirm("'"+text+"' 부서를 선택하시겠습니까?");
+		}else if(btn=='writer-btn'){
+			ok = confirm("'"+text+"' 님을 선택하시겠습니까?");
+		}
 		if(ok==true){
 			$('#tree').jstree('close_all');
 			$('#tree, #treeBox').hide();

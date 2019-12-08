@@ -42,11 +42,11 @@
 		<div class="form-group">
 			<label for="writer">작성자</label>
 			<input type="text" id="writer" class="input_writer" disabled="disabled"></input>
-			<button class="organization_chart btn gray-btn tree-btn">조직도</button>
+			<button class="organization_chart btn gray-btn tree-btn" id="writer-btn">조직도</button>
 			
 			<label id="department2" for="department">부서</label>
 			<input type="text" id="department" class="input_department" disabled="disabled"></input>
-			<button class="organization_chart btn gray-btn tree-btn">조직도</button>
+			<button class="organization_chart btn gray-btn tree-btn" id="dept-btn">조직도</button>
 			<div id="treeBox">
 				<div id="tree"></div> <!-- modal 할 줄 아시는 분 도움 부탁드려요 -->
 			</div>
