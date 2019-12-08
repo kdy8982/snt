@@ -56,7 +56,7 @@
 		</div>
 	</div>
 	<div id=button-wrap>
-		<button id="add-btn" class="btn pink-btn">등록!</button>
+		<button id="add-btn" class="btn pink-btn">등록</button>
 		<button id="mod-btn" class="btn pink-btn">수정</button>
 		<button id="del-btn" class="btn pink-btn">삭제</button>
 		<button class="btn pink-btn">인쇄</button>
@@ -142,10 +142,6 @@
 			<div class="form-group hidden">
 				<label>게시물코드</label>
 				<input type="text" name="boardCode"></input>
-			</div>
-			<div id="board-modify-footer" class="modal-modify">
-				<button id="board-modify-submitBtn" class="btn gray-btn">수정</button>
-				<button id="board-modify-cancleBtn" class="btn gray-btn">취소</button>
 			</div>
 			<div id="board-register-footer">
 				<button id="board-register-submitBtn" class="btn gray-btn">등록</button>

@@ -173,7 +173,6 @@ label[for='title'] {
 	margin-top: 10px;
 }
 #board-modify-footer {
-	display:none;
 	text-align: right;	
 	margin-top: 10px;
 }
@@ -191,7 +190,8 @@ label[for='title'] {
 }
 
 div[name="content"] {
-	font-size: 11px;
+	font-size: 14px;
+    margin-top: 8px;
 }
 div[name="content"] p {
 	margin-top: 0;

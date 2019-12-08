@@ -96,13 +96,18 @@ $(document).ready(function() {
     })
     //수정 모달 취소버튼.
     $(document).on("click", "#board-modify-cancleBtn", function() {
-    	$(".modal-wrap").css("display", "none");
-    	$("#board-modify-footer").css("display", "none");
+    	$(".modal-modify-wrap").css("display", "none");
     	$(".modal-wrap").removeClass("modal-modify");
-    	$("div[name='content']").empty();
+    	$("#content iframe").remove();
     })
     
 	var oEditors = []; // 스마트에디터 배열 객체 
+	nhn.husky.EZCreator.createInIFrame({
+		oAppRef: oEditors,
+		elPlaceHolder: "ir1",
+		sSkinURI: "/SE2/SmartEditor2Skin.html",
+		fCreator: "createSEditor2"
+	});
 	/* 게시글 등록 : START */
 	$("#add-btn").on("click", function() {
 		$(".modal-regist-wrap").css("display", "block");	
@@ -115,6 +120,7 @@ $(document).ready(function() {
 			sSkinURI: "/SE2/SmartEditor2Skin.html",
 			fCreator: "createSEditor2"
 		});
+		
 	});
 	$("#board-register-submitBtn").on("click" , function() {
 		var modalInputTitle = $(".modal-regist-wrap input[name='title']").val();
@@ -206,7 +212,6 @@ $(document).ready(function() {
 
 	/* 게시글 수정 : START */
 	$("#mod-btn").on("click", function() {
-		
 		if(_chkArr.length > 1) {
 			alert("하나의 글만 수정할 수 있습니다.");
 			checkBoxReset();
@@ -240,10 +245,17 @@ $(document).ready(function() {
 	    		$("input[name='writer']").val(result.employee_name);
 	    		$("input[name='boardCode']").val(result.board_id);
 	    		//$("div[name='content']").append(result.board_content);
+	    		
+	    		setTimeout(function() {
+	    			oEditors.getById["ir2"].exec("SET_IR", [""]); //내용초기화
+	    			oEditors.getById["ir2"].exec("PASTE_HTML", [result.board_content]); //내용밀어넣기
+	    		}, 500);
+	    		
 	    		checkBoxReset();
 	    	}
 	    });
 	});
+	
 	$("#del-btn").on("click", function (){
 		oEditors.getById["ir2"].exec("SET_IR", [""]); //내용초기화
 		oEditors.getById["ir2"].exec("PASTE_HTML", ["AAA"]); //내용밀어넣기
@@ -251,9 +263,10 @@ $(document).ready(function() {
 	
 	//수정버튼
 	$("#board-modify-submitBtn").on("click" , function() {
+		console.log("수정버튼 눌림")
 		var modalInputTitle = $("input[name='title']").val();
 		var modalInputWriter = $("input[name='writer']").val();
-		var modalInputContent = $("textarea[name='content']").val();
+		var modalInputContent = oEditors.getById["ir2"].getIR();
 		var modalInputDeptCode = $("input[name='deptCode']").val();
 		var modalInputWriterCode = $("input[name='empCode']").val();
 		var modalInputBoardCode = $("input[name='boardCode']").val();
@@ -273,9 +286,8 @@ $(document).ready(function() {
 				alert(result);
 				$("input[name='title']").val("");
 				$("textarea[name='content']").val(""); 
-				$(".modal-wrap").css("display", "none");
-				$("#board-modify-footer").css("display", "none");
-				$("div[name='content']").empty();
+				$(".modal-modify-wrap").css("display", "none");
+				$("#content iframe").remove();
 				table.ajax.reload( null, false );
 			}
 		}) 
