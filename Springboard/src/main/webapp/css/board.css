@@ -99,13 +99,12 @@ label[for='title'] {
 	margin: 0 auto;
 	width: 80%;
 }
-
-.modal-wrap {
+.modal-select-wrap {
 	display: none;
 	position: fixed;
-    width: 50%;
     top: 50%;
     left: 50%;
+    min-width: 820px;
     transform: translate(-50%, -50%);
     
     background-color: #EFEFEF;
@@ -114,6 +113,36 @@ label[for='title'] {
     border-radius: 10px;
     border: 1px solid black;
 }
+.modal-regist-wrap {
+	display: none;
+	position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 820px;
+    transform: translate(-50%, -50%);
+    
+    background-color: #EFEFEF;
+    padding: 40px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+.modal-modify-wrap {
+	display: none;
+	position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 820px;
+    transform: translate(-50%, -50%);
+    
+    background-color: #EFEFEF;
+    padding: 40px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+
 .modal-inner{
 	margin: 0 auto;
 	width: 80%;
@@ -134,7 +163,7 @@ label[for='title'] {
 }
 
 #board-register-footer {
-	display:none;
+	/* display:none; */
 	text-align: right;	
 	margin-top: 10px;
 }
@@ -144,7 +173,6 @@ label[for='title'] {
 	margin-top: 10px;
 }
 #board-modify-footer {
-	display:none;
 	text-align: right;	
 	margin-top: 10px;
 }
@@ -161,6 +189,14 @@ label[for='title'] {
     margin-top: 10px;
 }
 
+div[name="content"] {
+	font-size: 14px;
+    margin-top: 8px;
+}
+div[name="content"] p {
+	margin-top: 0;
+	margin-bottom: 0;
+}
 
 /* Board 등록 css End*/
 

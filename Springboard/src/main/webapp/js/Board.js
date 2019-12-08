@@ -157,36 +157,52 @@ $(document).ready(function() {
 	
     // 조회 모달 확인버튼. 
     $(document).on("click", "#board-select-cancleBtn", function() {
-    	$(".modal-wrap").css("display", "none");
-    	$("#board-select-footer").css("display", "none");
+    	$(".modal-select-wrap").css("display", "none");
     	$(".modal-wrap").removeClass("modal-select");
+    	$("div[name='content']").empty();
+    	
     })
     //등록 모달 취소버튼.
     $(document).on("click", "#board-register-cancleBtn", function() {
-    	$(".modal-wrap").css("display", "none");
-    	$("#board-register-footer").css("display", "none");
-    	$(".modal-wrap").removeClass("modal-regist");
+    	$(".modal-regist-wrap").css("display", "none");
+    	$("#content iframe").remove();
+    	$(".modal-regist-wrap").removeClass("modal-regist");
     })
     //수정 모달 취소버튼.
     $(document).on("click", "#board-modify-cancleBtn", function() {
-    	$(".modal-wrap").css("display", "none");
-    	$("#board-modify-footer").css("display", "none");
+    	$(".modal-modify-wrap").css("display", "none");
     	$(".modal-wrap").removeClass("modal-modify");
+    	$("#content iframe").remove();
     })
     
+	var oEditors = []; // 스마트에디터 배열 객체 
+	nhn.husky.EZCreator.createInIFrame({
+		oAppRef: oEditors,
+		elPlaceHolder: "ir1",
+		sSkinURI: "/SE2/SmartEditor2Skin.html",
+		fCreator: "createSEditor2"
+	});
 	/* 게시글 등록 : START */
 	$("#add-btn").on("click", function() {
-		$(".modal-wrap").css("display", "block");	
+		$(".modal-regist-wrap").css("display", "block");	
 		$("#board-register-footer").css("display", "block");
 		$(".modal-wrap").addClass("modal-regist");
+	
+		nhn.husky.EZCreator.createInIFrame({
+			oAppRef: oEditors,
+			elPlaceHolder: "ir1",
+			sSkinURI: "/SE2/SmartEditor2Skin.html",
+			fCreator: "createSEditor2"
+		});
+		
 	});
 	$("#board-register-submitBtn").on("click" , function() {
-		var modalInputTitle = $("input[name='title']").val();
-		var modalInputWriter = $("input[name='writer']").val();
-		var modalInputContent = $("textarea[name='content']").val();
-		var modalInputDeptCode = $("input[name='deptCode']").val();
-		var modalInputWriterCode = $("input[name='empCode']").val();
-		
+		var modalInputTitle = $(".modal-regist-wrap input[name='title']").val();
+		var modalInputWriter = $(".modal-regist-wrap input[name='writer']").val();
+		var modalInputContent = oEditors.getById["ir1"].getIR();
+		var modalInputDeptCode = $(".modal-regist-wrap input[name='deptCode']").val();
+		var modalInputWriterCode = $(".modal-regist-wrap input[name='empCode']").val();
+
 		var board = {
 				board_title : modalInputTitle,
 				employee_name : modalInputWriter,
@@ -199,8 +215,9 @@ $(document).ready(function() {
 			if(status="success") {
 				alert(result);
 				$("input[name='title']").val("");
-				$("textarea[name='content']").val(""); 
-				$(".modal-wrap").css("display", "none");
+				$("textarea[name='content']").val("");
+				$("#content iframe").remove();
+				$(".modal-regist-wrap").css("display", "none");
 				table.ajax.reload( null, false );
 			}
 		}) 
@@ -248,8 +265,9 @@ $(document).ready(function() {
 				board_id : boardId
 		}
 		boardService.selectBoard(board,function(result, status) {
+			console.log(result);
 	    	if(status="success") {
-	    		$(".modal-wrap").css("display", "block");
+	    		$(".modal-select-wrap").css("display", "block");
 	    		$(".modal-wrap").addClass("modal-select");
 	    		$(".modal-select input,textarea").attr("readonly", true);
 	    		
@@ -257,7 +275,7 @@ $(document).ready(function() {
 	    		$("input[name='title']").val(result.board_title);
 	    		$("input[name='department']").val(result.department_name);
 	    		$("input[name='writer']").val(result.employee_name);
-	    		$("textarea[name='content']").val(result.board_content);
+	    		$("div[name='content']").append(result.board_content);
 	    	}
 	    });
 		
@@ -280,8 +298,7 @@ $(document).ready(function() {
 	})
 	/* 게시글 삭제 : END */
 
-	
-	/* 게시글 수정 : START  TODO : 체크박스 배열 갯수가 한개인지 검증하는 로직 추가해야 함.*/ 
+	/* 게시글 수정 : START */
 	$("#mod-btn").on("click", function() {
 		if(_chkArr.length > 1) {
 			alert("하나의 글만 수정할 수 있습니다.");
@@ -291,39 +308,53 @@ $(document).ready(function() {
 			alert("수정하실 게시물을 체크해 주세요.");
 			return;
 		}
-		$(".modal-wrap").css("display", "block");
-		$(".modal-wrap modal-register").css("display", "block");
-		$(".modal-register input,textarea").attr("readonly", false);
-		$("#board-modify-footer").css("display", "block");
 		
+		$(".modal-modify-wrap").css("display", "block");
+		$(".modal-register input, textarea").attr("readonly", false);
+		
+		nhn.husky.EZCreator.createInIFrame({
+			oAppRef: oEditors,
+			elPlaceHolder: "ir2",
+			sSkinURI: "/SE2/SmartEditor2Skin.html",
+			fCreator: "createSEditor2"
+		});
+
 		// 글을 다시 조회하여 출력한다.
 		var boardId = _chkArr[0];
 		var board = {
 			board_id : boardId
 		}
+		
 		boardService.selectBoard(board, function(result, status) {
 			console.log(result)
 	    	if(status="success") {
 	    		$("input[name='title']").val(result.board_title);
 	    		$("input[name='department']").val(result.department_name);
 	    		$("input[name='writer']").val(result.employee_name);
-	    		$("textarea[name='content']").val(result.board_content);
 	    		$("input[name='boardCode']").val(result.board_id);
+	    		//$("div[name='content']").append(result.board_content);
+	    		
+	    		setTimeout(function() {
+	    			oEditors.getById["ir2"].exec("SET_IR", [""]); //내용초기화
+	    			oEditors.getById["ir2"].exec("PASTE_HTML", [result.board_content]); //내용밀어넣기
+	    		}, 500);
+	    		
 	    		checkBoxReset();
 	    	}
 	    });
 	});
-	// 취소버튼
-	$(document).on("click", "#board-register-cancleBtn", function() {
-		$(".modal-wrap").css("display", "none");
-		$("#board-register-footer").css("display", "none");
-		$("#board-select-footer").css("display", "none");
+	
+	$("#del-btn").on("click", function (){
+		oEditors.getById["ir2"].exec("SET_IR", [""]); //내용초기화
+		oEditors.getById["ir2"].exec("PASTE_HTML", ["AAA"]); //내용밀어넣기
 	})
+	
 	//수정버튼
 	$("#board-modify-submitBtn").on("click" , function() {
+		console.log("수정버튼 눌림")
 		var modalInputTitle = $("input[name='title']").val();
 		var modalInputWriter = $("input[name='writer']").val();
-		var modalInputContent = $("textarea[name='content']").val();
+		var modalInputContent = oEditors.getById["ir2"].getIR();
 		var modalInputDeptCode = $("input[name='deptCode']").val();
 		var modalInputWriterCode = $("input[name='empCode']").val();
 		var modalInputBoardCode = $("input[name='boardCode']").val();
@@ -343,8 +374,8 @@ $(document).ready(function() {
 				alert(result);
 				$("input[name='title']").val("");
 				$("textarea[name='content']").val(""); 
-				$(".modal-wrap").css("display", "none");
-				$("#board-modify-footer").css("display", "none");
+				$(".modal-modify-wrap").css("display", "none");
+				$("#content iframe").remove();
 				table.ajax.reload( null, false );
 			}
 		}) 

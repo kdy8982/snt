@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -66,4 +67,12 @@ public class BoardRestController {
 		}
 		return new ResponseEntity<>("게시글이 삭제되었습니다." , HttpStatus.OK);
 	}
+	
+	@RequestMapping("/SE_submit.do")
+	public void submit(HttpServletRequest request){
+	    System.out.println("에디터 컨텐츠값:"+request.getParameter("ir1"));
+	}
+
+
+	
 }
