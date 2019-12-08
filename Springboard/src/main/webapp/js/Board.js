@@ -163,21 +163,26 @@ $(document).ready(function() {
      });
     // 조회 모달 확인버튼. 
     $(document).on("click", "#board-select-cancleBtn", function() {
+    	$("#modal-wrapper").css("display", "none");
     	$(".modal-select-wrap").css("display", "none");
     	$(".modal-wrap").removeClass("modal-select");
+    	$("input[name='title']").val("");
     	$("div[name='content']").empty();
     	
     })
     //등록 모달 취소버튼.
     $(document).on("click", "#board-register-cancleBtn", function() {
+    	$("#modal-wrapper").css("display", "none");
     	$(".modal-regist-wrap").css("display", "none");
     	$("#content iframe").remove();
     	$(".modal-regist-wrap").removeClass("modal-regist");
     })
     //수정 모달 취소버튼.
     $(document).on("click", "#board-modify-cancleBtn", function() {
+    	$("#modal-wrapper").css("display", "none");
     	$(".modal-modify-wrap").css("display", "none");
     	$(".modal-wrap").removeClass("modal-modify");
+    	$("input[name='title']").val("");
     	$("#content iframe").remove();
     })
     
@@ -190,6 +195,7 @@ $(document).ready(function() {
 	});
 	/* 게시글 등록 : START */
 	$("#add-btn").on("click", function() {
+		$("#modal-wrapper").css("display", "block");
 		$(".modal-regist-wrap").css("display", "block");	
 		$("#board-register-footer").css("display", "block");
 		$(".modal-wrap").addClass("modal-regist");
@@ -220,10 +226,11 @@ $(document).ready(function() {
 		boardService.insert(board, function(result, status) {
 			if(status="success") {
 				alert(result);
-				$("input[name='title']").val("");
+				$(".modal-regist-wrap input[name='title']").val("");
 				$("textarea[name='content']").val("");
 				$("#content iframe").remove();
 				$(".modal-regist-wrap").css("display", "none");
+				$("#modal-wrapper").css("display", "none");
 				table.ajax.reload( null, false );
 			}
 		}) 
@@ -273,6 +280,7 @@ $(document).ready(function() {
 		boardService.selectBoard(board,function(result, status) {
 			console.log(result);
 	    	if(status="success") {
+	    		$("#modal-wrapper").css("display", "block");
 	    		$(".modal-select-wrap").css("display", "block");
 	    		$(".modal-wrap").addClass("modal-select");
 	    		$(".modal-select input,textarea").attr("readonly", true);
@@ -314,7 +322,7 @@ $(document).ready(function() {
 			alert("수정하실 게시물을 체크해 주세요.");
 			return;
 		}
-		
+		$("#modal-wrapper").css("display", "block");
 		$(".modal-modify-wrap").css("display", "block");
 		$(".modal-register input, textarea").attr("readonly", false);
 		
@@ -357,7 +365,6 @@ $(document).ready(function() {
 	
 	//수정버튼
 	$("#board-modify-submitBtn").on("click" , function() {
-		console.log("수정버튼 눌림")
 		var modalInputTitle = $(".modal-modify-wrap input[name='title']").val();
 		var modalInputWriter = $(".modal-modify-wrap input[name='writer']").val();
 		var modalInputContent = oEditors.getById["ir2"].getIR();
@@ -373,10 +380,10 @@ $(document).ready(function() {
 				employee_id : modalInputWriterCode,
 				board_id : modalInputBoardCode
 		};
-		console.log(board);
 		
 		boardService.updateBoard(board, function(result, status) {
 			if(status="success") {
+				$("#modal-wrapper").css("display", "none");
 				alert(result);
 				$("input[name='title']").val("");
 				$("textarea[name='content']").val(""); 

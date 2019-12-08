@@ -30,8 +30,9 @@
 </head>
 
 <body>
+<div id="modal-wrapper"></div>
 <div id="container">
-	<header>${member.name} </header>
+	<div id="container-top">
 	<div id="boardinfo-wrap" class="wrap">
 		<span>테스트 게시판</span><span id=boardcnt>${boardCount}</span>
 	</div>
@@ -68,6 +69,7 @@
 		<button id="mod-btn" class="btn pink-btn">수정</button>
 		<button id="del-btn" class="btn pink-btn">삭제</button>
 		<button class="btn pink-btn">인쇄</button>
+	</div>
 	</div>
 	<table id="main-table" class="stripe">
 		<thead>
@@ -136,7 +138,6 @@
 			<div id="content" class="form-group">
 				<label>내용</label>
 				<textarea name="ir1" id="ir1" rows="3" cols="30">
-					에디터에 기본으로 삽입할 글(수정 모드)이 없다면 이 value 값을 지정하지 않으시면 됩니다.
 				</textarea>
 			</div>
 			<div class="form-group hidden">
@@ -200,7 +201,6 @@
 	<!--
 	<form action="SE_submit.do" method="post" id="frm">
 		<textarea name="ir1" id="ir1" rows="10" cols="100">
-			에디터에 기본으로 삽입할 글(수정 모드)이 없다면 이 value 값을 지정하지 않으시면 됩니다.
 		</textarea>
 		<input type="button" id="savebutton" value="서버전송" />
 	</form>
