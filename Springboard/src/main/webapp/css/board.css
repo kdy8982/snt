@@ -216,4 +216,12 @@ div[name="content"] p {
 	cursor: pointer;
 }
 
+#main-table_wrapper .dataTables_length {
+	display: none;
+}
+
+#main-table_wrapper #main-table_filter {
+	display: none;
+}
+
 /* DataTable CSS : END */

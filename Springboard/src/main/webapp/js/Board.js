@@ -79,21 +79,22 @@ $(document).ready(function() {
 	});
 	
 	var text;
+	var level;
 	$('#tree').on('changed.jstree', function (e, data) {
 		var id = $('#tree').jstree(true).get_node(data.selected).id; //선택한 노드의 id 구하기
-		var level = $('#'+id).attr('aria-level'); //선택한 노드의 id를 이용해 노드의 레벨 구하기
+		level = $('#'+id).attr('aria-level'); //선택한 노드의 id를 이용해 노드의 레벨 구하기
 		text = $('#tree').jstree(true).get_node(data.selected).text; //선택한 노드의 텍스트 구하기
-		
+      
 		if(btn=='dept-btn'&&level==1){  //노드 레벨 1은 부서명
 			$('#department').val(text);
-		}else if(btn=='writer-btn'&&level==2){  //노드 레벨 2는 사원명
+		} else if(btn=='writer-btn'&&level==2){  //노드 레벨 2는 사원명
 			$('#writer').val(text);
 		}
-	}).dblclick(function(){
+	}).dblclick(function() {
 		var ok;
-		if(btn=='dept-btn'){
+		if(btn=='dept-btn'&&level==1) {
 			ok = confirm("'"+text+"' 부서를 선택하시겠습니까?");
-		}else if(btn=='writer-btn'){
+		} else if(btn=='writer-btn'&&level==2){
 			ok = confirm("'"+text+"' 님을 선택하시겠습니까?");
 		}
 		if(ok==true){
@@ -155,6 +156,11 @@ $(document).ready(function() {
     });
     /* jQueryUI datepicker : END */
 	
+    
+    // 초기화버튼
+    $('#reset').on('click', function(){
+        location.replace('/boardList.do');
+     });
     // 조회 모달 확인버튼. 
     $(document).on("click", "#board-select-cancleBtn", function() {
     	$(".modal-select-wrap").css("display", "none");
@@ -382,44 +388,31 @@ $(document).ready(function() {
 	})
 	/* 게시글 수정 : END */
 	
-	$.fn.dataTable.ext.search.push(
-		function( settings, data, dataIndex ) {
-		var title = $("#title").val(); // data[1]
-		var department = $("#department").val(); // data[2]
-		var writer = $("#writer").val(); // data[3]
-		var dp1 = $("#datepicker1").val(); // data[4] "" or 2019-12-04 
-		var dp2= $("#datepicker2").val(); // data[4] "" or 2019-12-04 
-		
-		if(dp1 == "") {
-			dp1 = "0";
-		}
-		if(dp2 == "") {
-			dp2 = "999999";
-		}
-    	if((data[1].indexOf(title) != -1) && (data[2].indexOf(department) != -1) && (data[3].indexOf(writer) != -1) && (dp1 <= data[4]) && (dp2 >= data[4]) ) {
-    		return true;
-    	} else {
-    		return false;
-    	} 
-	/*
-        var min = parseInt( $('#min').val(), 10 );
-        var max = parseInt( $('#max').val(), 10 );
-        var age = parseFloat( data[3] ) || 0; // use data for the age column
- 
-        if ( ( isNaN( min ) && isNaN( max ) ) ||
-             ( isNaN( min ) && age <= max ) ||
-             ( min <= age   && isNaN( max ) ) ||
-             ( min <= age   && age <= max ) )
-        {
-            return true;
-        }
-        return false;
-	 */ 
-		}
-	);
 
 	
 	/* 게시글 검색 : START */
+	$.fn.dataTable.ext.search.push(
+		function( settings, data, dataIndex ) {
+			var title = $("#title").val(); // data[1]
+			var department = $("#department").val(); // data[2]
+			var writer = $("#writer").val(); // data[3]
+			var dp1 = $("#datepicker1").val(); // data[4] "" or 2019-12-04 
+			var dp2= $("#datepicker2").val(); // data[4] "" or 2019-12-04 
+			
+			if(dp1 == "") {
+				dp1 = "0";
+			}
+			if(dp2 == "") {
+				dp2 = "999999";
+			}
+	    	if((data[1].indexOf(title) != -1) && (data[2].indexOf(department) != -1) && (data[3].indexOf(writer) != -1) && (dp1 <= data[4]) && (dp2 >= data[4]) ) {
+	    		return true;
+	    	} else {
+	    		return false;
+	    	} 
+		}
+	);
+	
 	$("#searchdata").on("click", function() {
   		table.draw();
 	})
