@@ -35,7 +35,8 @@ input[type='text'] {
 /* Board 상단 스타일Start */
 
 #container-top{
-	margin: 61px;
+    margin: 61px;
+    margin-bottom: 10px;
 }
 #boardinfo-wrap {
 	border: 1px solid #CCC;
