@@ -159,7 +159,11 @@ $(document).ready(function() {
     
     // 초기화버튼
     $('#reset').on('click', function(){
-        location.replace('/boardList.do');
+		$("#title").val(""); // data[1]
+		$("#department").val(""); // data[2]
+		$("#writer").val(""); // data[3]
+		$("#datepicker1").val(""); // data[4] "" or 2019-12-04 
+		$("#datepicker2").val(""); // data[4] "" or 2019-12-04
      });
     // 조회 모달 확인버튼. 
     $(document).on("click", "#board-select-cancleBtn", function() {
@@ -422,6 +426,20 @@ $(document).ready(function() {
 	);
 	
 	$("#searchdata").on("click", function() {
+		var title = $("#title").val(); // data[1]
+		var department = $("#department").val(); // data[2]
+		var writer = $("#writer").val(); // data[3]
+		var dp1 = $("#datepicker1").val(); // data[4] "" or 2019-12-04 
+		var dp2= $("#datepicker2").val(); // data[4] "" or 2019-12-04
+		console.log(title)
+		console.log(department)
+		console.log(writer)
+		console.log(dp1)
+		console.log(dp2)
+		if(title == "" && department =="" && writer == "" && dp1 == "" && dp2 == "") {
+			alert("검색할 내용을 입력해주세요.")
+			return;
+		}
   		table.draw();
 	})
 	/* 게시글 검색 : END */
