@@ -35,7 +35,7 @@ input[type='text'] {
 /* Board 상단 스타일Start */
 
 #container-top{
-	margin: 30px;
+	margin: 61px;
 }
 #boardinfo-wrap {
 	border: 1px solid #CCC;
@@ -217,6 +217,9 @@ div[name="content"] p {
 	margin : 0 auto;
 	text-align : center;
 	margin-top : 10px;
+}
+#main-table_wrapper #main-table {
+	width:91% !important;
 }
 
 #main-table_info {
