@@ -30,6 +30,15 @@ public class BoardRestController {
 	@Resource(name = "boardService")
 	private BoardService boardService;
 
+	
+	@RequestMapping(value="/boardService/selectBoardCnt.do", method=RequestMethod.POST, produces={MediaType.APPLICATION_JSON_VALUE, "text/plain;charset=UTF-8"})
+	@ResponseBody
+	public int selectBoardCount() {
+		int boardTotCnt = boardService.selectBoardListTotCnt();
+		logger.info(boardTotCnt);
+		return boardTotCnt;
+	}
+	
 	@RequestMapping(value = "/boardList.json", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public Object selectBoardList() {
 		Map<String, Object> map = new HashMap<String, Object>();

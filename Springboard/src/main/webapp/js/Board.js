@@ -230,6 +230,10 @@ $(document).ready(function() {
 				$(".modal-regist-wrap").css("display", "none");
 				$("#modal-wrapper").css("display", "none");
 				table.ajax.reload( null, false );
+				
+				boardService.selectBoardCount(function (result, status) { // 전체 글 갯수 다시 조회한다. 
+					$("#boardcnt").text(result);
+				})
 			}
 		}) 
 	})
@@ -304,6 +308,9 @@ $(document).ready(function() {
 					alert(result)
 					table.ajax.reload( null, false );
 					checkBoxReset();
+					boardService.selectBoardCount(function (result, status) { // 전체 글 갯수 다시 조회한다. 
+						$("#boardcnt").text(result);
+					})
 				}
 			})
 		}

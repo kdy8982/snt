@@ -1,4 +1,22 @@
 var boardService = (function() {
+	
+	function selectBoardCount(callback, error) {
+		console.log("selectBoardCount - boardservice.js")
+		$.ajax({
+			type : 'post',
+			url : '/boardService/selectBoardCnt.do',
+			dataType: "json",
+			success : function(result, status, xhr) {
+				if (callback) {
+					callback(result, status);
+				}
+			},
+			error : function(xhr, status, er) {
+				console.log(er)
+			}
+		})
+	}
+	
 	function insert(board, callback, error) {
 		$.ajax({
 			type : 'post',
@@ -74,6 +92,7 @@ var boardService = (function() {
 		insert : insert,
 		selectBoard : selectBoard,
 		updateBoard : updateBoard,
+		selectBoardCount : selectBoardCount,
 		remove : remove
 	};
 })();
