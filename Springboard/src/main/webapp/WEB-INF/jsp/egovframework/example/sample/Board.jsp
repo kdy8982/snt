@@ -43,20 +43,20 @@
 		</div>
 		<div class="form-group">
 			<label for="writer">작성자</label>
-			<input type="text" id="writer" class="input_writer" disabled="disabled"></input>
+			<input type="text" id="writer" class="input_writer" readonly="readonly"></input>
 			<button class="organization_chart btn gray-btn tree-btn" id="writer-btn">조직도</button>
 
 			<label id="department2" for="department">부서</label>
-			<input type="text" id="department" class="input_department" disabled="disabled"></input>
+			<input type="text" id="department" class="input_department" readonly="readonly"></input>
 			<button class="organization_chart btn gray-btn tree-btn" id="dept-btn">조직도</button>
 			<div id="treeBox">
-				<div id="tree"></div> <!-- modal 할 줄 아시는 분 도움 부탁드려요 -->
+				<div id="tree"></div>
 			</div>
 		</div>
 		<div class="form-group">
 			<label id="writedate" for="department">작성일</label>
-			<input type="text" name="board_date" id="datepicker1" class="input_date_created1" disabled="disabled" />~
-			<input type="text" name="board_date" id="datepicker2" class="input_date_created2" disabled="disabled"/>
+			<input type="text" name="board_date" id="datepicker1" class="input_date_created1" readonly="readonly" />~
+			<input type="text" name="board_date" id="datepicker2" class="input_date_created2" readonly="readonly" />
 		</div>
 
 		<div id="search_button">

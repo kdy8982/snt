@@ -70,12 +70,12 @@ $(document).ready(function() {
 	});
 	
 	var btn;
-	$('.tree-btn').on('click',function(){
+	$('.tree-btn').click(function(){
 		btn = $(this).attr('id');
 		$('#tree').jstree({
         	'plugins' : [ 'wholerow' ]
         });
-		$('#tree, #treeBox').show();
+		$('#tree, #treeBox').toggle();
 	});
 	
 	var text;
@@ -159,7 +159,8 @@ $(document).ready(function() {
     
     // 초기화버튼
     $('#reset').on('click', function(){
-        location.replace('/boardList.do');
+    	table.ajax.reload( null, false );
+        //location.replace('/boardList.do');
      });
     // 조회 모달 확인버튼. 
     $(document).on("click", "#board-select-cancleBtn", function() {
