@@ -53,11 +53,15 @@ window.createSEditor2 = function(elIRField, htParams, elSeAppContainer){
 		});
 	}
 
+	console.log(elIRField.style.height);
+	console.log(elIRField.offsetHeight);
 	var htDimension = {
 		nMinHeight:205,
-		nMinWidth:parseInt(elIRField.style.minWidth, 10)||570,
-		nHeight:elIRField.style.height||elIRField.offsetHeight,
-		nWidth:elIRField.style.width||elIRField.offsetWidth
+		nMinWidth:parseInt(elIRField.style.minWidth, 10)||300,
+		//nHeight:elIRField.style.height||elIRField.offsetHeight,
+		nHeight:250,
+		//nWidth:elIRField.style.width||elIRField.offsetWidth
+		nWidth:580
 	};
 	
 	var htConversionMode = {

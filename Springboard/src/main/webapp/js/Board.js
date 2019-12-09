@@ -187,12 +187,6 @@ $(document).ready(function() {
     })
     
 	var oEditors = []; // 스마트에디터 배열 객체 
-	nhn.husky.EZCreator.createInIFrame({
-		oAppRef: oEditors,
-		elPlaceHolder: "ir1",
-		sSkinURI: "/SE2/SmartEditor2Skin.html",
-		fCreator: "createSEditor2"
-	});
 	/* 게시글 등록 : START */
 	$("#add-btn").on("click", function() {
 		$("#modal-wrapper").css("display", "block");
@@ -215,6 +209,11 @@ $(document).ready(function() {
 		var modalInputDeptCode = $(".modal-regist-wrap input[name='deptCode']").val();
 		var modalInputWriterCode = $(".modal-regist-wrap input[name='empCode']").val();
 
+		if(modalInputTitle == "") {
+			alert("제목을 입력해주세요.");
+			return;
+		}
+		
 		var board = {
 				board_title : modalInputTitle,
 				employee_name : modalInputWriter,
@@ -357,11 +356,6 @@ $(document).ready(function() {
 	    	}
 	    });
 	});
-	
-	$("#del-btn").on("click", function (){
-		oEditors.getById["ir2"].exec("SET_IR", [""]); //내용초기화
-		oEditors.getById["ir2"].exec("PASTE_HTML", ["AAA"]); //내용밀어넣기
-	})
 	
 	//수정버튼
 	$("#board-modify-submitBtn").on("click" , function() {

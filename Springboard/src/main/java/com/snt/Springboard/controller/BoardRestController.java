@@ -60,6 +60,7 @@ public class BoardRestController {
 	@RequestMapping(value="/boardService/multiDelete.do", method=RequestMethod.POST, consumes = "application/json", produces= {MediaType.TEXT_PLAIN_VALUE, "text/plain;charset=UTF-8"})
 	@ResponseBody
 	public ResponseEntity<String> deleteBoard(@RequestBody List<String> board_id) {
+		logger.info(board_id);
 		BoardVO board = new BoardVO();
 		for(int i=0; i<board_id.size(); i++){
 			board.setBoard_id(board_id.get(i));
