@@ -32,7 +32,7 @@ $(document).ready(function() {
 		}, {
 			"data" : "boardName"
 		}],
-		//order: [ [ 4, "desc" ] ],
+		/*order: [ [ 0, "desc" ] ],*/
         "aoColumnDefs" : [ {
             'bSortable' : false,
             'aTargets' : [ 0,2,3,5 ]
