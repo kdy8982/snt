@@ -20,8 +20,8 @@
 
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='/css/board.css'/>" />
-<link rel="stylesheet"
-	href="  https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" type="text/css"
+	href="<c:url value='/css/datatables.css'/>" />	
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
 <link rel="stylesheet"
