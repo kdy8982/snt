@@ -192,7 +192,6 @@ $(document).ready(function() {
 		$("#modal-wrapper").css("display", "block");
 		$(".modal-regist-wrap").css("display", "block");	
 		$("#board-register-footer").css("display", "block");
-		$(".modal-wrap").addClass("modal-regist");
 	
 		nhn.husky.EZCreator.createInIFrame({
 			oAppRef: oEditors,
@@ -285,9 +284,9 @@ $(document).ready(function() {
 	    		$(".modal-select input,textarea").attr("readonly", true);
 	    		
 	    		$("#board-select-footer").css("display", "block");
-	    		$("input[name='title']").val(result.board_title);
-	    		$("input[name='department']").val(result.department_name);
-	    		$("input[name='writer']").val(result.employee_name);
+	    		$(".modal-select-wrap input[name='title']").val(result.board_title);
+	    		$(".modal-select-wrap input[name='department']").val(result.department_name);
+	    		$(".modal-select-wrap input[name='writer']").val(result.employee_name);
 	    		$("div[name='content']").append(result.board_content);
 	    	}
 	    });
@@ -341,10 +340,10 @@ $(document).ready(function() {
 		boardService.selectBoard(board, function(result, status) {
 			console.log(result)
 	    	if(status="success") {
-	    		$("input[name='title']").val(result.board_title);
-	    		$("input[name='department']").val(result.department_name);
-	    		$("input[name='writer']").val(result.employee_name);
-	    		$("input[name='boardCode']").val(result.board_id);
+	    		$(".modal-modify-wrap input[name='title']").val(result.board_title);
+	    		$(".modal-modify-wrap input[name='department']").val(result.department_name);
+	    		$(".modal-modify-wrap input[name='writer']").val(result.employee_name);
+	    		$(".modal-modify-wrap input[name='boardCode']").val(result.board_id);
 	    		//$("div[name='content']").append(result.board_content);
 	    		
 	    		setTimeout(function() {
@@ -379,7 +378,8 @@ $(document).ready(function() {
 			if(status="success") {
 				$("#modal-wrapper").css("display", "none");
 				alert(result);
-				$("input[name='title']").val("");
+				$(".modal-modify-wrap input[name='title']").val("");
+				$(".modal-modify-wrap input[name='writer']").val("");
 				$("textarea[name='content']").val(""); 
 				$(".modal-modify-wrap").css("display", "none");
 				$("#content iframe").remove();
