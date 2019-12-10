@@ -52,8 +52,8 @@
 				free_board_seq.nextval,
 				#board_title#,
 				#department_id#,
-				TO_DATE(sysdate),
-				'자유',
+				sysdate,
+				'free',
 				#employee_id#,
 				#board_content#)
 		]]>
