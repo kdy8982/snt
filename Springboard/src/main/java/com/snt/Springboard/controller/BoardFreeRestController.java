@@ -24,6 +24,7 @@ import com.snt.Springboard.service.BoardFreeService;
 
 @RestController
 @ResponseBody
+@RequestMapping("/free/")
 public class BoardFreeRestController {
 	
 	Logger logger = LogManager.getLogger(BoardFreeRestController.class.getName()); // 로그
@@ -31,15 +32,10 @@ public class BoardFreeRestController {
 	@Resource(name = "freeService")
 	private BoardFreeService freeService;
 
-	@RequestMapping(value="/boardService/selectBoardFree.do", method=RequestMethod.POST, produces= {MediaType.APPLICATION_JSON_VALUE})
+	@RequestMapping(value="/boardService/selectBoard.do", method=RequestMethod.POST, produces= {MediaType.APPLICATION_JSON_VALUE})
 	@ResponseBody
 	public BoardFreeVO selectBoardFree(@RequestBody BoardFreeVO free) {
 		logger.info(free.getBoard_id());
-		try {
-			freeService.selectBoardFree(free);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		return freeService.selectBoardFree(free);
 	}
 	

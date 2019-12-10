@@ -54,8 +54,6 @@ var boardService = (function() {
 	} 
 	
 	function selectBoard(board, callback, error) {
-		console.log(board)
-		console.log(decodeURI(board.board_name))
 		$.ajax({
 			type : 'post',
 			url :  board.board_name + '/boardService/selectBoard.do',

@@ -20,17 +20,23 @@
 	</resultMap>
 	<select id="freeDao.selectBoardFree" resultClass="boardFreeVO"
 		parameterClass="boardFreeVO">
-		select
-		A.free_board_id, A.free_board_title, A.free_board_content, B.department_name,
-		C.employee_name,
-		to_char(A.free_board_create_date, 'yyyy-mm-dd')
-		free_board_create_date,
-		A.free_board_name
-		from free_board A, department B, employee C
+		select * from
+		(
+		select A.board_id, A.board_title, A.board_content, A.board_name, a.board_create_date, B.department_name, C.employee_name from (
+			select free_board_id board_id, free_board_title board_title, free_board_content board_content, free_board_name board_name, to_char(free_board_create_date,'yyyy-mm-dd') board_create_date, department_id, employee_id
+				from 
+					(
+						select * from free_board free
+						union
+						select * from notice_board notice
+					)
+		) A, department B, employee C
 		where
-		A.department_id = B.department_id and A.employee_id =
-		C.employee_id
-		and A.free_board_id = #board_id# 
+		a.department_id = b.department_id and 
+		a.employee_id = c.employee_id
+		order by board_create_date desc
+		)
+		where board_id = #board_id# and board_name= #board_name#
 	</select>
 	<insert id="freeDao.insertBoardFree" parameterClass="boardFreeVO">
 		<![CDATA[
