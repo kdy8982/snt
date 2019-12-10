@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import com.snt.Springboard.domain.BoardFreeVO;
 import com.snt.Springboard.domain.BoardVO;
 
 import egovframework.rte.psl.dataaccess.EgovAbstractDAO;
@@ -11,20 +12,20 @@ import egovframework.rte.psl.dataaccess.EgovAbstractDAO;
 @Repository("freeDao")
 public class BoardFreeDao extends EgovAbstractDAO {
 
-	public BoardVO selectBoardFree(BoardVO board) {
-		return (BoardVO) select("freeDao.selectBoardFree", board);
+	public BoardFreeVO selectBoardFree(BoardFreeVO free) {
+		return (BoardFreeVO) select("freeDao.selectBoardFree", free);
 	}
 	
-	public void insertBoardFree(BoardVO board) {
-		insert("freeDao.insertBoardFree", board);
+	public void insertBoardFree(BoardFreeVO free) {
+		insert("freeDao.insertBoardFree", free);
 	}
 
-	public int updateBoardFree(BoardVO board) {
-		return update("freeDao.updateBoardFree", board);
+	public int updateBoardFree(BoardFreeVO free) {
+		return update("freeDao.updateBoardFree", free);
 	}
 	
-	public int deleteBoardFree(BoardVO board) {
-		return delete("freeDao.deleteBoardFree",board);
+	public int deleteBoardFree(BoardFreeVO free) {
+		return delete("freeDao.deleteBoardFree", free);
 	}
 	
 }

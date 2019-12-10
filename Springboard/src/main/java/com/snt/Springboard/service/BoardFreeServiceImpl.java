@@ -9,11 +9,8 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.snt.Springboard.controller.BoardRestController;
-import com.snt.Springboard.dao.BoardDao;
 import com.snt.Springboard.dao.BoardFreeDao;
-import com.snt.Springboard.domain.BoardVO;
-import com.snt.Springboard.domain.MemberVO;
+import com.snt.Springboard.domain.BoardFreeVO;
 
 @Service("freeService")
 public class BoardFreeServiceImpl implements BoardFreeService {
@@ -24,27 +21,27 @@ public class BoardFreeServiceImpl implements BoardFreeService {
 	private BoardFreeDao freeDao;
 
 	@Override
-	public BoardVO selectBoardFree(BoardVO board) {
-		return freeDao.selectBoardFree(board);
+	public BoardFreeVO selectBoardFree(BoardFreeVO free) {
+		return freeDao.selectBoardFree(free);
 	}
 	
 	@Override
-	public void insertBoardFree(BoardVO board) {
-		freeDao.insertBoardFree(board);
+	public void insertBoardFree(BoardFreeVO free) {
+		freeDao.insertBoardFree(free);
 	}
 
 	@Override
-	public int updateBoardFree(BoardVO board) {
-		return freeDao.updateBoardFree(board);
+	public int updateBoardFree(BoardFreeVO free) {
+		return freeDao.updateBoardFree(free);
 	}
 	
 	@Override
-	public int deleteBoardFree(List<String> board_id) {
-		BoardVO board = new BoardVO();
+	public int deleteBoardFree(List<String> free_board_id) {
+		BoardFreeVO free = new BoardFreeVO();
 		int deleteRowCnt = 0;
-		for(int i=0; i<board_id.size(); i++){
-			board.setBoard_id(board_id.get(i));
-			deleteRowCnt += freeDao.deleteBoardFree(board);
+		for(int i=0; i<free_board_id.size(); i++){
+			free.setFree_board_id(free_board_id.get(i));
+			deleteRowCnt += freeDao.deleteBoardFree(free);
 		}
 		return deleteRowCnt;
 	}

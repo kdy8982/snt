@@ -9,11 +9,8 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.snt.Springboard.controller.BoardRestController;
-import com.snt.Springboard.dao.BoardDao;
 import com.snt.Springboard.dao.BoardNoticeDao;
-import com.snt.Springboard.domain.BoardVO;
-import com.snt.Springboard.domain.MemberVO;
+import com.snt.Springboard.domain.BoardNoticeVO;
 
 @Service("noticeService")
 public class BoardNoticeServiceImpl implements BoardNoticeService {
@@ -24,27 +21,27 @@ public class BoardNoticeServiceImpl implements BoardNoticeService {
 	private BoardNoticeDao noticeDao;
 	
 	@Override
-	public BoardVO selectBoardNotice(BoardVO board) {
-		return noticeDao.selectBoardNotice(board);
+	public BoardNoticeVO selectBoardNotice(BoardNoticeVO notice) {
+		return noticeDao.selectBoardNotice(notice);
 	}
 	
 	@Override
-	public void insertBoardNotice(BoardVO board) {
-		noticeDao.insertBoardNotice(board);
+	public void insertBoardNotice(BoardNoticeVO notice) {
+		noticeDao.insertBoardNotice(notice);
 	}
 
 	@Override
-	public int updateBoardNotice(BoardVO board) {
-		return noticeDao.updateBoardNotice(board);
+	public int updateBoardNotice(BoardNoticeVO notice) {
+		return noticeDao.updateBoardNotice(notice);
 	}
 	
 	@Override
-	public int deleteBoardNotice(List<String> board_id) {
-		BoardVO board = new BoardVO();
+	public int deleteBoardNotice(List<String> notice_board_id) {
+		BoardNoticeVO notice = new BoardNoticeVO();
 		int deleteRowCnt = 0;
-		for(int i=0; i<board_id.size(); i++){
-			board.setBoard_id(board_id.get(i));
-			deleteRowCnt += noticeDao.deleteBoardNotice(board);
+		for(int i=0; i<notice_board_id.size(); i++){
+			notice.setNotice_board_id(notice_board_id.get(i));
+			deleteRowCnt += noticeDao.deleteBoardNotice(notice);
 		}
 		return deleteRowCnt;
 	}
