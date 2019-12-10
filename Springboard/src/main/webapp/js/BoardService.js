@@ -74,7 +74,7 @@ var boardService = (function() {
 		console.log(board)
 		$.ajax({
 			type : 'PUT',
-			url : '/boardService/updateBoard.do',
+			url : board.board_name + '/boardService/updateBoard.do',
 			data : JSON.stringify(board),
 			contentType : "application/json; charset=utf-8",
 			success : function(result, status, xhr) {

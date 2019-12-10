@@ -53,7 +53,7 @@
 				notice_board_seq.nextval,
 				#board_title#,
 				#department_id#,
-				TO_DATE(sysdate),
+				sysdate,
 				'공지',
 				#employee_id#,
 				#board_content#)
