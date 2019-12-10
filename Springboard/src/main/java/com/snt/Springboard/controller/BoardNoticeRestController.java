@@ -35,12 +35,7 @@ public class BoardNoticeRestController {
 	@RequestMapping(value="/boardService/selectBoard.do", method=RequestMethod.POST, produces= {MediaType.APPLICATION_JSON_VALUE})
 	@ResponseBody
 	public BoardNoticeVO selectBoardNotice(@RequestBody BoardNoticeVO board) {
-		logger.info(board.getBoard_name());
-		try {
-			noticeService.selectBoardNotice(board);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		board.setBoard_name("공지");
 		return noticeService.selectBoardNotice(board);
 	}
 	
@@ -51,14 +46,14 @@ public class BoardNoticeRestController {
 		return new ResponseEntity<>("새로운 게시글이 등록되었습니다." , HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/boardService/multiDeleteNotice.do", method=RequestMethod.POST, consumes = "application/json", produces= {MediaType.TEXT_PLAIN_VALUE, "text/plain;charset=UTF-8"})
+	@RequestMapping(value="/boardService/multiDelete.do", method=RequestMethod.POST, consumes = "application/json", produces= {MediaType.TEXT_PLAIN_VALUE, "text/plain;charset=UTF-8"})
 	@ResponseBody
-	public ResponseEntity<String> deleteBoardNotice(@RequestBody List<String> notice_board_id) {
-		int deleteRowCount = noticeService.deleteBoardNotice(notice_board_id);
+	public ResponseEntity<String> deleteBoardNotice(@RequestBody BoardNoticeVO notice) {
+		int deleteRowCount = noticeService.deleteBoardNotice(notice);
 		return deleteRowCount >=1 ? new ResponseEntity <String> ("게시글을 성공적으로 삭제하였습니다.", HttpStatus.OK) : new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
-	@RequestMapping(method= {RequestMethod.PUT, RequestMethod.PATCH}, value="/boardService/updateBoardNotice.do", consumes="application/json", produces= {MediaType.TEXT_PLAIN_VALUE, "text/plain;charset=UTF-8"})
+	@RequestMapping(method= {RequestMethod.PUT, RequestMethod.PATCH}, value="/boardService/updateBoard.do", consumes="application/json", produces= {MediaType.TEXT_PLAIN_VALUE, "text/plain;charset=UTF-8"})
 	@ResponseBody
 	public ResponseEntity<String> updateBoardNotice(@RequestBody BoardNoticeVO notice) {
 		int updateCount = noticeService.updateBoardNotice(notice);

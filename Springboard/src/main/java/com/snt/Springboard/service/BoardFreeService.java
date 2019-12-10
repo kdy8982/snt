@@ -10,7 +10,7 @@ public interface BoardFreeService {
 
 	int updateBoardFree(BoardFreeVO free);
 
-	int deleteBoardFree(List<String> board_id);
+	int deleteBoardFree(BoardFreeVO board);
 
 	BoardFreeVO selectBoardFree(BoardFreeVO free);
 	

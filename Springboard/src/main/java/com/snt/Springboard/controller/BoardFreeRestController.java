@@ -35,7 +35,8 @@ public class BoardFreeRestController {
 	@RequestMapping(value="/boardService/selectBoard.do", method=RequestMethod.POST, produces= {MediaType.APPLICATION_JSON_VALUE})
 	@ResponseBody
 	public BoardFreeVO selectBoardFree(@RequestBody BoardFreeVO free) {
-		logger.info(free.getBoard_id());
+		logger.info(free.getBoard_name());
+		free.setBoard_name("자유");
 		return freeService.selectBoardFree(free);
 	}
 	
@@ -49,8 +50,8 @@ public class BoardFreeRestController {
 
 	@RequestMapping(value="/boardService/multiDelete.do", method=RequestMethod.POST, consumes = "application/json", produces= {MediaType.TEXT_PLAIN_VALUE, "text/plain;charset=UTF-8"})
 	@ResponseBody
-	public ResponseEntity<String> deleteBoardFree(@RequestBody List<String> free_board_id) {
-		int deleteRowCount = freeService.deleteBoardFree(free_board_id);
+	public ResponseEntity<String> deleteBoardFree(@RequestBody BoardFreeVO board) {
+		int deleteRowCount = freeService.deleteBoardFree(board);
 		return deleteRowCount >=1 ? new ResponseEntity <String> ("게시글을 성공적으로 삭제하였습니다.", HttpStatus.OK) : new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	

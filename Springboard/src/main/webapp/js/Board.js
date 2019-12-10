@@ -293,6 +293,16 @@ $(document).ready(function() {
 		var boardId = table.row(thisRow).data().boardId;
 		var boardName = table.row(thisRow).data().boardName;
 		var board
+		
+		switch (boardName) {
+		case "자유":
+			boardName = "free"
+				break;
+		case "공지":
+			boardName = "notice"
+				break;
+		}
+		
 		var board = {
 				board_name : boardName,
 				board_id : boardId
@@ -316,25 +326,52 @@ $(document).ready(function() {
 	
 	/* 게시글 삭제 : START */
 	$('#del-btn').on('click', function(){
-		if(_chkArr.length == 0){
+		if(_chkArr.length == 0) {
 			alert('삭제 할 게시물을 선택 해 주세요.');
-		}else {
-			var board = _chkArr;
-			boardService.remove(board, function(result, status){
-				if(status="success") {
-					alert(result)
-					table.ajax.reload( null, false );
-					checkBoxReset();
-					boardService.selectBoardCount(function (result, status) { // 전체 글 갯수 다시 조회한다. 
-						$("#boardcnt").text(result);
+		} else {
+			
+			if(confirm("정말 삭제하시겠습니까?")== true){
+				console.log("체크된 렝스" + _chkArr.length);
+				var successCount = 0;
+				for(var i=0; i<_chkArr.length; i++) {
+					var board = {
+							board_name : table.row(_chkArr[i]).data().boardName,
+							board_id : table.row(_chkArr[i]).data().boardId
+					};
+					
+					switch (board.board_name) {
+					case "자유":
+						board.board_name = "free"
+							break;
+					case "공지":
+						board.board_name = "notice"
+							break;
+					}
+					
+					boardService.remove(board, function(result, status) {
+						if(status="success") {
+							successCount ++;
+							console.log("딜리트 성공갯수 : " + successCount);
+							if(successCount == _chkArr.length) {
+								alert("성공적으로 삭제되었습니다.");
+								checkBoxReset();
+								boardService.selectBoardCount(function (result, status) { // 전체 글 갯수 다시 조회한다. 
+									$("#boardcnt").text(result);
+								})
+								table.ajax.reload( null, false );
+							}
+						}
 					})
 				}
-			})
+			}
+			
 		}
 	})
 	/* 게시글 삭제 : END */
 
 	/* 게시글 수정 : START */
+	var boardId;
+	var boardName;
 	$("#mod-btn").on("click", function() {
 		if(_chkArr.length > 1) {
 			alert("하나의 글만 수정할 수 있습니다.");
@@ -354,15 +391,20 @@ $(document).ready(function() {
 			sSkinURI: "/SE2/SmartEditor2Skin.html",
 			fCreator: "createSEditor2"
 		});
-
-		
-		
-		//table.row(thisRowId).data()
-		
 		
 		// 글을 다시 조회하여 출력한다.
-		var boardId = table.row(_chkArr[0]).data().boardId;
-		var boardName = table.row(_chkArr[0]).data().boardName;
+		
+		boardId = table.row(_chkArr[0]).data().boardId;
+		boardName = table.row(_chkArr[0]).data().boardName;
+		
+		switch (boardName) {
+		case "자유":
+			boardName = "free"
+				break;
+		case "공지":
+			boardName = "notice"
+				break;
+		}
 		
 		var board = {
 			board_name: boardName,
@@ -396,7 +438,6 @@ $(document).ready(function() {
 		var modalInputDeptCode = $(".modal-modify-wrap input[name='deptCode']").val();
 		var modalInputWriterCode = $(".modal-modify-wrap input[name='empCode']").val();
 		var modalInputBoardCode = $(".modal-modify-wrap input[name='boardCode']").val();
-		var boardName = table.row(_chkArr[0]).data().boardName;
 		
 		var board = {
 				board_title : modalInputTitle,

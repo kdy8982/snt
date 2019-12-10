@@ -53,7 +53,7 @@
 				#board_title#,
 				#department_id#,
 				sysdate,
-				'free',
+				'자유',
 				#employee_id#,
 				#board_content#)
 		]]>

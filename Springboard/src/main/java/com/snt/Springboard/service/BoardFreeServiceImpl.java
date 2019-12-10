@@ -35,7 +35,7 @@ public class BoardFreeServiceImpl implements BoardFreeService {
 	public int updateBoardFree(BoardFreeVO free) {
 		return freeDao.updateBoardFree(free);
 	}
-	
+	/*
 	@Override
 	public int deleteBoardFree(List<String> free_board_id) {
 		BoardFreeVO free = new BoardFreeVO();
@@ -46,5 +46,10 @@ public class BoardFreeServiceImpl implements BoardFreeService {
 		}
 		return deleteRowCnt;
 	}
-
+	*/
+	
+	@Override
+	public int deleteBoardFree(BoardFreeVO board) {
+		return freeDao.deleteBoardFree(board);
+	}
 }

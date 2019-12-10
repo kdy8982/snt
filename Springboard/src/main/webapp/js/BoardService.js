@@ -88,23 +88,21 @@ var boardService = (function() {
 		})
 	}
 	function remove(board, callback, error) {
-		if(confirm("정말 삭제하시겠습니까?")== true){
-			console.log(board,"board ! !")
-			$.ajax({
-				type : 'POST',
-				url : '/boardService/multiDelete.do',
-				data : JSON.stringify(board),
-				contentType : "application/json; charset=utf-8",
-				success : function(result, status){
-					if(callback) {
-						callback(result, status)
-					}
-				},
-				error : function(xhr, status, er){
-					console.log(er)
+		console.log(board,"board ! !")
+		$.ajax({
+			type : 'POST',
+			url : board.board_name + '/boardService/multiDelete.do',
+			data : JSON.stringify(board),
+			contentType : "application/json; charset=utf-8",
+			success : function(result, status){
+				if(callback) {
+					callback(result, status)
 				}
-			})
-		}
+			},
+			error : function(xhr, status, er){
+				console.log(er)
+			}
+		})
 	}
 	
 	return {

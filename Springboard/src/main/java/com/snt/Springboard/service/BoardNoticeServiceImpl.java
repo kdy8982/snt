@@ -35,6 +35,7 @@ public class BoardNoticeServiceImpl implements BoardNoticeService {
 		return noticeDao.updateBoardNotice(notice);
 	}
 	
+	/*
 	@Override
 	public int deleteBoardNotice(List<String> notice_board_id) {
 		BoardNoticeVO notice = new BoardNoticeVO();
@@ -44,6 +45,11 @@ public class BoardNoticeServiceImpl implements BoardNoticeService {
 			deleteRowCnt += noticeDao.deleteBoardNotice(notice);
 		}
 		return deleteRowCnt;
+	}
+	*/
+	@Override
+	public int deleteBoardNotice(BoardNoticeVO notice) {
+		return noticeDao.deleteBoardNotice(notice);
 	}
 
 }

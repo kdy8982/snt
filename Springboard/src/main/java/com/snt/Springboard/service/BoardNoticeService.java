@@ -10,8 +10,9 @@ public interface BoardNoticeService {
 
 	int updateBoardNotice(BoardNoticeVO notice);
 
-	int deleteBoardNotice(List<String> board_id);
+	int deleteBoardNotice(BoardNoticeVO notice);
 
 	BoardNoticeVO selectBoardNotice(BoardNoticeVO notice);
+
 	
 }

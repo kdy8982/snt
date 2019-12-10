@@ -54,7 +54,7 @@
 				#board_title#,
 				#department_id#,
 				sysdate,
-				'notice',
+				'공지',
 				#employee_id#,
 				#board_content#)
 		]]>
