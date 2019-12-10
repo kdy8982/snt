@@ -36,8 +36,6 @@ public class BoardNoticeRestController {
 	@ResponseBody
 	public BoardNoticeVO selectBoardNotice(@RequestBody BoardNoticeVO board) {
 		logger.info(board.getBoard_name());
-		
-		
 		try {
 			noticeService.selectBoardNotice(board);
 		} catch (Exception e) {
