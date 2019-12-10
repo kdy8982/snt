@@ -30,7 +30,7 @@
 		where
 		A.department_id = B.department_id and A.employee_id =
 		C.employee_id
-		and A.board_id = #board_id# 
+		and A.board_id = #free_board_id# 
 	</select>
 	<insert id="freeBoardDao.insertBoardFree" parameterClass="freeBoardVO">
 		<![CDATA[
