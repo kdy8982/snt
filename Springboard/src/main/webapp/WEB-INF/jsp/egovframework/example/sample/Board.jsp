@@ -80,6 +80,7 @@
 				<th>작성자</th>
 				<th>작성일</th>
 				<th>게시판명</th>
+				<th class="ordering">오더링데이트</th>
 			</tr>
 		</thead>
 	</table>

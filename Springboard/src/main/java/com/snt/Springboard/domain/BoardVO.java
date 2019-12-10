@@ -12,7 +12,14 @@ public class BoardVO {
 	private String board_name;
 	private String employee_name;
 	private String board_content;
+	private String hidden_date;
 	
+	public String getHidden_date() {
+		return hidden_date;
+	}
+	public void setHidden_date(String hidden_date) {
+		this.hidden_date = hidden_date;
+	}
 	public String getBoard_content() {
 		return board_content;
 	}

@@ -31,14 +31,22 @@ $(document).ready(function() {
 			"data" : "boardCreateDate"
 		}, {
 			"data" : "boardName"
+		}, {
+			"data" : "hiddenDate"
 		}],
         "aoColumnDefs" : [ {
             'bSortable' : false,
             'aTargets' : [ 0,2,3,5 ]
         } ], 
-        order: [ [ 4, "desc" ] ]
+        order: [ [ 6, "desc" ] ]
 
-	}) //DataTable()
+	}) //DataTable(
+	$('tr th:nth-child(5)').off('click')
+	
+	$(document).on("click", "tr th:nth-child(5)", function(event) {
+		$('tr th:nth-child(5)').addClass("sorting_desc")
+		$("tr th:nth-child(7)").trigger("click");
+	})
 	/* jQueryDataTable 끝 */
 	
 	/*jsTree 시작*/

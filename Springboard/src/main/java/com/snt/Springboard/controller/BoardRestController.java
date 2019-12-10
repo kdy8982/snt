@@ -42,6 +42,7 @@ public class BoardRestController {
 	public Object selectBoardList() {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("data", boardService.selectBoardList());
+		logger.info(map);
 		Object result = map;
 		return result;
 	}
