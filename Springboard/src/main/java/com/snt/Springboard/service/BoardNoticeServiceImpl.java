@@ -40,7 +40,7 @@ public class BoardNoticeServiceImpl implements BoardNoticeService {
 		BoardNoticeVO notice = new BoardNoticeVO();
 		int deleteRowCnt = 0;
 		for(int i=0; i<notice_board_id.size(); i++){
-			notice.setNotice_board_id(notice_board_id.get(i));
+			notice.setBoard_id(notice_board_id.get(i));
 			deleteRowCnt += noticeDao.deleteBoardNotice(notice);
 		}
 		return deleteRowCnt;

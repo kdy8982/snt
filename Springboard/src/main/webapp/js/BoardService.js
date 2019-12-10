@@ -35,9 +35,11 @@ var boardService = (function() {
 	} 
 	
 	function selectBoard(board, callback, error) {
+		console.log(board)
+		console.log(decodeURI(board.board_name))
 		$.ajax({
 			type : 'post',
-			url : board.board_name + '/boardService/selectBoard.do',
+			url :  board.board_name + '/boardService/selectBoard.do',
 			data : JSON.stringify(board),
 			contentType : "application/json; charset=utf-8",
 			success : function(result, status, xhr) {

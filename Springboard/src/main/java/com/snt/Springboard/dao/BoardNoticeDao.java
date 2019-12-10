@@ -13,19 +13,19 @@ import egovframework.rte.psl.dataaccess.EgovAbstractDAO;
 public class BoardNoticeDao extends EgovAbstractDAO {
 
 	public BoardNoticeVO selectBoardNotice(BoardNoticeVO notice) {
-		return (BoardNoticeVO) select("noticeDao.selectBoardNotice", notice);
+		return (BoardNoticeVO) select("boardNoticeDao.selectBoardNotice", notice);
 	}
 	
 	public void insertBoardNotice(BoardNoticeVO notice) {
-		insert("noticeDao.insertBoardNotice", notice);
+		insert("boardNoticeDao.insertBoardNotice", notice);
 	}
 
 	public int updateBoardNotice(BoardNoticeVO notice) {
-		return update("noticeDao.updateBoardNotice", notice);
+		return update("boardNoticeDao.updateBoardNotice", notice);
 	}
 	
 	public int deleteBoardNotice(BoardNoticeVO notice) {
-		return delete("noticeDao.deleteBoardNotice",notice);
+		return delete("boardNoticeDao.deleteBoardNotice",notice);
 	}
 	
 }

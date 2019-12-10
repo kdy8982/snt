@@ -24,6 +24,7 @@ import com.snt.Springboard.service.BoardNoticeService;
 
 @RestController
 @ResponseBody
+@RequestMapping("/notice/")
 public class BoardNoticeRestController {
 	
 	Logger logger = LogManager.getLogger(BoardNoticeRestController.class.getName()); // 로그
@@ -31,16 +32,18 @@ public class BoardNoticeRestController {
 	@Resource(name = "noticeService")
 	private BoardNoticeService noticeService;
 
-	@RequestMapping(value="/boardService/selectBoardNotice.do", method=RequestMethod.POST, produces= {MediaType.APPLICATION_JSON_VALUE})
+	@RequestMapping(value="/boardService/selectBoard.do", method=RequestMethod.POST, produces= {MediaType.APPLICATION_JSON_VALUE})
 	@ResponseBody
-	public BoardNoticeVO selectBoardNotice(@RequestBody BoardNoticeVO notice) {
-		logger.info(notice.getNotice_board_id());
+	public BoardNoticeVO selectBoardNotice(@RequestBody BoardNoticeVO board) {
+		logger.info(board.getBoard_name());
+		
+		
 		try {
-			noticeService.selectBoardNotice(notice);
+			noticeService.selectBoardNotice(board);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return noticeService.selectBoardNotice(notice);
+		return noticeService.selectBoardNotice(board);
 	}
 	
 	@RequestMapping(value="/boardService/insertNotice.do", method=RequestMethod.POST, consumes = "application/json", produces= {MediaType.TEXT_PLAIN_VALUE, "text/plain;charset=UTF-8"})
@@ -60,7 +63,6 @@ public class BoardNoticeRestController {
 	@RequestMapping(method= {RequestMethod.PUT, RequestMethod.PATCH}, value="/boardService/updateBoardNotice.do", consumes="application/json", produces= {MediaType.TEXT_PLAIN_VALUE, "text/plain;charset=UTF-8"})
 	@ResponseBody
 	public ResponseEntity<String> updateBoardNotice(@RequestBody BoardNoticeVO notice) {
-		logger.info(notice.getNotice_board_id());
 		int updateCount = noticeService.updateBoardNotice(notice);
 		logger.info(updateCount);
 		return updateCount == 1 ? new ResponseEntity <String> ("게시글을 성공적으로 수정하였습니다.", HttpStatus.OK) : new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);

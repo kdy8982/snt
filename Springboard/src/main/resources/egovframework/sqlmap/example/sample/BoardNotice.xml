@@ -8,30 +8,36 @@
 	<typeAlias alias="BoardNoticeVO" type="com.snt.Springboard.domain.BoardNoticeVO" />
 	
 	<resultMap id="boardNotice" class="com.snt.Springboard.domain.BoardNoticeVO">
-		<result property="notice_board_title" column="notice_board_title" />
+		<result property="board_title" column="notice_board_title" />
 		<result property="department_name" column="department_name" />
-		<result property="notice_board_create_date" column="notice_create_date" />
-		<result property="notice_board_name" column="notice_board_name" />
+		<result property="board_create_date" column="notice_create_date" />
+		<result property="board_name" column="notice_board_name" />
 		<result property="employee_name" column="employee_name" />
-		<result property="notice_board_id" column="notice_board_id" />
+		<result property="board_id" column="notice_board_id" />
 		<result property="department_id" column="department_id" />
 		<result property="employee_id" column="employee_id" />
-		<result property="notice_board_content" column="notice_board_content" />
+		<result property="board_content" column="notice_board_content" />
 	</resultMap>
 	
 	<select id="boardNoticeDao.selectBoardNotice" resultClass="boardNoticeVO"
 		parameterClass="boardNoticeVO">
-		select
-		A.notice_board_id, A.notice_board_title, A.notice_board_content, B.department_name,
-		C.employee_name,
-		to_char(A.notice_board_create_date, 'yyyy-mm-dd')
-		notice_board_create_date,
-		A.notice_board_name
-		from notice_board A, department B, employee C
+		select * from
+		(
+		select A.board_id, A.board_title, A.board_content, A.board_name, a.board_create_date, B.department_name, C.employee_name from (
+			select free_board_id board_id, free_board_title board_title, free_board_content board_content, free_board_name board_name, to_char(free_board_create_date,'yyyy-mm-dd') board_create_date, department_id, employee_id
+				from 
+					(
+						select * from free_board free
+						union
+						select * from notice_board notice
+					)
+		) A, department B, employee C
 		where
-		A.department_id = B.department_id and A.employee_id =
-		C.employee_id
-		and A.notice_board_id = #notice_board_id# 
+		a.department_id = b.department_id and 
+		a.employee_id = c.employee_id
+		order by board_create_date desc
+		)
+		where board_id = #board_id# and board_name= #board_name#
 	</select>
 	<insert id="boardNoticeDao.insertBoardNotice" parameterClass="boardNoticeVO">
 		<![CDATA[
@@ -45,26 +51,26 @@
 				  , NOTICE_BOARD_CONTENT )
 			VALUES (
 				notice_board_seq.nextval,
-				#notice_board_title#,
+				#board_title#,
 				#department_id#,
 				TO_DATE(sysdate),
 				'공지',
 				#employee_id#,
-				#notice_board_content#)
+				#board_content#)
 		]]>
 	</insert>
 	<update id="boardNoticeDao.updateBoardNotice" parameterClass="boardNoticeVO">
 		<![CDATA[
 			UPDATE NOTICE_BOARD
 			SET 
-			NOTICE_BOARD_TITLE=#notice_board_title#
-		  , NOTICE_BOARD_CONTENT=#notice_board_content#
-			WHERE NOTICE_BOARD_ID=#notice_board_id#
+			NOTICE_BOARD_TITLE=#board_title#
+		  , NOTICE_BOARD_CONTENT=#board_content#
+			WHERE NOTICE_BOARD_ID=#board_id#
 		]]>
 	</update>
 	<delete id="boardNoticeDao.deleteBoardNotice">
 	    delete from 
-	    notice_board where notice_board_id=#notice_board_id#
+	    notice_board where notice_board_id=#board_id#
 	</delete>
 </sqlMap>
 	
