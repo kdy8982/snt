@@ -259,8 +259,9 @@ $(document).ready(function() {
 	var _chkArr = []; // 체크된 row를 관리하는 배열
 	$('#main-table tbody').on('click', 'tr input[type="checkbox"]', function () {
 	    var thisRow = $(this).parents("tr")
-	    console.log(table.row(thisRow).data()); // 선택된 로우의 데이터를 출력한다.
-	    var thisRowId= table.row(thisRow).data().boardId;
+	    //console.log(table.row(thisRow)[0]); // 선택된 로우의 데이터를 출력한다.
+	    var thisRowId= table.row(thisRow)[0][0];
+	    //console.log(table.row(thisRowId).data())
 	    
 	    // 체크가 있는지 여부
 	    if(_chkArr.indexOf(thisRowId) == -1) {
@@ -355,9 +356,18 @@ $(document).ready(function() {
 			fCreator: "createSEditor2"
 		});
 
+		
+		
+		//table.row(thisRowId).data()
+		
+		
 		// 글을 다시 조회하여 출력한다.
 		var boardId = _chkArr[0];
+		var boardName = table.row(_chkArr[0]).data().boardName;
+		console.log(boardName);
+		
 		var board = {
+			board_name: boardName,
 			board_id : boardId
 		}
 		
