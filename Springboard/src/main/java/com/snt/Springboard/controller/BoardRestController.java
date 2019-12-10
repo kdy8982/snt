@@ -29,7 +29,6 @@ public class BoardRestController {
 
 	@Resource(name = "boardService")
 	private BoardService boardService;
-
 	
 	@RequestMapping(value="/boardService/selectBoardCnt.do", method=RequestMethod.POST, produces={MediaType.APPLICATION_JSON_VALUE, "text/plain;charset=UTF-8"})
 	@ResponseBody

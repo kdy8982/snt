@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.snt.Springboard.controller.BoardRestController;
 import com.snt.Springboard.dao.BoardDao;
 import com.snt.Springboard.domain.BoardVO;
-import com.snt.Springboard.domain.MemberVO;
 
 @Service("boardService")
 public class BoardServiceImpl implements BoardService {
