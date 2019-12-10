@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="FreeBoard">
+    
+    <typeAlias alias="egovMap"
+		type="egovframework.rte.psl.dataaccess.util.EgovMap" />
+	<typeAlias alias="FreeBoardVO" type="com.snt.Springboard.domain.FreeBoardVO" />
+
+	<resultMap id="freeBoard" class="com.snt.Springboard.domain.FreeBoardVO">
+		<result property="free_board_title" column="free_board_title" />
+		<result property="department_name" column="department_name" />
+		<result property="free_board_create_date" column="free_create_date" />
+		<result property="free_board_name" column="free_board_name" />
+		<result property="employee_name" column="employee_name" />
+		<result property="free_board_id" column="free_board_id" />
+		<result property="department_id" column="department_id" />
+		<result property="employee_id" column="employee_id" />
+		<result property="free_board_content" column="free_board_content" />
+	</resultMap>
+	<select id="freeBoardDao.selectBoardFree" resultClass="freeBoardVO"
+		parameterClass="freeBoardVO">
+		select
+		A.free_board_id, A.free_board_title, A.free_board_content, B.department_name,
+		C.employee_name,
+		to_char(A.free_board_create_date, 'yyyy-mm-dd')
+		free_board_create_date,
+		A.free_board_name
+		from free_board A, department B, employee C
+		where
+		A.department_id = B.department_id and A.employee_id =
+		C.employee_id
+		and A.board_id = #free_board_id# 
+	</select>
+	<insert id="freeBoardDao.insertBoardFree" parameterClass="freeBoardVO">
+		<![CDATA[
+			INSERT INTO FREE_BOARD
+				( FREE_BOARD_ID 
+				  , FREE_BOARD_TITLE
+				  , DEPARTMENT_ID
+				  , FREE_BOARD_CREATE_DATE
+				  , FREE_BOARD_NAME
+				  , EMPLOYEE_ID
+				  , FREE_BOARD_CONTENT )
+			VALUES (
+				free_board_seq.nextval,
+				#free_board_title#,
+				#department_id#,
+				TO_DATE(sysdate),
+				'자유',
+				#employee_id#,
+				#free_board_content#)
+		]]>
+	</insert>
+	<update id="freeBoardDao.updateBoardFree" parameterClass="freeBoardVO">
+		<![CDATA[
+			UPDATE FREE_BOARD
+			SET 
+			FREE_BOARD_TITLE=#free_board_title#
+		  , FREE_BOARD_CONTENT=#free_board_content#
+			WHERE FREE_BOARD_ID=#free_board_id#
+		]]>
+	</update>
+	<delete id="freeBoardDao.deleteBoardFree">
+	    delete from 
+	    free_board where free_board_id=#free_board_id#
+	</delete>
+</sqlMap>
