@@ -20,19 +20,31 @@
 	</resultMap>
 
 	<select id="boardDao.selectBoardList" resultClass="egovMap">
-		select
-		A.board_id, A.board_title, B.department_name, C.employee_name,
-		to_char(A.board_create_date, 'yyyy-mm-dd') board_create_date,
-		A.board_name
-		from board A, department B, employee C
+		select A.board_id, A.board_title, A.board_content, A.board_name, a.board_create_date, B.department_name, C.employee_name from (
+			select free_board_id board_id, free_board_title board_title, free_board_content board_content, free_board_name board_name, to_char(free_board_create_date,'yyyy-mm-dd') board_create_date, department_id, employee_id
+				from 
+					(
+						select * from free_board free
+						union
+						select * from notice_board notice
+					)
+		) A, department B, employee C
 		where
-		A.department_id = B.department_id and A.employee_id = C.employee_id
-		order by board_id desc
+		a.department_id = b.department_id and 
+		a.employee_id = c.employee_id
+		order by board_create_date desc
 	</select>
 
 	<select id="boardDao.selectBoardListTotCnt" resultClass="int">
-		select
-		count(*) from board
+		select sum(C.cnt)
+		from
+		(
+		select count(*) cnt
+		from free_board
+		union all
+		select count(*) cnt
+		from notice_board
+		) C
 	</select>
 
 	<select id="boardDao.selectBoard" resultClass="boardVO"
