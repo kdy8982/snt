@@ -100,6 +100,12 @@ $(document).ready(function() {
 		if(ok==true){
 			$('#tree').jstree('close_all');
 			$('#tree, #treeBox').hide();
+		}else if(ok==false){
+			if(btn=='dept-btn'&&level==1) {
+				$('#department').val(null);
+			} else if(btn=='writer-btn'&&level==2){
+				$('#writer').val(null);
+			}
 		}
 	});
 	/*jsTree 끝*/
@@ -165,7 +171,7 @@ $(document).ready(function() {
 		$("#datepicker1").val(""); // data[4] "" or 2019-12-04 
 		$("#datepicker2").val(""); // data[4] "" or 2019-12-04
     	table.ajax.reload( null, false );
-        //location.replace('/boardList.do');
+    	$('#tree, #treeBox').hide();
      });
     // 조회 모달 확인버튼. 
     $(document).on("click", "#board-select-cancleBtn", function() {
@@ -306,7 +312,7 @@ $(document).ready(function() {
 	/* 게시글 삭제 : START */
 	$('#del-btn').on('click', function(){
 		if(_chkArr.length == 0){
-			alert('선택해주세요');
+			alert('삭제 할 게시물을 선택 해 주세요.');
 		}else {
 			var board = _chkArr;
 			boardService.remove(board, function(result, status){
@@ -330,7 +336,7 @@ $(document).ready(function() {
 			checkBoxReset();
 			return;
 		} else if (_chkArr.length == 0){
-			alert("수정하실 게시물을 체크해 주세요.");
+			alert("수정 할 게시물을 선택 해 주세요.");
 			return;
 		}
 		$("#modal-wrapper").css("display", "block");
@@ -439,7 +445,7 @@ $(document).ready(function() {
 		console.log(dp1)
 		console.log(dp2)
 		if(title == "" && department =="" && writer == "" && dp1 == "" && dp2 == "") {
-			alert("검색할 내용을 입력해주세요.")
+			alert("검색 할 내용을 입력 해 주세요.")
 			return;
 		}
   		table.draw();

@@ -8,6 +8,7 @@ import egovframework.rte.psl.dataaccess.mapper.Mapper;
 
 @Mapper("boardMapper")
 public interface BoardMapper {
+	
 	List<?> selectBoardList();
 	
 	int selectBoardListTotCnt();
@@ -15,4 +16,7 @@ public interface BoardMapper {
 	int insertBoard(BoardVO board);
 	
 	int updateBoard(BoardVO board);
+	
+	
+	
 }

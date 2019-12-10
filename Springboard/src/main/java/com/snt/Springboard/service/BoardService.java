@@ -14,8 +14,6 @@ public interface BoardService {
 	BoardVO selectBoard(BoardVO board);
 
 	int updateBoard(BoardVO board);
-	
-	int deleteBoard(BoardVO board);
 
 	int deleteBoard(List<String> board_id);
 }

@@ -69,7 +69,7 @@ var boardService = (function() {
 		})
 	}
 	function remove(board, callback, error) {
-		if(confirm("정말 삭제하시겠습니까??")== true){
+		if(confirm("정말 삭제하시겠습니까?")== true){
 			console.log(board,"board ! !")
 			$.ajax({
 				type : 'POST',
