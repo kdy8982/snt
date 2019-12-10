@@ -10,23 +10,21 @@ import egovframework.rte.psl.dataaccess.EgovAbstractDAO;
 
 @Repository("boardDao")
 public class BoardDao extends EgovAbstractDAO {
-	public List<?> selectBoardList() {
-		// TODO Auto-generated method stub
-		return list("boardDao.selectBoardList");
-	}
-
+	
 	public int selectBoardListTotCnt() {
 		return (int) select("boardDao.selectBoardListTotCnt");
-		
 	}
 
-	public void insertBoard(BoardVO board) {
-		insert("boardDao.insertBoard", board);
-		
+	public List<?> selectBoardList() {
+		return list("boardDao.selectBoardList");
 	}
-
+	
 	public BoardVO selectBoard(BoardVO board) {
 		return (BoardVO) select("boardDao.selectBoard", board);
+	}
+	
+	public void insertBoard(BoardVO board) {
+		insert("boardDao.insertBoard", board);
 	}
 
 	public int updateBoard(BoardVO board) {
@@ -35,6 +33,6 @@ public class BoardDao extends EgovAbstractDAO {
 	
 	public int deleteBoard(BoardVO board) {
 		return delete("boardDao.deleteBoard",board);
-		
 	}
+	
 }

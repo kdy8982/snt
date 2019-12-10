@@ -21,30 +21,25 @@ Logger logger = LogManager.getLogger(BoardServiceImpl.class.getName()); // ë¡œê·
 	@Resource(name="boardDao")
 	private BoardDao boardDao;
 	
-
-	@Override
-	public List<?> selectBoardList() {
-		return boardDao.selectBoardList();
-	}
-
-
 	@Override
 	public int selectBoardListTotCnt() {
 		return boardDao.selectBoardListTotCnt();
 	}
 
-
 	@Override
-	public void insertBoard(BoardVO board) {
-		boardDao.insertBoard(board);
+	public List<?> selectBoardList() {
+		return boardDao.selectBoardList();
 	}
-
-
+	
 	@Override
 	public BoardVO selectBoard(BoardVO board) {
 		return boardDao.selectBoard(board);
 	}
 
+	@Override
+	public void insertBoard(BoardVO board) {
+		boardDao.insertBoard(board);
+	}
 
 	@Override
 	public int updateBoard(BoardVO board) {
@@ -61,12 +56,5 @@ Logger logger = LogManager.getLogger(BoardServiceImpl.class.getName()); // ë¡œê·
 		}
 		return deleteRowCnt;
 	}
-
-
-	@Override
-	public int deleteBoard(BoardVO board) {
-		// TODO Auto-generated method stub
-		return 0;
-	};
 
 }
