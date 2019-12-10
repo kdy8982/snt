@@ -260,20 +260,19 @@ $(document).ready(function() {
 	$('#main-table tbody').on('click', 'tr input[type="checkbox"]', function () {
 	    var thisRow = $(this).parents("tr")
 	    //console.log(table.row(thisRow)[0]); // 선택된 로우의 데이터를 출력한다.
-	    var thisRowId= table.row(thisRow)[0][0];
-	    //console.log(table.row(thisRowId).data())
+	    var thisRowNum= table.row(thisRow)[0][0];
 	    
 	    // 체크가 있는지 여부
-	    if(_chkArr.indexOf(thisRowId) == -1) {
-	    	_imsiArr.push(thisRowId);
+	    if(_chkArr.indexOf(thisRowNum) == -1) {
+	    	_imsiArr.push(thisRowNum);
 	    	$.each(_imsiArr, function(i, el){
 	    		if($.inArray(el, _chkArr) === -1) _chkArr.push(el);
 	    	});
 	    } else {
-	    	var idxChk = _chkArr.indexOf(thisRowId);
+	    	var idxChk = _chkArr.indexOf(thisRowNum);
 	    	if (idxChk > -1) _chkArr.splice(idxChk, 1);
 	    	
-	    	var idxImsi = _imsiArr.indexOf(thisRowId);
+	    	var idxImsi = _imsiArr.indexOf(thisRowNum);
 	    	if(idxImsi > -1) _imsiArr.splice(idxImsi, 1);
 	    }
 	    console.log(_chkArr);
@@ -362,9 +361,8 @@ $(document).ready(function() {
 		
 		
 		// 글을 다시 조회하여 출력한다.
-		var boardId = _chkArr[0];
+		var boardId = table.row(_chkArr[0]).data().boardId;
 		var boardName = table.row(_chkArr[0]).data().boardName;
-		console.log(boardName);
 		
 		var board = {
 			board_name: boardName,
