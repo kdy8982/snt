@@ -288,7 +288,10 @@ $(document).ready(function() {
 	$('#main-table tbody').on( 'click', 'tr td:nth-child(2)', function () {
 		var thisRow = $(this).parents("tr");
 		var boardId = table.row(thisRow).data().boardId;
+		var boardName = table.row(thisRow).data().boardName;
+		var board
 		var board = {
+				board_name : boardName,
 				board_id : boardId
 		}
 		boardService.selectBoard(board,function(result, status) {
@@ -306,7 +309,6 @@ $(document).ready(function() {
 	    		$("div[name='content']").append(result.board_content);
 	    	}
 	    });
-		
 	} );
 	
 	/* 게시글 삭제 : START */
