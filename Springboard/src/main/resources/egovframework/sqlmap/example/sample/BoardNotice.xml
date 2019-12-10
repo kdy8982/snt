@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
 
-<sqlMap namespace="NoticeBoard">
+<sqlMap namespace="BoardNotice">
     
    	<typeAlias alias="egovMap"
 		type="egovframework.rte.psl.dataaccess.util.EgovMap" />
-	<typeAlias alias="NoticeBoardVO" type="com.snt.Springboard.domain.NoticeBoardVO" />
+	<typeAlias alias="BoardNoticeVO" type="com.snt.Springboard.domain.BoardNoticeVO" />
 	
-	<resultMap id="noticeBoard" class="com.snt.Springboard.domain.NoticeBoardVO">
+	<resultMap id="boardNotice" class="com.snt.Springboard.domain.BoardNoticeVO">
 		<result property="notice_board_title" column="notice_board_title" />
 		<result property="department_name" column="department_name" />
 		<result property="notice_board_create_date" column="notice_create_date" />
@@ -19,7 +19,7 @@
 		<result property="notice_board_content" column="notice_board_content" />
 	</resultMap>
 	
-	<select id="freeBoardDao.selectBoardNotice" resultClass="noticeBoardVO"
+	<select id="boardNoticeDao.selectBoardNotice" resultClass="boardNoticeVO"
 		parameterClass="noticeBoardVO">
 		select
 		A.notice_board_id, A.notice_board_title, A.notice_board_content, B.department_name,
@@ -33,7 +33,7 @@
 		C.employee_id
 		and A.notice_board_id = #notice_board_id# 
 	</select>
-	<insert id="noticeBoardDao.insertBoardNotice" parameterClass="noticeBoardVO">
+	<insert id="boardNoticeDao.insertBoardNotice" parameterClass="boardNoticeVO">
 		<![CDATA[
 			INSERT INTO NOTICE_BOARD
 				( NOTICE_BOARD_ID 
@@ -48,12 +48,12 @@
 				#notice_board_title#,
 				#department_id#,
 				TO_DATE(sysdate),
-				'자유',
+				'공지',
 				#employee_id#,
 				#notice_board_content#)
 		]]>
 	</insert>
-	<update id="noticeBoardDao.updateBoardNotice" parameterClass="noticeBoardVO">
+	<update id="boardNoticeDao.updateBoardNotice" parameterClass="boardNoticeVO">
 		<![CDATA[
 			UPDATE NOTICE_BOARD
 			SET 
@@ -62,7 +62,7 @@
 			WHERE NOTICE_BOARD_ID=#notice_board_id#
 		]]>
 	</update>
-	<delete id="noticeBoardDao.deleteBoardNotice">
+	<delete id="boardNoticeDao.deleteBoardNotice">
 	    delete from 
 	    notice_board where notice_board_id=#notice_board_id#
 	</delete>

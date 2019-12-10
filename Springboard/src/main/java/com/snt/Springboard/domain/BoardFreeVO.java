@@ -1,6 +1,6 @@
 package com.snt.Springboard.domain;
 
-public class FreeBoardVO {
+public class BoardFreeVO {
 	private String free_board_id;
 	private String free_board_title;
 	private String free_board_content;
