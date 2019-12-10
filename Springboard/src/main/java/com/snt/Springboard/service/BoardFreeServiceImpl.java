@@ -27,6 +27,7 @@ public class BoardFreeServiceImpl implements BoardFreeService {
 	
 	@Override
 	public void insertBoardFree(BoardFreeVO free) {
+		System.out.println("Insert method");
 		freeDao.insertBoardFree(free);
 	}
 
@@ -40,7 +41,7 @@ public class BoardFreeServiceImpl implements BoardFreeService {
 		BoardFreeVO free = new BoardFreeVO();
 		int deleteRowCnt = 0;
 		for(int i=0; i<free_board_id.size(); i++){
-			free.setFree_board_id(free_board_id.get(i));
+			free.setBoard_id(free_board_id.get(i));
 			deleteRowCnt += freeDao.deleteBoardFree(free);
 		}
 		return deleteRowCnt;

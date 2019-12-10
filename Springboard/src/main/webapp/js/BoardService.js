@@ -18,9 +18,11 @@ var boardService = (function() {
 	}
 	
 	function insert(board, callback, error) {
+		console.log('자유 탔니', board.board_type);
+		if(board.board_type=="자유"){
 		$.ajax({
 			type : 'post',
-			url : '/boardService/insert.do',
+			url : '/boardService/insertFree.do',
 			data : JSON.stringify(board),
 			contentType : "application/json; charset=utf-8",
 			success : function(result, status, xhr) {
@@ -32,6 +34,23 @@ var boardService = (function() {
 				console.log(er)
 			}
 		})
+		}else if(board.board_type=="공지"){
+			console.log('공지');
+			$.ajax({
+				type : 'post',
+				url : '/boardService/insertNotice.do',
+				data : JSON.stringify(board),
+				contentType : "application/json; charset=utf-8",
+				success : function(result, status, xhr) {
+					if (callback) {
+						callback(result, status);
+					}
+				},
+				error : function(xhr, status, er) {
+					console.log(er)
+				}
+			})
+		}
 	} 
 	
 	function selectBoard(board, callback, error) {

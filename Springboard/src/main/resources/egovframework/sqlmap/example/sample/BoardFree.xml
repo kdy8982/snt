@@ -8,17 +8,17 @@
 	<typeAlias alias="BoardFreeVO" type="com.snt.Springboard.domain.BoardFreeVO" />
 
 	<resultMap id="boardFree" class="com.snt.Springboard.domain.BoardFreeVO">
-		<result property="free_board_title" column="free_board_title" />
+		<result property="board_title" column="free_board_title" />
 		<result property="department_name" column="department_name" />
-		<result property="free_board_create_date" column="free_create_date" />
-		<result property="free_board_name" column="free_board_name" />
+		<result property="board_create_date" column="free_create_date" />
+		<result property="board_name" column="free_board_name" />
 		<result property="employee_name" column="employee_name" />
-		<result property="free_board_id" column="free_board_id" />
+		<result property="board_id" column="free_board_id" />
 		<result property="department_id" column="department_id" />
 		<result property="employee_id" column="employee_id" />
-		<result property="free_board_content" column="free_board_content" />
+		<result property="board_content" column="free_board_content" />
 	</resultMap>
-	<select id="boardFreeDao.selectBoardFree" resultClass="boardFreeVO"
+	<select id="freeDao.selectBoardFree" resultClass="boardFreeVO"
 		parameterClass="boardFreeVO">
 		select
 		A.free_board_id, A.free_board_title, A.free_board_content, B.department_name,
@@ -30,9 +30,9 @@
 		where
 		A.department_id = B.department_id and A.employee_id =
 		C.employee_id
-		and A.board_id = #free_board_id# 
+		and A.free_board_id = #board_id# 
 	</select>
-	<insert id="boardFreeDao.insertBoardFree" parameterClass="boardFreeVO">
+	<insert id="freeDao.insertBoardFree" parameterClass="boardFreeVO">
 		<![CDATA[
 			INSERT INTO FREE_BOARD
 				( FREE_BOARD_ID 
@@ -44,25 +44,25 @@
 				  , FREE_BOARD_CONTENT )
 			VALUES (
 				free_board_seq.nextval,
-				#free_board_title#,
+				#board_title#,
 				#department_id#,
 				TO_DATE(sysdate),
 				'자유',
 				#employee_id#,
-				#free_board_content#)
+				#board_content#)
 		]]>
 	</insert>
-	<update id="boardFreeDao.updateBoardFree" parameterClass="boardFreeVO">
+	<update id="freeDao.updateBoardFree" parameterClass="boardFreeVO">
 		<![CDATA[
 			UPDATE FREE_BOARD
 			SET 
-			FREE_BOARD_TITLE=#free_board_title#
-		  , FREE_BOARD_CONTENT=#free_board_content#
-			WHERE FREE_BOARD_ID=#free_board_id#
+			FREE_BOARD_TITLE=#board_title#
+		  , FREE_BOARD_CONTENT=#board_content#
+			WHERE FREE_BOARD_ID=#board_id#
 		]]>
 	</update>
-	<delete id="boardFreeDao.deleteBoardFree">
+	<delete id="freeDao.deleteBoardFree">
 	    delete from 
-	    free_board where free_board_id=#free_board_id#
+	    free_board where free_board_id=#board_id#
 	</delete>
 </sqlMap>

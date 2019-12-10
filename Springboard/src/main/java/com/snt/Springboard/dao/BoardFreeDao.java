@@ -17,6 +17,7 @@ public class BoardFreeDao extends EgovAbstractDAO {
 	}
 	
 	public void insertBoardFree(BoardFreeVO free) {
+		System.out.println("dao method");
 		insert("freeDao.insertBoardFree", free);
 	}
 

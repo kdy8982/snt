@@ -214,6 +214,8 @@ $(document).ready(function() {
 		
 	});
 	$("#board-register-submitBtn").on("click" , function() {
+		console.log($(".modal-regist-wrap select[name='board_type']").val()+"text");
+		var modalSelectBoardType = $(".modal-regist-wrap select[name='board_type']").val();
 		var modalInputTitle = $(".modal-regist-wrap input[name='title']").val();
 		var modalInputWriter = $(".modal-regist-wrap input[name='writer']").val();
 		var modalInputContent = oEditors.getById["ir1"].getIR();
@@ -226,6 +228,7 @@ $(document).ready(function() {
 		}
 		
 		var board = {
+				board_type : modalSelectBoardType,
 				board_title : modalInputTitle,
 				employee_name : modalInputWriter,
 				board_content : modalInputContent,

@@ -34,7 +34,7 @@ public class BoardFreeRestController {
 	@RequestMapping(value="/boardService/selectBoardFree.do", method=RequestMethod.POST, produces= {MediaType.APPLICATION_JSON_VALUE})
 	@ResponseBody
 	public BoardFreeVO selectBoardFree(@RequestBody BoardFreeVO free) {
-		logger.info(free.getFree_board_id());
+		logger.info(free.getBoard_id());
 		try {
 			freeService.selectBoardFree(free);
 		} catch (Exception e) {
@@ -46,6 +46,7 @@ public class BoardFreeRestController {
 	@RequestMapping(value="/boardService/insertFree.do", method=RequestMethod.POST, consumes = "application/json", produces= {MediaType.TEXT_PLAIN_VALUE, "text/plain;charset=UTF-8"})
 	@ResponseBody
 	public ResponseEntity<String> insertBoardFree(@RequestBody BoardFreeVO free) {
+		System.out.println("인설트 타니");
 		freeService.insertBoardFree(free);
 		return new ResponseEntity<>("새로운 게시글이 등록되었습니다." , HttpStatus.OK);
 	}
@@ -60,7 +61,7 @@ public class BoardFreeRestController {
 	@RequestMapping(method= {RequestMethod.PUT, RequestMethod.PATCH}, value="/boardService/updateBoardFree.do", consumes="application/json", produces= {MediaType.TEXT_PLAIN_VALUE, "text/plain;charset=UTF-8"})
 	@ResponseBody
 	public ResponseEntity<String> updateBoardFree(@RequestBody BoardFreeVO free) {
-		logger.info(free.getFree_board_id());
+		logger.info(free.getBoard_id());
 		int updateCount = freeService.updateBoardFree(free);
 		logger.info(updateCount);
 		return updateCount == 1 ? new ResponseEntity <String> ("게시글을 성공적으로 수정하였습니다.", HttpStatus.OK) : new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
