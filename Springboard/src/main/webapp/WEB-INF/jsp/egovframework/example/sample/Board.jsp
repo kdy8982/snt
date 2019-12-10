@@ -126,8 +126,8 @@
 		<div class="form-group">
 				<label>게시판 종류</label> 
 				<select name="board_type">
-					<option value="자유">자유게시판</option>
-					<option value="공지">공지게시판</option>					
+					<option value="free">자유게시판</option>
+					<option value="notice">공지게시판</option>					
 				</select>
 			</div>
 			<div class="form-group">

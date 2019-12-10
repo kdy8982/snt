@@ -24,6 +24,7 @@ import com.snt.Springboard.service.BoardFreeService;
 
 @RestController
 @ResponseBody
+@RequestMapping("/free/")
 public class BoardFreeRestController {
 	
 	Logger logger = LogManager.getLogger(BoardFreeRestController.class.getName()); // 로그

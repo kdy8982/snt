@@ -228,7 +228,7 @@ $(document).ready(function() {
 		}
 		
 		var board = {
-				board_type : modalSelectBoardType,
+				board_name : modalSelectBoardType,
 				board_title : modalInputTitle,
 				employee_name : modalInputWriter,
 				board_content : modalInputContent,

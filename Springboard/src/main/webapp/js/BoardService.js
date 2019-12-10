@@ -18,11 +18,11 @@ var boardService = (function() {
 	}
 	
 	function insert(board, callback, error) {
-		console.log('자유 탔니', board.board_type);
-		if(board.board_type=="자유"){
+		console.log('자유 탔니<', ">"+board.board_name);
+		if(board.board_name=="free"){
 		$.ajax({
 			type : 'post',
-			url : '/boardService/insertFree.do',
+			url : board.board_name +'/boardService/insertFree.do',
 			data : JSON.stringify(board),
 			contentType : "application/json; charset=utf-8",
 			success : function(result, status, xhr) {
@@ -34,11 +34,11 @@ var boardService = (function() {
 				console.log(er)
 			}
 		})
-		}else if(board.board_type=="공지"){
-			console.log('공지');
+		}else if(board.board_name=="notice"){
+			console.log(board.board_type,"공지?")
 			$.ajax({
 				type : 'post',
-				url : '/boardService/insertNotice.do',
+				url : board.board_name +'/boardService/insertNotice.do',
 				data : JSON.stringify(board),
 				contentType : "application/json; charset=utf-8",
 				success : function(result, status, xhr) {
