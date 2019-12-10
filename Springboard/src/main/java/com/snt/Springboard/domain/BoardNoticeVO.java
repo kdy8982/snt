@@ -1,6 +1,6 @@
 package com.snt.Springboard.domain;
 
-public class NoticeBoardVO {
+public class BoardNoticeVO {
 	private String notice_board_id;
 	private String notice_board_title;
 	private String notice_board_content;

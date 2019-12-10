@@ -6,4 +6,6 @@
 	<sqlMap resource="egovframework/sqlmap/example/sample/Member.xml"/>
 	<sqlMap resource="egovframework/sqlmap/example/sample/Board.xml"/>
 	<sqlMap resource="egovframework/sqlmap/example/sample/Tree.xml"/>
+	<sqlMap resource="egovframework/sqlmap/example/sample/BoardFree.xml"/>
+	<sqlMap resource="egovframework/sqlmap/example/sample/BoardNotice.xml"/>
 </sqlMapConfig>

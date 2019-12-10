@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
 
-<sqlMap namespace="FreeBoard">
+<sqlMap namespace="BoardFree">
     
     <typeAlias alias="egovMap"
 		type="egovframework.rte.psl.dataaccess.util.EgovMap" />
-	<typeAlias alias="FreeBoardVO" type="com.snt.Springboard.domain.FreeBoardVO" />
+	<typeAlias alias="BoardFreeVO" type="com.snt.Springboard.domain.BoardFreeVO" />
 
-	<resultMap id="freeBoard" class="com.snt.Springboard.domain.FreeBoardVO">
+	<resultMap id="boardFree" class="com.snt.Springboard.domain.BoardFreeVO">
 		<result property="free_board_title" column="free_board_title" />
 		<result property="department_name" column="department_name" />
 		<result property="free_board_create_date" column="free_create_date" />
@@ -18,8 +18,8 @@
 		<result property="employee_id" column="employee_id" />
 		<result property="free_board_content" column="free_board_content" />
 	</resultMap>
-	<select id="freeBoardDao.selectBoardFree" resultClass="freeBoardVO"
-		parameterClass="freeBoardVO">
+	<select id="boardFreeDao.selectBoardFree" resultClass="boardFreeVO"
+		parameterClass="boardFreeVO">
 		select
 		A.free_board_id, A.free_board_title, A.free_board_content, B.department_name,
 		C.employee_name,
@@ -32,7 +32,7 @@
 		C.employee_id
 		and A.board_id = #free_board_id# 
 	</select>
-	<insert id="freeBoardDao.insertBoardFree" parameterClass="freeBoardVO">
+	<insert id="boardFreeDao.insertBoardFree" parameterClass="boardFreeVO">
 		<![CDATA[
 			INSERT INTO FREE_BOARD
 				( FREE_BOARD_ID 
@@ -52,7 +52,7 @@
 				#free_board_content#)
 		]]>
 	</insert>
-	<update id="freeBoardDao.updateBoardFree" parameterClass="freeBoardVO">
+	<update id="boardFreeDao.updateBoardFree" parameterClass="boardFreeVO">
 		<![CDATA[
 			UPDATE FREE_BOARD
 			SET 
@@ -61,7 +61,7 @@
 			WHERE FREE_BOARD_ID=#free_board_id#
 		]]>
 	</update>
-	<delete id="freeBoardDao.deleteBoardFree">
+	<delete id="boardFreeDao.deleteBoardFree">
 	    delete from 
 	    free_board where free_board_id=#free_board_id#
 	</delete>
