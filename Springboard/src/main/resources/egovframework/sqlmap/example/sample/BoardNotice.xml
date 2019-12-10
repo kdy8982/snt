@@ -20,7 +20,7 @@
 	</resultMap>
 	
 	<select id="boardNoticeDao.selectBoardNotice" resultClass="boardNoticeVO"
-		parameterClass="noticeBoardVO">
+		parameterClass="boardNoticeVO">
 		select
 		A.notice_board_id, A.notice_board_title, A.notice_board_content, B.department_name,
 		C.employee_name,
