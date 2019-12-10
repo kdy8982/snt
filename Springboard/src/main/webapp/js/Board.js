@@ -396,6 +396,7 @@ $(document).ready(function() {
 		var modalInputDeptCode = $(".modal-modify-wrap input[name='deptCode']").val();
 		var modalInputWriterCode = $(".modal-modify-wrap input[name='empCode']").val();
 		var modalInputBoardCode = $(".modal-modify-wrap input[name='boardCode']").val();
+		var boardName = table.row(_chkArr[0]).data().boardName;
 		
 		var board = {
 				board_title : modalInputTitle,
@@ -403,7 +404,8 @@ $(document).ready(function() {
 				board_content : modalInputContent,
 				department_id : modalInputDeptCode,
 				employee_id : modalInputWriterCode,
-				board_id : modalInputBoardCode
+				board_id : modalInputBoardCode,
+				board_name : boardName
 		};
 		
 		boardService.updateBoard(board, function(result, status) {
