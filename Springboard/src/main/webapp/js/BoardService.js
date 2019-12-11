@@ -1,7 +1,6 @@
 var boardService = (function() {
 	
 	function selectBoardCount(callback, error) {
-		console.log("selectBoardCount - boardservice.js")
 		$.ajax({
 			type : 'post',
 			url : '/boardService/selectBoardCnt.do',
@@ -18,7 +17,6 @@ var boardService = (function() {
 	}
 	
 	function insert(board, callback, error) {
-		console.log('자유 탔니<', ">"+board.board_name);
 		if(board.board_name=="free"){
 		$.ajax({
 			type : 'post',
@@ -35,7 +33,6 @@ var boardService = (function() {
 			}
 		})
 		}else if(board.board_name=="notice"){
-			console.log(board.board_type,"공지?")
 			$.ajax({
 				type : 'post',
 				url : board.board_name +'/boardService/insertNotice.do',
@@ -71,7 +68,6 @@ var boardService = (function() {
 	}
 	
 	function updateBoard(board, callback, error) {
-		console.log(board)
 		$.ajax({
 			type : 'PUT',
 			url : board.board_name + '/boardService/updateBoard.do',
@@ -88,7 +84,6 @@ var boardService = (function() {
 		})
 	}
 	function remove(board, callback, error) {
-		console.log(board,"board ! !")
 		$.ajax({
 			type : 'POST',
 			url : board.board_name + '/boardService/multiDelete.do',

@@ -214,7 +214,6 @@ $(document).ready(function() {
 		
 	});
 	$("#board-register-submitBtn").on("click" , function() {
-		console.log($(".modal-regist-wrap select[name='board_type']").val()+"text");
 		var modalSelectBoardType = $(".modal-regist-wrap select[name='board_type']").val();
 		var modalInputTitle = $(".modal-regist-wrap input[name='title']").val();
 		var modalInputWriter = $(".modal-regist-wrap input[name='writer']").val();
@@ -275,11 +274,9 @@ $(document).ready(function() {
 	    	var idxImsi = _imsiArr.indexOf(thisRowNum);
 	    	if(idxImsi > -1) _imsiArr.splice(idxImsi, 1);
 	    }
-	    console.log(_chkArr);
 	});
 	//체크박스 초기화 메서드
 	var checkBoxReset = function() {
-		console.log("checkBoxReset Method call..");
 		_imsiArr= []; // 중복배열 제거를 위한 임시 배열 초기화
 		_chkArr = []; // 체크된 row를 관리하는 배열 초기화
 		$("input[type='checkbox']").prop("checked", false); // checkbox ui 모두 초기화
@@ -308,7 +305,6 @@ $(document).ready(function() {
 				board_id : boardId
 		}
 		boardService.selectBoard(board,function(result, status) {
-			console.log(result);
 	    	if(status="success") {
 	    		$("#modal-wrapper").css("display", "block");
 	    		$(".modal-select-wrap").css("display", "block");
@@ -331,7 +327,6 @@ $(document).ready(function() {
 		} else {
 			
 			if(confirm("정말 삭제하시겠습니까?")== true){
-				console.log("체크된 렝스" + _chkArr.length);
 				var successCount = 0;
 				for(var i=0; i<_chkArr.length; i++) {
 					var board = {
@@ -351,7 +346,6 @@ $(document).ready(function() {
 					boardService.remove(board, function(result, status) {
 						if(status="success") {
 							successCount ++;
-							console.log("딜리트 성공갯수 : " + successCount);
 							if(successCount == _chkArr.length) {
 								alert("성공적으로 삭제되었습니다.");
 								checkBoxReset();
@@ -412,7 +406,6 @@ $(document).ready(function() {
 		}
 		
 		boardService.selectBoard(board, function(result, status) {
-			console.log(result)
 	    	if(status="success") {
 	    		$(".modal-modify-wrap input[name='title']").val(result.board_title);
 	    		$(".modal-modify-wrap input[name='department']").val(result.department_name);
@@ -495,11 +488,6 @@ $(document).ready(function() {
 		var writer = $("#writer").val(); // data[3]
 		var dp1 = $("#datepicker1").val(); // data[4] "" or 2019-12-04 
 		var dp2= $("#datepicker2").val(); // data[4] "" or 2019-12-04
-		console.log(title)
-		console.log(department)
-		console.log(writer)
-		console.log(dp1)
-		console.log(dp2)
 		if(title == "" && department =="" && writer == "" && dp1 == "" && dp2 == "") {
 			alert("검색 할 내용을 입력 해 주세요.")
 			return;

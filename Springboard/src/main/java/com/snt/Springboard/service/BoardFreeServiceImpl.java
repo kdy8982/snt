@@ -27,7 +27,6 @@ public class BoardFreeServiceImpl implements BoardFreeService {
 	
 	@Override
 	public void insertBoardFree(BoardFreeVO free) {
-		System.out.println("Insert method");
 		freeDao.insertBoardFree(free);
 	}
 
