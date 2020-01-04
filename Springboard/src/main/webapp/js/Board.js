@@ -50,6 +50,8 @@ $(document).ready(function() {
 		success: function(data,textStatus){
 			var a = '<ul>';
 			for(var m=1; m<data.length; m++){
+				console.log(data[m-1].department_name)
+				console.log(data[m].department_name)
 				if(data[m-1].department_name!=data[m].department_name){	
 					a += '<li>'+data[m-1].department_name+'<ul>';
 					for(var n=0; n<data.length; n++){
@@ -61,6 +63,7 @@ $(document).ready(function() {
 				}
 			}
 			a += '</ul>';
+			console.log(a);
 			$('#tree').append(a);
 			$('#tree, #treeBox').hide();
 		},
