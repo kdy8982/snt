@@ -14,9 +14,14 @@ public class TilesController {
 
 	@RequestMapping(value="/main.do")
 	public ModelAndView openTileView(ModelAndView mv) {
-		logger.info("call Tiles Controller..!!!!");
+		logger.info("call Tiles Controller..!");
 		mv.setViewName("/main/main");//타일즈 view => 일반 view
         return mv;
 	}
 	
+	@RequestMapping(value="/expression.do")
+	public String expressionMethod(ModelAndView mv) {
+		logger.info("call Tiles expression..!!!!!!");
+        return "templateExpression/main.layout";
+	}
 }
